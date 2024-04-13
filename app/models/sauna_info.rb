@@ -1,0 +1,2 @@
+class SaunaInfo < ApplicationRecord
+end

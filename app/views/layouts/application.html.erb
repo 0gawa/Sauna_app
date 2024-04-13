@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>サウナ探検家</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <script src="https://kit.fontawesome.com/0ea4f70a08.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+
+  <footer class="bg-light pt-5 pb-4 mt-4">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <p>サウナ探検家のためのサイトです</p>
+            <%= image_tag 'header_logo.png', :size =>'300x75' %>
+          </div>
+          <div class="col-md-5"></div>
+          <div class="col-md-3">
+            <h6 class="mt-2 mb-3 text-dark">Information</h6>
+            <ul class="p-0 list-unstyled">
+              <li>
+                <a href="" title="About" class="text-dark">製作者情報</a>
+              </li>
+              <li class="pt-2">
+                <a href="" title="License informations" class="text-dark">プライバシーポリシー</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+</html>
