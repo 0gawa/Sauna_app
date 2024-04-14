@@ -5,4 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :profile
+
+  has_many :tweets, dependent: :destroy
+
+  validates :name, presence: true
+  #validates :introduction, presence: true
+
+  def get_image(width, height)
+    unless profile.attached?
+      file_path = Rails.root.join('app/assets/images/user_no_image.png')
+      profile.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
+    end
+    profile.variant(resize_to_limit: [width, height]).processed
+  end
 end

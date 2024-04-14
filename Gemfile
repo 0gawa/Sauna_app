@@ -75,3 +75,5 @@ end
 gem "devise"
 gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
+gem 'image_processing', '~> 1.2'
+gem 'rails-i18n'

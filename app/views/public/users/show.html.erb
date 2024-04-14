@@ -15,17 +15,17 @@
                     
                     <div class="row">
                         <div class="row mt-4">
-
+                            <%= image_tag @user.get_image(500,500)%>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12 align-self-center border-bottom border-dark">
+                            <div class="col-md-12 align-self-center border-bottom border-dark pb-2">
                                 <h4>名前</h4>
                                 <span class="fs-5 text-center pb-1"><%=@user.name%></span>
                             </div>
                         </div>
                         <div class="row mt-4">
-                            <div class="col-md-12 border-bottom border-dark">
+                            <div class="col-md-12 border-bottom border-dark pb-3">
                                 <h4>自己紹介</h4>
                                 <span class="fs-5 text-center pb-1"><%=@user.introduction%></span>
                             </div>
@@ -51,7 +51,6 @@
                     </div>
                 </div>
             </div>
-
 
         </div>      
     </div>

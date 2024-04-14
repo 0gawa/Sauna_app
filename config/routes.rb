@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :users
     resources :saunas
+    resources :tweets
   end
 
   namespace :admin do
