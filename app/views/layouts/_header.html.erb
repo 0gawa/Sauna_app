@@ -15,6 +15,9 @@
                         <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %>
                     </li>
                     <li class="nav-item">
+                        <%= link_to "サ活投稿", new_tweet_path, class: 'nav-link text-dark' %>
+                    </li>
+                    <li class="nav-item">
                         <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
                     </li>
                 <% else %>
