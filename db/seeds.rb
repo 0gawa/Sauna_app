@@ -5,15 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-10.times do |n|
-    Sauna.create!(
-      name: "サウナ施設 No.#{n + 1}",
-      address: "東京都#{n + 1}丁目",
-      sauna_info_id: 5,
-      water_id: 2
-    )
-
-end
 
 for num in 6..11 do
     SaunaInfo.create!(
@@ -26,5 +17,14 @@ end
     Water.create!(
         temperature: n,
         explain: "水の温度は#{n}度です。"
+    )
+end
+
+10.times do |n|
+    Sauna.create!(
+      name: "サウナ施設 No.#{n + 1}",
+      address: "東京都#{n + 1}丁目",
+      sauna_info_id: 5,
+      water_id: 3
     )
 end

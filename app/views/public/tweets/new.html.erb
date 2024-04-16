@@ -5,12 +5,23 @@
         <div class="col-md-1"></div>
 
         <div class="col-md-11">
+            <% if @tweet.errors.any? %>
+                <div class="row mt-5">
+                    <h1><%= @tweet.errors.count %>件のエラーが発生しました</h1>
+                    <ul>
+                        <% @tweet.errors.full_messages.each do |message| %>
+                            <li class="fs-5"><%= message %></li>
+                        <% end %>
+                    </ul>
+            <% end %>
+
             <div class="row mt-5"><h1>サウナ活動の投稿</h1></div>
 
             <div class="row mt-5">
-                <%= form_with model: @tweet do |f| %>
+                <%= form_with model: @tweet, method: :post do |f| %>
                     <div class="col-md-5">
                         <h4>サウナ施設</h4>
+                        <%= f.collection_select :sauna_id, @saunas, :id, :name, include_blank: "選択して下さい", class: "form-control" %>
                     </div>
 
                     <div class="mt-4 col-md-5">
@@ -20,7 +31,7 @@
 
                     <div class="mt-4 col-md-5">
                         <h4>感想</h4>
-                        <%= f.text_area :impression, class: "form-control"%>
+                        <%= f.text_area :impression, class: "form-control", :size=>"60x10"%>
                     </div>
 
                     <div class="mt-4 col-md-5">

@@ -61,21 +61,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_11_082648) do
   create_table "sauna_infos", force: :cascade do |t|
     t.integer "temperature", null: false
     t.string "explain", null: false
-    t.integer "sauna_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sauna_id"], name: "index_sauna_infos_on_sauna_id"
   end
 
   create_table "saunas", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.integer "sauna_id"
-    t.integer "water_id"
-    t.integer "sauna_info_id"
+    t.string "name", null: false
+    t.string "address", null: false
+    t.integer "water_id", null: false
+    t.integer "sauna_info_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sauna_id"], name: "index_saunas_on_sauna_id"
     t.index ["sauna_info_id"], name: "index_saunas_on_sauna_info_id"
     t.index ["water_id"], name: "index_saunas_on_water_id"
   end
@@ -113,21 +109,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_11_082648) do
   create_table "waters", force: :cascade do |t|
     t.integer "temperature", null: false
     t.string "explain", null: false
-    t.integer "sauna_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sauna_id"], name: "index_waters_on_sauna_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "tweets"
   add_foreign_key "favorites", "users"
-  add_foreign_key "sauna_infos", "saunas"
   add_foreign_key "saunas", "sauna_infos"
-  add_foreign_key "saunas", "saunas"
   add_foreign_key "saunas", "waters"
   add_foreign_key "tweets", "saunas"
   add_foreign_key "tweets", "users"
-  add_foreign_key "waters", "saunas"
 end

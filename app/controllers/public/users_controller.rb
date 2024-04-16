@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
     def show
         @user = User.find(current_user.id)
+        @tweets = Tweet.limit(8).order(created_at: :desc)
     end
 
     def edit

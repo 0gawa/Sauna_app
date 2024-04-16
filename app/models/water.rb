@@ -1,3 +1,3 @@
 class Water < ApplicationRecord
-    belongs_to :sauna
+    has_many :saunas, dependent: :destroy
 end
