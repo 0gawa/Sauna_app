@@ -5,6 +5,10 @@ class Tweet < ApplicationRecord
 
     validates :user_id, presence: true
     validates :sauna_id, presence: true
+    validates :count, presence: true
+    validates :sauna_time, presence: true
+    validates :water_time, presence: true
+    validates :totonoi_time, presence: true
 
     def get_image(width, height)
         unless image.attached?
@@ -12,5 +16,5 @@ class Tweet < ApplicationRecord
           image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
         end
         image.variant(resize_to_limit: [width, height]).processed
-      end
+    end
 end

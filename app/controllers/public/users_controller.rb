@@ -1,7 +1,11 @@
 class Public::UsersController < ApplicationController
+    before_action :authenticate_user!
+
     def show
         @user = User.find(current_user.id)
-        @tweets = Tweet.limit(8).order(created_at: :desc)
+        @tweets = @user.tweets.order(created_at: :desc)
+        @tweets_all = Tweet.all.limit(8).order(created_at: :desc)
+        @saunas = Sauna.limit(8).order(created_at: :desc)  #ここを後でいいねの多い順にする
     end
 
     def edit

@@ -1,2 +1,13 @@
-<h1>Saunas#show</h1>
-<p>Find me in app/views/saunas/show.html.erb</p>
+<%=render "layouts/header"%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <div class="row mt-5">
+                <h1><%=@sauna.name%></h1>
+                <h3 class="pt-2"><%=@sauna.address%></h3>
+            </div>
+        </div>
+    </div>
+</div>

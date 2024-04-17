@@ -31,6 +31,13 @@
                             </div>
                         </div>
 
+                        <div class="row mt-4">
+                            <div class="col-md-12 border-bottom border-dark pb-3">
+                                <h4>サウナ回数(サ活投稿数)</h4>
+                                <span class="fs-5 text-center pb-1"><%=@user.tweets.count%></span>
+                            </div>
+                        </div>
+
                         <div class="row mt-4 justify-content-md-center">
                             <div class="col-md-auto ">
                                 <%= link_to "編集", edit_user_path(current_user.id), class: "btn btn-primary"%>
@@ -46,19 +53,60 @@
 
                     <div class="row mt-4 row-cols-1 row-cols-md-2 g-4">
                         <% @tweets.each do |tweet|%>
-                            <div class="col">
-                                <div class="card">
-                                    <%=image_tag tweet.get_image(300,100), class: "card-img-top"%>
-                                    <div class="card-body">
-                                        <h5 class="card-title"><%=tweet.user.name%></h5>
-                                        <h6 class="card-subtitle mb-2 text-body-secondary"><%=tweet.sauna.name%></h6>
-                                        <p class="card-text"><%=tweet.impression%></p>
+                            <%= link_to tweet_path(tweet.id) do%>
+                                <div class="col">
+                                    <div class="card">
+                                        <%=image_tag tweet.get_image(300,100), class: "card-img-top"%>
+                                        <div class="card-body">
+                                            <h5 class="card-title"><%=tweet.user.name%></h5>
+                                            <h6 class="card-subtitle mb-2 text-body-secondary"><%=tweet.sauna.name%></h6>
+                                            <p class="card-text"><%=tweet.impression%></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <%end%>
                         <%end%>
                     </div>
                 </div>
+            </div>
+
+            <div class="row mt-5 text-center">
+                <h3>みんなの投稿</h3>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-4 mt-4 g-4">
+                <% @tweets_all.each do |tweet|%>
+                    <%= link_to tweet_path(tweet.id) do%>
+                        <div class="col">
+                            <div class="card">
+                                <%=image_tag tweet.get_image(300,100), class: "card-img-top"%>
+                                <div class="card-body">
+                                    <h5 class="card-title"><%=tweet.user.name%></h5>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary"><%=tweet.sauna.name%></h6>
+                                    <p class="card-text"><%=tweet.impression%></p>
+                                </div>
+                            </div>
+                        </div>
+                    <%end%>
+                <%end%>
+            </div>
+
+            <div class="row mt-5 text-center">
+                <h3>みんなが行くサウナ</h3>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-4 mt-4 g-4">
+                <% @saunas.each do |sauna|%>
+                    <%=link_to sauna_path(sauna.id) do%>
+                        <div class="card">
+                            <%=image_tag sauna.get_image(300,100)%>
+                            <div class="card-body">
+                                <h5 class="card-title"><%=sauna.name%></h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary"><%=sauna.address%></h6>
+                            </div>
+                        </div>
+                    <%end%>
+                <%end%>
             </div>
 
         </div>      

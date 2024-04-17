@@ -79,11 +79,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_11_082648) do
   create_table "tweets", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "sauna_id", null: false
-    t.integer "count", null: false
-    t.text "impression"
-    t.integer "sauna_time", null: false
-    t.integer "water_time", null: false
-    t.integer "totonoi_time", null: false
+    t.integer "count", default: 0, null: false
+    t.text "impression", default: "", null: false
+    t.integer "sauna_time", default: 3, null: false
+    t.float "water_time", default: 0.167, null: false
+    t.integer "totonoi_time", default: 5, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sauna_id"], name: "index_tweets_on_sauna_id"

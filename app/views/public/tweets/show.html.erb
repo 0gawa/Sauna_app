@@ -5,11 +5,37 @@
         <div class="col-md-1">
         </div>
 
-        </div class="col-md-11">
+        <div class="col-md-11">
             <div class="row mt-5">
-                <h1>This is Show</h1>
+                <h1>サ活投稿</h1>
             </div>
 
+            <div class="row mt-5">
+                <%=link_to sauna_path(@tweet.sauna.id) do%><h2><%=@tweet.sauna.name%></h2><%end%>
+                <h4><%=@tweet.user.name%></h4>
+            </div>
+
+            <div class="row mt-4">
+                <h4>感想</h4>
+                <p><%=@tweet.impression%></p>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-auto rounded-2 rounded border p-2">
+                    <i class="fa-solid fa-xl fa-fire" style="color: #eb1414;"></i>
+                    <span class="p-1"><%=@tweet.sauna_time%>分</span>
+                </div>
+
+                <div class="col-md-auto rounded-2 rounded border p-2 ms-3">
+                    <i class="fa-solid fa-droplet fa-xl" style="color: #154eb2;"></i>
+                    <span class="p-1"><%=@tweet.water_time%>分</span>
+                </div>
+                
+                <div class="col-md-auto rounded-2 rounded border p-2 ms-3">
+                    <i class="fa-solid fa-chair fa-xl" style="color: #51a01c;"></i>        
+                    <span class="p-1"><%=@tweet.totonoi_time%>分</span>
+                </div>
+            </div>
         </div> 
 
     </div>

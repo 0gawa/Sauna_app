@@ -1,16 +1,11 @@
 class Public::SaunasController < ApplicationController
+  before_action :authenticate_user!
+  
   def show
+    @sauna = Sauna.find(params[:id])
   end
 
   def index
   end
 
-  def create
-  end
-
-  def edit
-  end
-
-  def destroy
-  end
 end
