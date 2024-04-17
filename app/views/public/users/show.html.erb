@@ -14,11 +14,11 @@
                     </div>
                     
                     <div class="row">
-                        <div class="row mt-4">
-                            <%= image_tag @user.get_image(500,500)%>
+                        <div class="row mt-4 h-50">
+                            <div class="col-auto mx-auto"><%= image_tag @user.get_image(300,300), alt: '読み込みエラー', class: ''%></div>
                         </div>
 
-                        <div class="row">
+                        <div class="row mt-4">
                             <div class="col-md-12 align-self-center border-bottom border-dark pb-2">
                                 <h4>名前</h4>
                                 <span class="fs-5 text-center pb-1"><%=@user.name%></span>

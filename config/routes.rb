@@ -26,6 +26,6 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   
-  get '*not_found' => 'application#routing_error'
-  post '*not_found' => 'application#routing_error'
+  get '*not_found' => 'application#routing_error', constraints: lambda { |request| !request.path.include?("active_storage") }
+  post '*not_found' => 'application#routing_error', constraints: lambda { |request| !request.path.include?("active_storage") }
 end
