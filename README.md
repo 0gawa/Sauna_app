@@ -1,24 +1,19 @@
-# README
+# サウナの日記アプリ：　「さうな探検隊」
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+最終編集日：    2024/04/18
 
-Things you may want to cover:
+# このアプリの概要
+* サウナ活動(以下「サ活」)をする人のためのアプリ
+* 毎回のサ活を記録し、振り返りが可能!
+* 他人のサ活投稿を見て、参考にすることができる
+* 記録することで、ととのうサウナの入り方がわかる
 
-* Ruby version
+# # ユーザー側のアクション
 
-* System dependencies
+# # 管理者側のアクション
 
-* Configuration
+# 製作者から
 
-* Database creation
+# # 注目ポイント
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# # 改善点
