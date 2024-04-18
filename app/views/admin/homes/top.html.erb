@@ -8,7 +8,39 @@
                 <h1>管理者トップページ</h1>
             </div>
 
-            
+            <div class="row mt-5">
+                <h2>新しいサウナ施設の登録</h2>
+                <div class="mx-auto">
+                    <%=link_to "登録画面へ", new_admin_sauna_path, class: "btn btn-primary mt-4"%>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <h2>サ活投稿一覧</h2>
+                <span class="mt-1">不適切な投稿は管理者が削除することができます。</span>
+                <div class="mx-auto">
+                    <%=link_to "投稿一覧画面へ", new_admin_sauna_path, class: "btn btn-primary mt-4"%>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <h2>管理者の管理</h2>
+                <div class="col-md-10 mt-3">
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <th>#</th>   <th>管理者名前</th> <th>管理者メールアドレス</th>
+                        </tr>
+                        <% @managers.each do |manager|%>
+                        <tr>
+                            <td><%=manager.id%></td>
+                            <td><%=manager.name%></td>
+                            <td><%=manager.email%></td>
+                        </tr>
+                        <%end%>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

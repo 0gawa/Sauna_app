@@ -5,6 +5,11 @@ class Sauna < ApplicationRecord
     belongs_to :sauna_info
     belongs_to :water
 
+    validates :name, presence: true
+    validates :address, presence: true
+    validates :sauna_info_id, presence: true
+    validates :water_id, presence: true
+
     def get_image(width, height)
         unless image.attached?
           file_path = Rails.root.join('app/assets/images/sauna_no_image.png')
