@@ -14,8 +14,11 @@
                     </div>
                     
                     <div class="row">
-                        <div class="row mt-4 h-50">
-                            <div class="col-auto mx-auto"><%= image_tag @user.get_image(300,300), alt: '読み込みエラー', class: ''%></div>
+                        <div class="row mt-5">
+                            <div class="col-md-12 border-bottom border-dark pb-2">
+                                <h4>ユーザー画像</h4>
+                                <div class="text-center mx-auto mt-1"><%= image_tag @user.get_image(900,900), alt: '読み込みエラー', class: '', style: "border-radius: 50%; width: 100px; height: 100px; object-fit:cover;"%></div>
+                            </div>
                         </div>
 
                         <div class="row mt-4">
@@ -56,11 +59,11 @@
                             <%= link_to tweet_path(tweet.id) do%>
                                 <div class="col">
                                     <div class="card">
-                                        <%=image_tag tweet.get_image(300,100), class: "card-img-top"%>
+                                        <%=image_tag tweet.get_image(900,600), class: "card-img-top"%>
                                         <div class="card-body">
                                             <h5 class="card-title"><%=tweet.user.name%></h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary"><%=tweet.sauna.name%></h6>
-                                            <p class="card-text"><%=tweet.impression%></p>
+                                            <p class="card-text">セット数： <%=tweet.count%>回</p>
                                         </div>
                                     </div>
                                 </div>
@@ -79,11 +82,11 @@
                     <%= link_to tweet_path(tweet.id) do%>
                         <div class="col">
                             <div class="card">
-                                <%=image_tag tweet.get_image(300,100), class: "card-img-top"%>
+                                <%=image_tag tweet.get_image(900,600), class: "card-img-top"%>
                                 <div class="card-body">
                                     <h5 class="card-title"><%=tweet.user.name%></h5>
                                     <h6 class="card-subtitle mb-2 text-body-secondary"><%=tweet.sauna.name%></h6>
-                                    <p class="card-text"><%=tweet.impression%></p>
+                                    <p class="card-text">セット数： <%=tweet.count%>回</p>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +102,7 @@
                 <% @saunas.each do |sauna|%>
                     <%=link_to sauna_path(sauna.id) do%>
                         <div class="card">
-                            <%=image_tag sauna.get_image(300,100)%>
+                            <%=image_tag sauna.get_image(900,600)%>
                             <div class="card-body">
                                 <h5 class="card-title"><%=sauna.name%></h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary"><%=sauna.address%></h6>

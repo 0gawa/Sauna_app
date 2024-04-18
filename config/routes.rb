@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
   # 管理者用
   # URL /admin/sign_in ...
-  devise_for :admin, controllers: {
-    sessions: "admin/sessions"
+  devise_for :managers, controllers: {
+    registrations: "admin/registrations",
+    sessions: 'admin/sessions'
   }
   
   scope module: :public do
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    root to: "homes#top"
     resources :saunas
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

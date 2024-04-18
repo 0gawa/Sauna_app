@@ -1,9 +1,8 @@
-<%= render "layouts/header"%>
+<%=render "layouts/header"%>
 
 <div class="container">
     <div class="row">
         <div class="col-md-1"></div>
-
         <div class="col-md-11">
             <% if @tweet.errors.any? %>
                 <div class="row mt-5">
@@ -16,10 +15,12 @@
                 </div>
             <% end %>
 
-            <div class="row mt-5"><h1>サウナ活動の投稿</h1></div>
+            <div class="row mt-5">
+                <h1>投稿の編集</h1>
+            </div>
 
             <div class="row mt-5">
-                <%= form_with model: @tweet, method: :post do |f| %>
+                <%= form_with model: @tweet, method: :patch do |f| %>
                     <div class="col-md-5">
                         <h4>サウナ施設</h4>
                         <%= f.collection_select :sauna_id, @saunas, :id, :name, include_blank: "選択して下さい", class: "form-control" %>
@@ -55,12 +56,11 @@
                         <%= f.select :totonoi_time, [["5分以下", 5], ["6分", 6], ["7分", 7], ["8分", 8], ["9分", 9], ["10分", 10], ["11分", 11], ["12分以上", 12]], include_blank: "選択して下さい", class: "form-select"%>
                     </div>
 
-                    <%=f.submit '投稿する', class: "btn btn-primary mt-5" %>
+                    <%=f.submit '更新する', class: "btn btn-primary mt-5" %>
                 <%end%>
+            
             </div>
-        
+
         </div>
-
-
     </div>
 </div>

@@ -13,6 +13,14 @@ class Public::TweetsController < ApplicationController
         @tweet = Tweet.find(params[:id])
     end
 
+    def edit
+        @tweet = Tweet.find(params[:id])
+        @saunas = Sauna.all
+        if @tweet.user.id != current_user.id
+            redirect_to tweet_path(@tweet.id)
+        end
+    end
+
     def create
         @tweet = Tweet.new(tweet_params)
         @tweet.user_id = current_user.id
@@ -21,6 +29,15 @@ class Public::TweetsController < ApplicationController
         else
             @saunas = Sauna.all
             render :new, status: :unprocessable_entity
+        end
+    end
+
+    def update
+        @tweet = Tweet.find(params[:id])
+        if @tweet.update(tweet_params)
+            redirect_to tweet_path(@tweet.id)
+        else
+            render :edit, status: :unprocessable_entity
         end
     end
 

@@ -16,6 +16,6 @@ class User < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/user_no_image.png')
       profile.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
     end
-    profile.variant(resize_to_limit: [width, height]).processed
+    profile.variant(resize_to_fill: [width, height]).processed
   end
 end

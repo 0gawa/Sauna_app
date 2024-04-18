@@ -1,8 +1,8 @@
-#これは後で削除すること！！！！！！
-#*******************************************
+#これは後で削除すること！！！！
+#****************************************************//
 
-class AddDeviseToAdmins < ActiveRecord::Migration[7.0]
-  def self.up
+class DeviseCreateAdmins < ActiveRecord::Migration[7.0]
+  def change
     create_table :admins do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
@@ -33,11 +33,8 @@ class AddDeviseToAdmins < ActiveRecord::Migration[7.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
-      # Uncomment below if timestamps were not included in your original model.
-      # t.timestamps null: false
-      t.string :name, null: false
-
+      t.string :name
+      t.timestamps null: false
     end
 
     add_index :admins, :email,                unique: true
