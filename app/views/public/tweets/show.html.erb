@@ -11,19 +11,22 @@
             </div>
 
             <div class="row mt-5">
-                <%=link_to sauna_path(@tweet.sauna.id) do%><h2><%=@tweet.sauna.name%></h2><%end%>
+                <%=link_to sauna_path(@tweet.sauna.id) do%><h2 style="color: black"><%=@tweet.sauna.name%></h2><%end%>
                 <h4><%=@tweet.user.name%></h4>
             </div>
 
             <div class="row mt-5">
-                <div class="col mt-1">
-                    <%=image_tag @tweet.get_image(800, 450), alt: "読み込みエラー"%>
+                <div class="col-md-10 row-cols-2">
+                    <h3>画像</h3>
+                    <div class="card mt-1">
+                        <%=image_tag @tweet.get_image(1000, 750), alt: "読み込みエラー"%>
+                    </div>
                 </div>
             </div>
 
             <div class="row mt-5">
-                <h4>感想</h4>
-                <p><%=@tweet.impression%></p>
+                <h3>感想</h3>
+                <p class="fs-6"><%=simple_format(h(@tweet.impression))%></p>
             </div>
 
             <div class="row mt-5 ms-1">
