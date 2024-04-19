@@ -9,7 +9,37 @@
             </div>
 
             <div class="row">
+                <div class="col-md-5 mt-5">
+                    <h4 >サウナ施設名</h4>
+                    <p class="fs-6"><%=@sauna.name%></p>
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6 mt-5">
+                    <h4 class="pb-1">サウナ施設画像<h4>
+                    <%=image_tag @sauna.get_image(800,450), alt: "読み込みエラー"%>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mt-5">
+                    <h4>サウナ施設住所</h4>
+                    <p class="fs-6"><%=@sauna.address%></p>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-3">
+                    <h4>サウナ室の温度</h4>
+                    <p class="fs-6"><%=@sauna.sauna_info.temperature%>度</p>
+                </div>
+                <div class="col-md-3">
+                    <h4>水風呂の温度</h4>
+                    <p class="fs-6"><%=@sauna.water.temperature%>度</p>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
