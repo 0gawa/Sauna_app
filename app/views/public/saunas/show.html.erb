@@ -26,6 +26,24 @@
                         <p class="fs-3 mt-3 text-center"><%=@sauna.water.temperature%>度</p></h3>
                     </div>
                 </div>
+
+                <div class="row mt-5">
+                    <div class="col-10">
+                        <% if @sauna.sauna_favorited_by?(current_user) %>
+                            <span class="fs-5 ps-2">
+                            <%= link_to sauna_sauna_favorite_path(@sauna.id), data: {"turbo-method": :delete} do %>
+                                <i class="fa-regular fa-thumbs-up fa-lg" style="color: #e83030;"></i> <%= @sauna.sauna_favorites.count %>
+                            <% end %>
+                            </span>
+                            <% else %>
+                            <span class="fs-5 ps-2">
+                            <%= link_to sauna_sauna_favorite_path(@sauna.id), data: {"turbo-method": :post} do %>
+                                <i class="fa-regular fa-thumbs-up fa-lg" style="color: #141619;"></i> <%= @sauna.sauna_favorites.count %>
+                            <% end %>
+                            </span>
+                        <% end %>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
