@@ -17,8 +17,10 @@
 
             <div class="row">
                 <div class="col-md-6 mt-5">
-                    <h4 class="pb-1">サウナ施設画像<h4>
-                    <%=image_tag @sauna.get_image(900,600), alt: "読み込みエラー"%>
+                    <h4 class="">サウナ施設画像<h4>
+                    <div class="card mt-1">
+                        <%=image_tag @sauna.get_image(1000,750), alt: "読み込みエラー"%>
+                    </div>
                 </div>
             </div>
 
@@ -26,6 +28,13 @@
                 <div class="col-md-6 mt-5">
                     <h4>サウナ施設住所</h4>
                     <p class="fs-6"><%=@sauna.address%></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mt-5">
+                    <h4>サウナ施設の説明</h4>
+                    <p class="fs-6"><%=simple_format(h(@sauna.express))%></p>
                 </div>
             </div>
 

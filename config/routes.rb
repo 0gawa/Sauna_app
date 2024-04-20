@@ -16,9 +16,12 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root to: 'homes#top'
-    resources :users
-    resources :saunas
-    resources :tweets
+    resources :users, only: [:show, :edit, :update]
+    resources :saunas, only: [:show, :index]
+
+    resources :tweets do 
+      resource :favorite, only: [:create, :destroy]
+    end
   end
 
   namespace :admin do

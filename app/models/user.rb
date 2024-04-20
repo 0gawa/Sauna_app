@@ -7,8 +7,10 @@ class User < ApplicationRecord
   has_one_attached :profile
 
   has_many :tweets, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :name, presence: true
+  validates :user_id, uniqueness: {scope: :tweet_id}
   #validates :introduction, presence: true
 
   def get_image(width, height)

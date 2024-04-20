@@ -1,5 +1,7 @@
 class Tweet < ApplicationRecord
     has_one_attached :image
+
+    has_many :favorites, dependent: :destroy
     belongs_to :user
     belongs_to :sauna
 
@@ -16,5 +18,10 @@ class Tweet < ApplicationRecord
           image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
         end
         image.variant(resize_to_fill: [width, height]).processed
+    end
+
+    #引数で渡されたユーザのidがFavoriteモデルに存在するかチェック
+    def favorited_by?(user)
+      favorites.exists?(user_id: user.id)
     end
 end
