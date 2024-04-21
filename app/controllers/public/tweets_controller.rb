@@ -7,6 +7,7 @@ class Public::TweetsController < ApplicationController
     end
 
     def index
+        @tweets = Tweet.limit(30).order(created_at: :desc)
     end
 
     def show
