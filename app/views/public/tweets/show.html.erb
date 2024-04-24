@@ -12,7 +12,8 @@
 
             <div class="row mt-5">
                 <%=link_to sauna_path(@tweet.sauna.id) do%><h2 style="color: black"><%=@tweet.sauna.name%></h2><%end%>
-                <h4><%=@tweet.user.name%></h4>
+               <span class="col-md-auto fs-4"><%=image_tag @tweet.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 37px; height: 37px;"%> <%=@tweet.user.name%></span>
+               <p class="text-secondary">投稿日時 <%=l @tweet.created_at, format: :short%><p>
             </div>
 
             <div class="row mt-5">
@@ -61,7 +62,37 @@
                         <% end %>
                         </span>
                     <% end %>
+
+                    <span class="ps-5 fs-5"><i class="fa-regular fa-message fa-lg" style="color: #262627;"></i> <%=@comments.count%></span>
                 </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <%= form_with model: [@tweet, @comment] do |f| %>
+                        <%= f.text_area :comment, placeholder: "コメントは140字以内です", class: "form-control mb-3", rows: "3"%>
+                        <%= f.submit "コメント投稿", class: "btn btn-primary" %>
+                    <% end %>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <%if @comments.count == 0%>
+                    <h3>コメント欄</h3>
+                    <p>まだコメントはありません。<p>
+                <%else%>
+                    <div class="col-md-7 cols-md-1">
+                        <%@comments.each do |comment|%>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <span class="fs-6 card-title"><%=image_tag comment.user.get_image(1000,1000), style: "border-radius: 100%; width: 32px; height: 32px;"%><span class="ps-1"><%=comment.user.name%></span></span>
+                                    <span class="ps-3 text-secondary"><%=l comment.created_at, format: :short%></span>
+                                    <div class="mt-2"><%=comment.comment%></div>
+                                </div>
+                            </div>
+                        <%end%>
+                    </div>
+                <%end%>
             </div>
             
             <%if @tweet.user_id == current_user.id%>       

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_20_160226) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_24_033509) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -91,6 +91,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_20_160226) do
     t.datetime "updated_at", null: false
     t.index ["sauna_info_id"], name: "index_saunas_on_sauna_info_id"
     t.index ["water_id"], name: "index_saunas_on_water_id"
+  end
+
+  create_table "tweet_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "tweet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tweets", force: :cascade do |t|

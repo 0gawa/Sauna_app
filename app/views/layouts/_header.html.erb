@@ -1,4 +1,4 @@
-<header class="shadow-sm px-1">
+<header class="px-1">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
         <% if user_signed_in? %>
@@ -17,24 +17,24 @@
         <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
                 <% if user_signed_in? %>
-                    <li class="nav-item">
-                        <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %>
+                    <li class="nav-item header_btn me-4">
+                        <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-white' %>
                     </li>
-                    <li class="nav-item">
-                        <%= link_to "サ活一覧", tweets_path, class: 'nav-link text-dark' %>
+                    <li class="nav-item header_btn me-4">
+                        <%= link_to "サ活一覧", tweets_path, class: 'nav-link text-white' %>
                     </li>
-                    <li class="nav-item">
-                        <%= link_to "サ活投稿", new_tweet_path, class: 'nav-link text-dark' %>
+                    <li class="nav-item header_btn me-4">
+                        <%= link_to "サ活投稿", new_tweet_path, class: 'nav-link text-white' %>
                     </li>
-                    <li class="nav-item">
-                        <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+                    <li class="nav-item header_btn me-4">
+                        <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-white' %>
                     </li>
                 <% else %>
-                    <li class="nav-item">
-                        <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                    <li class="nav-item header_btn me-4">
+                        <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-white' %>
                     </li>
-                    <li class="nav-item">
-                        <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                    <li class="nav-item header_btn me-4">
+                        <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-white' %>
                     </li>
                 <% end %>
             </ul>

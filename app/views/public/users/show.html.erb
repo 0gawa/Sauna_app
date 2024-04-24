@@ -5,7 +5,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-11">
 
-            <div class="row mt-5"><h1>マイページ</h1></div>
+            <div class="row mt-5"><div class="col-auto"><h1 class="">マイページ</h1></div></div>
 
             <div class="row mt-5">
                 <div class="col-md-4">
@@ -15,29 +15,36 @@
                     
                     <div class="row">
                         <div class="row mt-5">
-                            <div class="col-md-12 border-bottom border-dark pb-2">
+                            <div class="col-md-12 border-bottom border-secondary pb-2">
                                 <h4>ユーザー画像</h4>
                                 <div class="text-center mx-auto mt-1"><%= image_tag @user.get_image(900,900), alt: '読み込みエラー', class: '', style: "border-radius: 50%; width: 100px; height: 100px; object-fit:cover;"%></div>
                             </div>
                         </div>
 
                         <div class="row mt-4">
-                            <div class="col-md-12 align-self-center border-bottom border-dark pb-2">
+                            <div class="col-md-12 align-self-center border-bottom border-secondary pb-2">
                                 <h4>名前</h4>
                                 <span class="fs-5 text-center pb-1"><%=@user.name%></span>
                             </div>
                         </div>
                         <div class="row mt-4">
-                            <div class="col-md-12 border-bottom border-dark pb-3">
+                            <div class="col-md-12 border-bottom border-secondary pb-2">
                                 <h4>自己紹介</h4>
                                 <span class="fs-5 pb-1"><%=simple_format(h(@user.introduction))%></span>
                             </div>
                         </div>
 
                         <div class="row mt-4">
-                            <div class="col-md-12 border-bottom border-dark pb-3">
+                            <div class="col-md-12 border-bottom border-secondary pb-2">
                                 <h4>サウナ回数(サ活投稿数)</h4>
-                                <span class="fs-5 text-center pb-1"><%=@user.tweets.count%></span>
+                                <span class="fs-5 text-center pb-1"><%=@user.tweets.count%> 回</span>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-12 border-bottom border-secondary pb-2">
+                                <h4>いいねの総数</h4>
+                                <span class="fs-5 text-center pb-1"><%=@user.tweets.inject(0){|sum, tweet| sum + tweet.favorites.count}%> 個</span>
                             </div>
                         </div>
 
@@ -69,6 +76,8 @@
                                                 <% else %>                                     
                                                     <i class="fa-regular fa-thumbs-up fa-lg" style="color: #141619;"></i> <%= tweet.favorites.count %>
                                                 <% end %>
+
+                                                <span class="ps-3 fs-6"><i class="fa-regular fa-message fa-lg" style="color: #262627;"></i> <%=tweet.tweet_comments.count%></span>
                                             </span>
                                         </div>
                                     </div>
@@ -99,6 +108,7 @@
                                             <i class="fa-regular fa-thumbs-up fa-lg" style="color: #141619;"></i> <%= tweet.favorites.count %>
                                         <% end %>
                                     </span>
+                                    <span class="ps-3 fs-6"><i class="fa-regular fa-message fa-lg" style="color: #262627;"></i> <%=tweet.tweet_comments.count%></span>
                                 </div>
                             </div>
                         </div>

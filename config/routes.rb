@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     end
 
     resources :tweets do 
+      resources :tweet_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
   end
