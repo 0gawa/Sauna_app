@@ -12,7 +12,7 @@ class CreateSaunaComments < ActiveRecord::Migration[7.0]
       t.integer :restaurant, default: "0"
       t.integer :water, default: "0"
 
-      t.text :comment, default: ""
+      t.text :detail, default: ""
 
       t.timestamps
     end
