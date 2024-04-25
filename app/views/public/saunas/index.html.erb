@@ -1,2 +1,49 @@
-<h1>Saunas#index</h1>
-<p>Find me in app/views/saunas/index.html.erb</p>
+<%= render "layouts/header"%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <div class="row mt-5">
+                <h1>サウナ施設一覧</h1>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-5">
+                    <% flash.each do |message_type, message| %>
+                        <div class="flash-message <%= message_type %> alert alert-danger"><%= message %></div>
+                    <% end %>
+                    <%= form_with url: search_saunas_path, data: { turbo: false }, method: :post, class: "search-form" do |f| %>
+                        <span class="d-md-flex"><%= f.text_field :keyword, placeholder: "サウナ施設を検索する", class: "form-control" %><%= f.submit "検索", class: "btn btn-primary ms-md-2" %></span>
+                    <% end %>
+                </div>
+            </div>
+            
+            <div class="row mt-5 row-cols-md-4 row-cols-1">
+                <%@saunas.each do |sauna|%>
+                    <%=link_to sauna_path(sauna.id) do%>
+                        <div class="card mb-3">
+                            <%=image_tag sauna.get_image(900,600)%>
+                            <div class="card-body">
+                                <h5 class="card-title"><%=sauna.name%></h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary"><%=sauna.address%></h6>
+                                <span class="fs-6">
+                                    <% if sauna.sauna_favorited_by?(current_user) %>
+                                        <i class="fa-regular fa-thumbs-up fa-lg" style="color: #e83030;"></i> <%= sauna.sauna_favorites.count %>
+                                    <% else %>                                     
+                                        <i class="fa-regular fa-thumbs-up fa-lg" style="color: #141619;"></i> <%= sauna.sauna_favorites.count %>
+                                    <% end %>
+                                </span>
+                            </div>
+                        </div>
+                    <%end%>
+                <%end%>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col">
+                    <%= paginate @saunas, theme: 'bootstrap-5'%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

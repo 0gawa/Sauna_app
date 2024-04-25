@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
     resources :saunas, only: [:show, :index] do
       resource :sauna_favorite, only: [:create, :destroy]
+      collection do
+        post "search"
+      end
     end
 
     resources :tweets do 
@@ -30,6 +33,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
+    resources :tweet, only: [:index, :show]
     resources :saunas
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

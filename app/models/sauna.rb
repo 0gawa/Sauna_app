@@ -20,6 +20,14 @@ class Sauna < ApplicationRecord
         image.variant(resize_to_fill: [width, height]).processed
     end
 
+    def self.search(keyword)
+      if keyword != ""
+        Sauna.where('name LIKE(?)', "%#{keyword}%")
+      else
+
+      end
+    end
+
     def sauna_favorited_by?(user)
       sauna_favorites.exists?(user_id: user.id)
     end
