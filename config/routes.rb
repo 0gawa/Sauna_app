@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :users
 
     resources :saunas, only: [:show, :index] do
+      resources :sauna_comments, only: [:create, :destroy]
       resource :sauna_favorite, only: [:create, :destroy]
       collection do
         post "search"

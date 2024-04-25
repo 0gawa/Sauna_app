@@ -1,5 +1,7 @@
 class Public::TweetsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index]
+
+    #サ活投稿一覧はログインしていなくても閲覧可能にすること
 
     def new
         @tweet = Tweet.new

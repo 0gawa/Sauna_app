@@ -10,3 +10,14 @@ ja:
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "..."
+  enums:
+    sauna_comment:
+      aufguss:
+        na: "無回答"
+        yes: "○"
+        no: "×"
+      autorolly:
+        na: "無回答"
+        yes: "○"
+        rolly: "セルフロウリュ"
+        no: "×"

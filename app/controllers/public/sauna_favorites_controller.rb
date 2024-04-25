@@ -1,4 +1,6 @@
 class Public::SaunaFavoritesController < ApplicationController
+    before_action :authenticate_user!
+    
     def create
         sauna = Sauna.find(params[:sauna_id])
         favorite = current_user.sauna_favorites.new(sauna_id: sauna.id)

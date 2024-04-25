@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :sauna_favorites, dependent: :destroy
   has_many :tweet_comments, dependent: :destroy
+  has_many :sauna_comments, dependent: :destroy
 
   validates :name, presence: true
   #validates :introduction, presence: true

@@ -3,6 +3,7 @@ class Sauna < ApplicationRecord
 
     has_many :tweets, dependent: :destroy
     has_many :sauna_favorites, dependent: :destroy
+    has_many :sauna_comments, dependent: :destroy
     belongs_to :sauna_info
     belongs_to :water
 
