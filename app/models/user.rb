@@ -15,6 +15,10 @@ class User < ApplicationRecord
   validates :name, presence: true
   #validates :introduction, presence: true
 
+  def active_for_authentication?
+    super && (is_unsubscribed == false)
+  end
+
   def get_image(width, height)
     unless profile.attached?
       file_path = Rails.root.join('app/assets/images/user_no_image.png')

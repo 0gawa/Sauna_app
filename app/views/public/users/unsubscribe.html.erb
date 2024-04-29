@@ -1,0 +1,31 @@
+<%= render "layouts/header"%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <div class="row mt-5"><h1>退会の確認</h1></div>
+
+            <div clas="row mt-5">
+                <div class="col-md-8">
+                    <h3>退会について</h3>
+                    <p class="pt-3">
+                    退会手続きをされますと、サ活の投稿、コメント、いいね等のサービスがご利用できなくなります。<br>
+                    退会後、再度ご利用される場合には、新規登録のお手続きが必要になります。
+                    </p>
+                    <p class="pt-3">
+                    下記ボタンをクリックすることで退会が可能です。<br>
+                    退会操作の取り消しは、いかなる場合でも出来ません。注意した上での操作をお願いいたします。
+                    </p>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-auto">
+                    <%= button_to "退会する", withdrawal_path, method: :patch, data: { turbo_confirm: "本当に退会しますか？。この操作は取り消せません。" }, class: "btn btn-primary" %>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</div>

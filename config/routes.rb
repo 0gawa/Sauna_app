@@ -16,8 +16,9 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root to: 'homes#top'
-    resources :users
-
+    resources :users, only: [:show, :edit, :update]
+    get "/user/unsubscribe" => "users#unsubscribe", as: 'unsubscribe'
+    patch "/user/withdraw" => "users#withdrawal", as: 'withdrawal'
     resources :saunas, only: [:show, :index] do
       resources :sauna_comments, only: [:create, :destroy]
       resource :sauna_favorite, only: [:create, :destroy]

@@ -8,6 +8,14 @@
         <h1>ログイン</h1>
       </div>
 
+      <% if flash[:notice]%>
+        <div class="row mt-5"> 
+          <div class="col-auto">
+            <p class = "alert alert-warning"><%= flash[:notice] %></p>
+          </div>
+        </div>
+      <%end%>
+
       <div class="row mt-4">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field mt-4 col-md-4">
