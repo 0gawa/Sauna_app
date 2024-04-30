@@ -3,6 +3,8 @@ class Public::SaunasController < ApplicationController
 
   def show
     @sauna = Sauna.find(params[:id])
+    @sauna_comments = @sauna.sauna_comments.all.page(params[:page]).per(15)
+    @sauna_comment = SaunaComment.new
   end
 
   def index

@@ -77,6 +77,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_25_142546) do
     t.integer "whisking", default: 0
     t.integer "restaurant", default: 0
     t.integer "water", default: 0
+    t.integer "parking", default: 0
+    t.integer "age", default: 0
     t.text "detail", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

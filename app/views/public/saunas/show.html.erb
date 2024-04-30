@@ -47,9 +47,76 @@
 
                 <div class="row mt-5">
                     <div class="row col-md-5">
-                        <h1>みんなからの情報</h1>
+                        <h3>みんなからの情報</h3>
+                    </div>
+
+                    <div class="row mt-3">
+                        <%if @sauna_comments.count > 0 %>
+                            <p>ここにコメント<p>
+                        <%else%>
+                            <p class="pt-1 pb-2">まだ情報がありません。情報提供にご協力お願いいたします。</p>
+                        <%end%>
                     </div>
                 </div>
+
+                <div class="row mt-5">
+                    <div class="col-md-8">
+                        <div class="mt-2">
+                            <h5 class="pb-2">情報提供フォーム</h5>
+                            <%=form_with nodel: @sauna_comment, local: true do |f|%>
+                                <div class="row mb-2">
+                                    <div class="col-md-5 form-group mb-2"> 
+                                        <%= f.label :aufguss, 'アウフグースはありますか？', class: "mb-2"%>
+                                        <div class="text-center"><%=f.select :aufguss, options_for_select(SaunaComment.aufgusses_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.aufguss.#{k}"), k]}), {}, class: "form-select"%></div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-5 form-group mb-2">
+                                        <%= f.label :autorolly, 'オートロウリュはありますか？', class: "mb-2"%>
+                                       <div class="text-center"><%=f.select :autorolly, options_for_select(SaunaComment.autorollies_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.autorolly.#{k}"), k]}), {}, class: "form-select"%></div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-5 form-group mb-2"> 
+                                        <%= f.label :air_bath, '外気浴ですか？', class: "mb-2"%>
+                                        <div class="text-center"><%=f.select :air_bath, options_for_select(SaunaComment.air_baths_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.air_bath.#{k}"), k]}), {}, class: "form-select"%></div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-5 form-group mb-2">
+                                        <%= f.label :whisking, 'ウィスキングのサービスはありますか？', class: "mb-2"%>
+                                       <div class="text-center"><%=f.select :whisking, options_for_select(SaunaComment.whiskings_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.whisking.#{k}"), k]}), {}, class: "form-select"%></div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-5 form-group mb-2"> 
+                                        <%= f.label :restaurant, '食事処はありますか？', class: "mb-2"%>
+                                        <div class="text-center"><%=f.select :restaurant, options_for_select(SaunaComment.restaurants_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.restaurant.#{k}"), k]}), {}, class: "form-select"%></div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-5 form-group mb-2">
+                                        <%= f.label :water, 'ウォーターサーバーはありますか？', class: "mb-2"%>
+                                       <div class="text-center"><%=f.select :water, options_for_select(SaunaComment.waters_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.water.#{k}"), k]}), {}, class: "form-select"%></div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-5 form-group mb-2"> 
+                                        <%= f.label :parking, '駐車場はありますか？', class: "mb-2"%>
+                                        <div class="text-center"><%=f.select :parking, options_for_select(SaunaComment.parkings_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.parking.#{k}"), k]}), {}, class: "form-select"%></div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-5 form-group mb-2">
+                                        <%= f.label :age, 'どれくらいの年代の方が多くいましたか？', class: "mb-2"%>
+                                       <div class="text-center"><%=f.select :age, options_for_select(SaunaComment.ages_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.age.#{k}"), k]}), {}, class: "form-select"%></div>
+                                    </div>
+                                </div>
+                                
+                                <%= f.label :aufguss, 'コメント', class: "mb-2"%>
+                                <%=f.text_area :comment, placeholder: "追加の情報があれば入力してください。", class: "form-control mb-3", rows: "4"%>
+                                <%=f.submit "送信する", class: "btn btn-primary"%>
+                            <%end%>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

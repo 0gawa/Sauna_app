@@ -11,6 +11,8 @@ class CreateSaunaComments < ActiveRecord::Migration[7.0]
       t.integer :whisking, default: "0"
       t.integer :restaurant, default: "0"
       t.integer :water, default: "0"
+      t.integer :parking, default: "0"
+      t.integer :age, default: "0"
 
       t.text :detail, default: ""
 

@@ -9,9 +9,9 @@ class Public::SaunaCommentsController < ApplicationController
         redirect_to sauna_path(sauna.id)
     end
     
-      private
+    private
     
-      def sauna_comment_params
-        params.require(:sauna_comment).permit(:comment)
-      end
+    def sauna_comment_params
+        params.require(:sauna_comment).permit(:comment, :aufguss, :autorolly, :air_bath, :whisking, :restaurant, :water)
+    end
 end
