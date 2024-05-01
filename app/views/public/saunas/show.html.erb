@@ -52,7 +52,7 @@
 
                     <div class="row mt-3">
                         <%if @sauna_comments.count > 0 %>
-                            <p>ここにコメント<p>
+                            <p><%=@sauna_comments.count%><p>
                         <%else%>
                             <p class="pt-1 pb-2">まだ情報がありません。情報提供にご協力お願いいたします。</p>
                         <%end%>
@@ -63,7 +63,10 @@
                     <div class="col-md-8">
                         <div class="mt-2">
                             <h5 class="pb-2">情報提供フォーム</h5>
-                            <%=form_with nodel: @sauna_comment, local: true do |f|%>
+                            <% flash.each do |message_type, message| %>
+                                <span class="flash-message mb-2 <%=message_type%>"><%=message%></span>
+                            <%end%>
+                            <%=form_with model: @sauna_comment, url: sauna_sauna_comments_path(@sauna.id), local: true do |f|%>
                                 <div class="row mb-2">
                                     <div class="col-md-5 form-group mb-2"> 
                                         <%= f.label :aufguss, 'アウフグースはありますか？', class: "mb-2"%>
@@ -109,7 +112,7 @@
                                     </div>
                                 </div>
                                 
-                                <%= f.label :aufguss, 'コメント', class: "mb-2"%>
+                                <%= f.label :comment, 'コメント', class: "mb-2"%>
                                 <%=f.text_area :comment, placeholder: "追加の情報があれば入力してください。", class: "form-control mb-3", rows: "4"%>
                                 <%=f.submit "送信する", class: "btn btn-primary"%>
                             <%end%>

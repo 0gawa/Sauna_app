@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_25_142546) do
   end
 
   create_table "sauna_comments", force: :cascade do |t|
-    t.text "comment"
+    t.text "comment", default: ""
     t.integer "user_id"
     t.integer "sauna_id"
     t.integer "aufguss", default: 0
@@ -79,7 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_25_142546) do
     t.integer "water", default: 0
     t.integer "parking", default: 0
     t.integer "age", default: 0
-    t.text "detail", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
