@@ -5,7 +5,7 @@ class Public::UsersController < ApplicationController
         @user = User.find(current_user.id)
         @tweets = @user.tweets.all.limit(12).order(created_at: :desc)
         @tweets_all = Tweet.all.limit(8).order(created_at: :desc)
-        @saunas = Sauna.limit(8).order(created_at: :desc)  #ここを後でいいねの多い順にする
+        @saunas = Sauna.includes(:sauna_favorites).limit(12).sort_by { |sauna| -sauna.sauna_favorites.count }
     end
 
     def edit
