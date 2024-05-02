@@ -1,4 +1,13 @@
 ja:
+  activerecord:
+    models:
+      sauna: "サウナ施設"
+      tweet: "投稿"
+    attributes:
+      tweet:
+        count: "セット数"
+      sauna:
+        name: "名前"
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M:%S"

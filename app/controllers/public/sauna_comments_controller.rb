@@ -20,12 +20,13 @@ class Public::SaunaCommentsController < ApplicationController
         
         if cnt >= 1
           comment.save
+          flash[:success] = "送信に成功しました。"
           redirect_to sauna_path(sauna.id)
         else
           @sauna = sauna
           @sauna_comments = @sauna.sauna_comments.all.page(params[:page]).per(20)
           @sauna_comment = comment
-          flash.now[:notice] = "以下の項目に1つ以上回答してください。"
+          flash.now[:danger] = "以下の項目に1つ以上回答してください。"
           render "public/saunas/show"
         end
     end
