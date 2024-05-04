@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :tweet_comments, dependent: :destroy
   has_many :sauna_comments, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 20}
   #validates :introduction, presence: true
 
   def active_for_authentication?

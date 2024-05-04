@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_25_142546) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_04_080511) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,10 +39,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_25_142546) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "admin", force: :cascade do |t|
-  end
-
   create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -65,6 +72,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_25_142546) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_managers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_managers_on_reset_password_token", unique: true
+  end
+
+  create_table "number_saunas", force: :cascade do |t|
+    t.integer "sauna_id", null: false
+    t.integer "sauna_info_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sauna_id"], name: "index_number_saunas_on_sauna_id"
+    t.index ["sauna_info_id"], name: "index_number_saunas_on_sauna_info_id"
+  end
+
+  create_table "number_waters", force: :cascade do |t|
+    t.integer "sauna_id", null: false
+    t.integer "water_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sauna_id"], name: "index_number_waters_on_sauna_id"
+    t.index ["water_id"], name: "index_number_waters_on_water_id"
   end
 
   create_table "sauna_comments", force: :cascade do |t|
@@ -92,7 +117,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_25_142546) do
 
   create_table "sauna_infos", force: :cascade do |t|
     t.integer "temperature", null: false
-    t.string "explain", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -100,13 +124,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_25_142546) do
   create_table "saunas", force: :cascade do |t|
     t.string "name", null: false
     t.string "address", null: false
-    t.integer "water_id", null: false
-    t.integer "sauna_info_id", null: false
-    t.text "express", default: "", null: false
+    t.text "express", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sauna_info_id"], name: "index_saunas_on_sauna_info_id"
-    t.index ["water_id"], name: "index_saunas_on_water_id"
   end
 
   create_table "tweet_comments", force: :cascade do |t|
@@ -149,7 +169,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_25_142546) do
 
   create_table "waters", force: :cascade do |t|
     t.integer "temperature", null: false
-    t.string "explain", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -158,8 +177,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_25_142546) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "tweets"
   add_foreign_key "favorites", "users"
-  add_foreign_key "saunas", "sauna_infos"
-  add_foreign_key "saunas", "waters"
+  add_foreign_key "number_saunas", "sauna_infos"
+  add_foreign_key "number_saunas", "saunas"
+  add_foreign_key "number_waters", "saunas"
+  add_foreign_key "number_waters", "waters"
   add_foreign_key "tweets", "saunas"
   add_foreign_key "tweets", "users"
 end

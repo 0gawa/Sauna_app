@@ -4,14 +4,12 @@ class Sauna < ApplicationRecord
     has_many :tweets, dependent: :destroy
     has_many :sauna_favorites, dependent: :destroy
     has_many :sauna_comments, dependent: :destroy
-    belongs_to :sauna_info
-    belongs_to :water
+    has_many :number_saunas, dependent: :destroy
+    has_many :number_waters, dependent: :destroy
 
 
     validates :name, presence: true
     validates :address, presence: true
-    validates :sauna_info_id, presence: true
-    validates :water_id, presence: true
 
     def get_image(width, height)
         unless image.attached?
