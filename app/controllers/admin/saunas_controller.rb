@@ -3,6 +3,8 @@ class Admin::SaunasController < ApplicationController
 
     def new
         @sauna = Sauna.new
+        10.times { @sauna.number_saunas.build }
+        10.times { @sauna.number_waters.build }
         @sauna_infos = SaunaInfo.all
         @water = Water.all
     end
@@ -17,14 +19,14 @@ class Admin::SaunasController < ApplicationController
 
     def create
         @sauna = Sauna.new(sauna_params)
-        number_sauna=NumberSauna.new(number_sauna_params)
-        number_water=NumberWater.new(number_water_params)
-        if @sauna.name!="" and @sauna.address!="" and !number_sauna.sauna_info_id.nil? and !number_water.water_id.nil?
+        # number_sauna=NumberSauna.new(number_sauna_params)
+        # number_water=NumberWater.new(number_water_params)
+        if @sauna.name!="" and @sauna.address!=""
             @sauna.save
-            number_sauna.sauna_id=@sauna.id
-            number_sauna.save!
-            number_water.sauna_id=@sauna.id
-            number_water.save!
+            # number_sauna.sauna_id=@sauna.id
+            # number_sauna.save!
+            # number_water.sauna_id=@sauna.id
+            # number_water.save!
             redirect_to admin_sauna_path(@sauna.id)
         else
             @sauna_infos = SaunaInfo.all
@@ -36,6 +38,8 @@ class Admin::SaunasController < ApplicationController
 
     def destroy
         sauna=Sauna.find(params[:id])
+        sauna.number_saunas.destroy_all
+        sauna.number_waters.destroy_all
         sauna.destroy
         redirect_to admin_saunas_path
     end
@@ -43,7 +47,9 @@ class Admin::SaunasController < ApplicationController
     private
 
     def sauna_params
-        params.require(:sauna).permit(:name, :address ,:image, :express)
+        params.require(:sauna).permit(:name, :address ,:image, :express,
+        number_saunas_attributes: [:id, :sauna_id, :sauna_info_id , :_destroy],
+        number_waters_attributes: [:id, :sauna_id, :water_id , :_destroy])
     end
     def number_sauna_params
         params.require(:sauna).permit(:sauna_info_id)
