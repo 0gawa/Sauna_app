@@ -4,23 +4,25 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-11">
-            <% if @sauna.errors.any? %>
-                <div class="row mt-5">
-                    <h1><%= @sauna.errors.count %>件のエラーが発生しました</h1>
-                    <ul>
-                        <% @sauna.errors.full_messages.each do |message| %>
-                            <li class="fs-5"><%= message %></li>
-                        <% end %>
-                    </ul>
-                </div>
-            <% end %>
-
             <div class="row mt-5">
                 <h1>サウナ施設の投稿</h1>
             </div>
 
+            <div class="row my-3">
+                <% if @sauna.errors.any? %>
+                    <div class="row mt-5">
+                        <h1><%= @sauna.errors.count %>件のエラーが発生しました</h1>
+                        <ul>
+                            <% @sauna.errors.full_messages.each do |message| %>
+                                <li class="fs-5"><%= message %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                <% end %>
+            </div>
+
             <div class="row mt-5">
-                <%=form_with model: @sauna, url: admin_saunas_path, method: :post do |f|%>
+                <%=form_with model: @sauna, url: admin_saunas_path, data: { turbo: false }, method: :post do |f|%>
                     <div class="col-md-5">
                         <h4>サウナ施設名前</h4>
                         <%=f.text_field :name, class: "form-control"%>
@@ -42,12 +44,12 @@
 
                     <div class="col-md-5 mt-4">
                         <h4>サウナ室の温度</h4>
-                        <%=f.collection_select :sauna_info_id, @sauna_infos, :id, :temperature, include_blank: "選択してください"%>
+                        <%=f.collection_select :sauna_info_id, @sauna_infos, :id, :temperature, {include_blank: "選択してください"}, class: "form-select"%>
                     </div>
 
                     <div class="col-md-5 mt-4">
                         <h4>水風呂の温度</h4>
-                        <%=f.collection_select :water_id, @water, :id, :temperature, include_blank: "選択してください"%>
+                        <%=f.collection_select :water_id, @water, :id, :temperature, {include_blank: "選択してください"}, class: "form-select"%>
                     </div>
 
                     <%=f.submit "投稿する", class: "btn btn-primary mt-5" %>

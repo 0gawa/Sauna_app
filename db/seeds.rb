@@ -58,9 +58,15 @@ NumberWater.create!(
         {sauna_id: 2, water_id: 30},
     ]
 )
-for i in 1..5 do 
+for i in 1..5 do
     NumberWater.create!(
         sauna_id: i+5,
         water_id: i+10
     )
 end
+
+Manager.create!(
+    email: "kanrisya@gmail.com",
+    name: "管理者龍太郎",
+    encrypted_password: "111111"
+)

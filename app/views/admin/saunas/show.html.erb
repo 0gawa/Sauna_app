@@ -19,7 +19,7 @@
                 <div class="col-md-6 mt-5">
                     <h4 class="">サウナ施設画像<h4>
                     <div class="card mt-1">
-                        <%=image_tag @sauna.get_image(1000,750), alt: "読み込みエラー"%>
+                        <%=image_tag @sauna.get_image(900,600), alt: "読み込みエラー"%>
                     </div>
                 </div>
             </div>
@@ -38,14 +38,28 @@
                 </div>
             </div>
 
-            <div class="row mt-5">
-                <div class="col-md-3">
-                    <h4>サウナ室の温度</h4>
-                    <p class="fs-6"><%=@sauna.sauna_info.temperature%>度</p>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <%@sauna.number_saunas.each do |num_sauna| %>
+                        <div class="col-md-auto mb-4">
+                            <h4><i class="fa-solid fa-fire fa-lg pe-1" style="color: #d32727;"></i>サウナ室の温度
+                            <p class="fs-4 mt-2 text-center"><%=num_sauna.sauna_info.temperature%>度</p></h4>
+                        </div>
+                    <%end%>
                 </div>
-                <div class="col-md-3">
-                    <h4>水風呂の温度</h4>
-                    <p class="fs-6"><%=@sauna.water.temperature%>度</p>
+                <div class="col-md-4">
+                    <%@sauna.number_waters.each do |num_water|%>
+                        <div class="ms-md-4 col-md-auto">
+                            <h4><i class="fa-solid fa-droplet fa-lg pe-1" style="color: #200cb6;"></i>水風呂の温度
+                            <p class="fs-4 mt-3 text-center"><%=num_water.water.temperature%>度</p></h4>
+                        </div>
+                    <%end%>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-auto">
+                    <%=button_to "削除する", admin_sauna_path(@sauna.id), method: :delete, data: { turbo_confirm: "このサウナ施設を削除します。この操作は取り消せません。" }, class: "btn btn-danger"%>
                 </div>
             </div>
             

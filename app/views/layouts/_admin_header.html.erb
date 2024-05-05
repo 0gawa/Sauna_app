@@ -15,14 +15,17 @@
                         <%= link_to "管理者トップページ", admin_root_path, class: 'nav-link text-dark' %>
                     </li>
                     <li class="nav-item">
-                        <%= link_to "サ活投稿", new_tweet_path, class: 'nav-link text-dark' %>
+                        <%= link_to "サウナ施設一覧", admin_saunas_path, class: 'nav-link text-dark' %>
                     </li>
                     <li class="nav-item">
                         <%= button_to "ログアウト", destroy_manager_session_path, method: :delete, class: 'nav-link text-dark' %>
                     </li>
                 <% else %>
                     <li class="nav-item">
-                        <%= link_to "新規登録", new_manager_registration_path, class: 'nav-link text-dark' %>
+                    管理者トップページ
+                    </li>
+                    <li class="nav-item">
+                    サウナ施設一覧
                     </li>
                     <li class="nav-item">
                         <%= link_to "ログイン", new_manager_session_path, class: 'nav-link text-dark' %>
