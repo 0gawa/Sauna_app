@@ -20,13 +20,45 @@
 a {
     text-decoration: none;
 }
+.user-info{
+    background-image: image-url('sauna_top.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    width: 100%;
+    height: 450px;
+    position: relative;
+}
+.user-info::after{
+    background-color: rgba(160, 158, 158, 0.4);
+    height: 450px;
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 10px;
+}
+.position-relative{
+    position: relative;
+}
+//userへの挨拶用css
+.user-info-text0{
+    position: relative;
+    z-index: 1;
+    color: #000;
+}
+.user-info-text{
+    position: relative;
+    z-index: 1;
+    color: #000;
+    background-color: rgba(230, 230, 230, 0.4);
+    border-radius: 10px;
+}
 .header_btn{
     background: #0d6efd;
     border-radius:10px;
-}
-.page-title{
-    background:#ff7733;
-    border-radius:15px;
 }
 .pagination {
     justify-content: center;

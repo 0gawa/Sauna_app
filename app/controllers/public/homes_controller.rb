@@ -4,4 +4,7 @@ class Public::HomesController < ApplicationController
     def top
         @saunas = Sauna.all
     end 
+
+    def privacy_policy
+    end
 end

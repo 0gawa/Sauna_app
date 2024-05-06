@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-11">
+        <div class="col-md-10">
             <div class="row mt-5">
                 <h1><%=@sauna.name%></h1>
                 <h3 class="pt-2"><%=@sauna.address%></h3>
@@ -138,7 +138,7 @@
                 </div>
 
                 <div class="row mt-5">
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <div class="mt-2">
                             <h5 class="pb-2">情報提供フォーム</h5>
                             <div class="mb-2"><%=render 'layouts/flash'%></span>
@@ -197,6 +197,9 @@
                 </div>
 
             </div>
+
+            <%=render 'public/saunas/favorite_sauna', saunas: @saunas%>
+
         </div>
     </div>
 </div>

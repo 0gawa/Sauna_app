@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :sauna_comments, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 20}
-  #validates :introduction, presence: true
+  validates :introduction, length: {maximum: 120}
 
   def active_for_authentication?
     super && (is_unsubscribed == false)

@@ -26,6 +26,8 @@ class Public::SaunaCommentsController < ApplicationController
           @sauna = sauna
           @sauna_comments = @sauna.sauna_comments.all.page(params[:page]).per(20)
           @sauna_comment = comment
+          saunas = Sauna.includes(:sauna_favorites).sort_by { |sauna| -sauna.sauna_favorites.count }
+          @saunas = saunas[0..15]
           flash.now[:danger] = "以下の項目に1つ以上回答してください。"
           render "public/saunas/show"
         end

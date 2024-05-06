@@ -3,88 +3,88 @@
 <div class="container">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-11">
+        <div class="col-md-10">
 
-            <div class="row mt-5"><div class="col-auto"><h1 class="">マイページ</h1></div></div>
+            <div class="row mt-5"><h1 class="">マイページ</h1></div>
 
-            <div class="row mt-5">
-                <div class="col-md-4">
-                    <div class="row">
-                        <h3 class="text-center">ユーザー情報</h3>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="row mt-5">
-                            <div class="col-md-12 border-bottom border-secondary pb-2">
-                                <h4>ユーザー画像</h4>
-                                <div class="text-center mx-auto mt-1"><%= image_tag @user.get_image(900,900), alt: '読み込みエラー', class: '', style: "border-radius: 50%; width: 100px; height: 100px; object-fit:cover;"%></div>
+            <div class="row mt-3">
+                <div class="user-info">
+                    <div class="row position-relative">
+                        <div class="col-5 offset-1">
+                            <div class="row mt-5"></div>
+                            <div class="row mt-5"></div>
+                            <div class="row mt-3"></div>
+                            <div class="row mt-5 user-info-text0">
+                                <h2 class="text-center"><%=@user.name%>さん</h2>
+                                <span class="text-center fs-2 pt-3"><%=@random%></span>
                             </div>
                         </div>
-
-                        <div class="row mt-4">
-                            <div class="col-md-12 align-self-center border-bottom border-secondary pb-2">
-                                <h4>名前</h4>
-                                <span class="fs-5 text-center pb-1"><%=@user.name%></span>
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col-md-12 border-bottom border-secondary pb-2">
-                                <h4>自己紹介</h4>
-                                <span class="fs-5 pb-1"><%=simple_format(h(@user.introduction))%></span>
-                            </div>
-                        </div>
-
-                        <div class="row mt-4">
-                            <div class="col-md-12 border-bottom border-secondary pb-2">
-                                <h4>サウナ回数(サ活投稿数)</h4>
-                                <span class="fs-5 text-center pb-1"><%=@user.tweets.count%> 回</span>
-                            </div>
-                        </div>
-
-                        <div class="row mt-4">
-                            <div class="col-md-12 border-bottom border-secondary pb-2">
-                                <h4>いいねの総数</h4>
-                                <span class="fs-5 text-center pb-1"><%=@user.tweets.inject(0){|sum, tweet| sum + tweet.favorites.count}%> 個</span>
-                            </div>
-                        </div>
-
-                        <div class="row mt-4 justify-content-md-center">
-                            <div class="col-md-auto ">
-                                <%= link_to "編集", edit_user_path(current_user.id), class: "btn btn-primary"%>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-8">
-                    <div class="row">
-                        <h3 class="text-center">サ活履歴</h3>
-                    </div>
-
-                    <div class="row mt-4 row-cols-1 row-cols-md-3 g-4">
-                        <% @tweets.each do |tweet|%>
-                            <%= link_to tweet_path(tweet.id) do%>
-                                <div class="col">
-                                    <div class="card">
-                                        <%=image_tag tweet.get_image(900,600), class: "card-img-top"%>
-                                        <div class="card-body">
-                                            <span class="fs-5 card-title"><%=image_tag tweet.user.get_image(1000,1000), style: "border-radius: 100%; width: 32px; height: 32px;"%><span class="ps-1"><%=tweet.user.name%></span></span>
-                                            <h6 class="card-subtitle mt-2 mb-2 text-body-secondary"><%=tweet.sauna.name%></h6>
-                                            <span class="fs-6">
-                                                <% if tweet.favorited_by?(current_user) %>
-                                                    <i class="fa-regular fa-thumbs-up fa-lg" style="color: #e83030;"></i> <%= tweet.favorites.count %>
-                                                <% else %>                                     
-                                                    <i class="fa-regular fa-thumbs-up fa-lg" style="color: #141619;"></i> <%= tweet.favorites.count %>
-                                                <% end %>
-
-                                                <span class="ps-3 fs-6"><i class="fa-regular fa-message fa-lg" style="color: #262627;"></i> <%=tweet.tweet_comments.count%></span>
-                                            </span>
-                                        </div>
+                        <div class="col-5">
+                            <div class="row mt-4 user-info-text px-2">
+                                <h3 class="text-center pt-3">ユーザー情報</h3>
+                            
+                                <div class="row mt-2">
+                                    <span class="col-md-auto fs-4"><%=image_tag @user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 37px; height: 37px;"%> <%=@user.name%></span>
+                                    <span class="pt-1"><%=l @user.created_at, format: :short%>から利用しています。</span>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-12">
+                                        <h4>自己紹介</h4>
+                                        <span class="pb-1"><%=@user.introduction%></span>
                                     </div>
                                 </div>
-                            <%end%>
-                        <%end%>
+                                <div class="row mt-2">
+                                    <div class="col-md-12 ">
+                                        <h4>サウナ回数(サ活投稿数)</h4>
+                                        <span class="pb-1"><%=@user.tweets.count%> 回</span>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-md-12">
+                                        <h4>いいねの総数</h4>
+                                        <span class="pb-1"><%=@user.tweets.inject(0){|sum, tweet| sum + tweet.favorites.count}%> 個</span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2 justify-content-center mb-3">
+                                    <div class="col-md-auto ">
+                                        <%= link_to "ユーザー情報を編集する", edit_user_path(current_user.id), class: "btn btn-primary"%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>             
+            </div>
+
+            <div class="row mt-5">
+                <div class="row">
+                    <h3 class="text-center">サ活履歴</h3>
+                </div>
+
+                <div class="row mt-4 row-cols-1 row-cols-md-4 g-4">
+                    <% @tweets.each do |tweet|%>
+                        <%= link_to tweet_path(tweet.id) do%>
+                            <div class="col">
+                                <div class="card">
+                                    <%=image_tag tweet.get_image(900,600), class: "card-img-top"%>
+                                    <div class="card-body">
+                                        <span class="fs-5 card-title"><%=image_tag tweet.user.get_image(1000,1000), style: "border-radius: 100%; width: 32px; height: 32px;"%><span class="ps-1"><%=tweet.user.name%></span></span>
+                                        <h6 class="card-subtitle mt-2 mb-2 text-body-secondary"><%=tweet.sauna.name%></h6>
+                                        <span class="fs-6">
+                                            <% if tweet.favorited_by?(current_user) %>
+                                                <i class="fa-regular fa-thumbs-up fa-lg" style="color: #e83030;"></i> <%= tweet.favorites.count %>
+                                            <% else %>                                     
+                                                <i class="fa-regular fa-thumbs-up fa-lg" style="color: #141619;"></i> <%= tweet.favorites.count %>
+                                            <% end %>
+
+                                            <span class="ps-3 fs-6"><i class="fa-regular fa-message fa-lg" style="color: #262627;"></i> <%=tweet.tweet_comments.count%></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        <%end%>
+                    <%end%>
                 </div>
             </div>
 
@@ -116,30 +116,7 @@
                 <%end%>
             </div>
 
-            <div class="row mt-5 text-center">
-                <h3>みんなが行くサウナ</h3>
-            </div>
-
-            <div class="row row-cols-1 row-cols-md-4 mt-4 g-4">
-                <% @saunas.each do |sauna|%>
-                    <%=link_to sauna_path(sauna.id) do%>
-                        <div class="card">
-                            <%=image_tag sauna.get_image(900,600)%>
-                            <div class="card-body">
-                                <h5 class="card-title"><%=sauna.name%></h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary"><%=sauna.address%></h6>
-                                <span class="fs-6">
-                                    <% if sauna.sauna_favorited_by?(current_user) %>
-                                        <i class="fa-regular fa-thumbs-up fa-lg" style="color: #e83030;"></i> <%= sauna.sauna_favorites.count %>
-                                    <% else %>                                     
-                                        <i class="fa-regular fa-thumbs-up fa-lg" style="color: #141619;"></i> <%= sauna.sauna_favorites.count %>
-                                    <% end %>
-                                </span>
-                            </div>
-                        </div>
-                    <%end%>
-                <%end%>
-            </div>
+            <%=render 'public/saunas/favorite_sauna', saunas: @saunas%>
 
         </div>      
     </div>

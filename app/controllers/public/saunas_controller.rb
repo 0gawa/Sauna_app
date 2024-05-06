@@ -5,6 +5,8 @@ class Public::SaunasController < ApplicationController
     @sauna = Sauna.find(params[:id])
     @sauna_comments = @sauna.sauna_comments.all.page(params[:page]).per(15)
     @sauna_comment = SaunaComment.new
+    saunas = Sauna.includes(:sauna_favorites).sort_by { |sauna| -sauna.sauna_favorites.count }
+    @saunas = saunas[0..15]
   end
 
   def index

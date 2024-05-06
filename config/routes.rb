@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root to: 'homes#top'
+    get "homes/privacy_policy"=>"homes#privacy_policy", as: "privacy"
     resources :users, only: [:show, :edit, :update]
     get "/user/unsubscribe" => "users#unsubscribe", as: 'unsubscribe'
     patch "/user/withdraw" => "users#withdrawal", as: 'withdrawal'

@@ -5,11 +5,23 @@ class Public::UsersController < ApplicationController
         @user = User.find(current_user.id)
         @tweets = @user.tweets.all.limit(12).order(created_at: :desc)
         @tweets_all = Tweet.all.limit(8).order(created_at: :desc)
-        @saunas = Sauna.includes(:sauna_favorites).limit(12).sort_by { |sauna| -sauna.sauna_favorites.count }
+        saunas = Sauna.includes(:sauna_favorites).sort_by { |sauna| -sauna.sauna_favorites.count }
+        @saunas = saunas[0..15]
+        @random = rand(4)
+        if @random<=1
+            @random="サウナに行きましょう！"
+        elsif @random<=2
+            @random="お帰りなさい！"
+        else
+            @random="お疲れ様です！"
+        end
     end
 
     def edit
         @user = User.find(current_user.id)
+        if @user.id != current_user.id
+            redirect_to user_path(@user.id)
+        end
     end
 
     def update
