@@ -6,6 +6,7 @@ class Tweet < ApplicationRecord
     belongs_to :user
     belongs_to :sauna
 
+    validates :impression, length: { maximum: 500 }
     validates :user_id, presence: true
     validates :sauna_id, presence: true
     validates :count, presence: true

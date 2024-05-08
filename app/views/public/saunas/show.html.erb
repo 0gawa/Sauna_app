@@ -36,6 +36,17 @@
                 </div>
 
                 <div class="row mt-5">
+                    <h3>サウナ施設メモ</h3>
+                    <div class="col-auto mt-3">
+                        <%if @sauna.express == ""%>
+                            <p>まだメモがありません。情報提供にご協力お願いします。</p>
+                        <%else%>
+                            <P><%=simple_format(h(@sauna.express))%></p>
+                        <%end%>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
                     <div class="col-10">
                         <% if @sauna.sauna_favorited_by?(current_user) %>
                             <span class="fs-5 ps-2">

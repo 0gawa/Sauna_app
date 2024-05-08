@@ -57,9 +57,75 @@ a {
     border-radius: 10px;
 }
 .header_btn{
-    background: #0d6efd;
+    background: rgb(13, 110, 253);
     border-radius:10px;
 }
 .pagination {
     justify-content: center;
+}
+.three-card-box{
+    height: 200px;
+    border-radius: 10px;
+}
+.three-card-text{
+    position: relative;
+    line-height: 200px;
+    z-index: 1;
+}
+.write-sauna{
+    background-image: image-url('key_111.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+    height: 200px;
+}
+.write-sauna::after{
+    background-color: rgba(13, 110, 160, 0.7);
+    height: 200px;
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 10px;
+}
+.search{
+    background-image: image-url('sauna_top.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+    height: 200px;
+}
+.search::after{
+    background-color: rgba(13, 110, 160, 0.7);
+    height: 200px;
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 10px;
+}
+.looking{
+    background-image: image-url('rice_miso.jpeg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+    height: 200px;
+}
+.looking::after{
+    background-color: rgba(13, 110, 160, 0.7);
+    height: 200px;
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 10px;
 }
