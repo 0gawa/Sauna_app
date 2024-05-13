@@ -17,6 +17,16 @@ class Admin::SaunasController < ApplicationController
         @saunas= Sauna.all
     end
 
+    def edit
+        @sauna=Sauna.find(params[:id])
+        count_saunas=@sauna.number_saunas.count
+        count_waters=@sauna.number_waters.count
+        (10-count_saunas).times { @sauna.number_saunas.build }
+        (10-count_waters).times { @sauna.number_waters.build }
+        @sauna_infos = SaunaInfo.all
+        @water = Water.all
+    end
+
     def create
         @sauna = Sauna.new(sauna_params)
         # number_sauna=NumberSauna.new(number_sauna_params)

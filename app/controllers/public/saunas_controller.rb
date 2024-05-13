@@ -1,5 +1,5 @@
 class Public::SaunasController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:update]
 
   def show
     @sauna = Sauna.find(params[:id])
@@ -11,6 +11,15 @@ class Public::SaunasController < ApplicationController
 
   def index
     @saunas = Sauna.all.page(params[:page]).per(30)
+  end
+
+  def update
+    @sauna=Sauna.find(params[:id])
+    if @sauna.update(sauna_params)
+        redirect_to admin_sauna_path(@sauna.id)
+    else
+      redirect_to edit_admin_sauna_path(@sauna.id)
+    end
   end
 
   def search
@@ -26,4 +35,11 @@ class Public::SaunasController < ApplicationController
     end
   end
 
+  private
+
+  def sauna_params
+    params.require(:sauna).permit(:name, :address ,:image, :express,
+    number_saunas_attributes: [:id, :sauna_id, :sauna_info_id , :_destroy],
+    number_waters_attributes: [:id, :sauna_id, :water_id , :_destroy])
+  end
 end

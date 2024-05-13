@@ -1,0 +1,17 @@
+<%=render "layouts/admin_header"%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <div class="row mt-5">
+                <h1>サウナ施設一覧</h1>
+            </div>
+
+            <div class="row mt-5">
+            <%=render 'admin/saunas/form', sauna: @sauna, sauna_infos: @sauna_infos, water: @water%>
+            </div>
+
+        </div>
+    </div>
+</div>
