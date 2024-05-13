@@ -68,5 +68,6 @@ end
 Manager.create!(
     email: "kanrisya@gmail.com",
     name: "管理者龍太郎",
-    encrypted_password: "111111"
+    encrypted_password: "111111",
+    password: "111111"
 )
