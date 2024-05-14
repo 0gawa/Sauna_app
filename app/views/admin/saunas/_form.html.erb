@@ -1,38 +1,24 @@
-<div class="row my-3">
-    <% if sauna.errors.any? %>
-        <div class="row mt-5">
-            <h1><%= sauna.errors.count %>件のエラーが発生しました</h1>
-            <ul>
-                <% sauna.errors.full_messages.each do |message| %>
-                    <li class="fs-5"><%= message %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
+<div class="row mt-3">
+  <%=render 'layouts/flash'%>
 </div>
 
 <div class="row mt-5">
-    <%if Sauna.exists?(sauna.id)
-        path_name="admin_sauna_path(sauna.id)"
-    else
-        path_name="admin_saunas_path"
-    end%>
     <%=form_with model: sauna, data: { turbo: false } do |f|%>
-        <div class="col-md-5">
+        <div class="col-md-7">
             <h4>サウナ施設名前</h4>
             <%=f.text_field :name, class: "form-control"%>
         </div>
-        <div class="col-md-5 mt-4">
+        <div class="col-md-7 mt-4">
             <h4>住所</h4>
             <%=f.text_field :address, class: "form-control"%>
         </div>
 
-        <div class="mt-4 col-md-5">
+        <div class="mt-4 col-md-7">
             <h4>写真(1枚のみ)</h4>
             <%= f.file_field :image, accept: "image/*", class: "form-control" %>
         </div>
 
-        <div class="mt-4 col-md-5">
+        <div class="mt-4 col-md-7">
             <h4>サウナ施設の説明</h4>
             <%= f.text_area :express, class: "form-control", :size=>"60x10" %>
         </div>
@@ -40,7 +26,7 @@
         <div id="number_saunas">
             <%= f.fields_for :number_saunas, data: { turbo: false } do |sauna_f| %>
                 <div class="number_sauna"  style="display: <%= 'none' if sauna.new_record?%>;">
-                    <div class="col-md-5 mt-4">
+                    <div class="col-md-auto mt-4">
                         <h4>サウナ室の温度</h4>
                         <%=sauna_f.collection_select :sauna_info_id, sauna_infos, :id, :temperature, {include_blank: "選択してください"}, class: "form-select"%>
                     </div>
@@ -57,7 +43,7 @@
         <div id="number_waters">
             <%= f.fields_for :number_waters, data: { turbo: false } do |water_f| %>
                 <div class="number_water" style="display: <%= 'none' if sauna.new_record?%>;">
-                    <div class="col-md-5 mt-4">
+                    <div class="col-md-auto mt-4">
                         <h4>水風呂の温度</h4>
                         <%=water_f.collection_select :water_id, water, :id, :temperature, {include_blank: "選択してください"}, class: "form-select"%>
                     </div>

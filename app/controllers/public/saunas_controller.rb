@@ -1,5 +1,6 @@
 class Public::SaunasController < ApplicationController
-  before_action :authenticate_user!, except: [:update]
+  before_action :authenticate_user!, except: [:create, :update]
+  before_action :authenticate_manager!, only: [:create, :update]
 
   def show
     @sauna = Sauna.find(params[:id])
@@ -13,14 +14,30 @@ class Public::SaunasController < ApplicationController
     @saunas = Sauna.all.page(params[:page]).per(30)
   end
 
+  #createとupdateはadminのみ
+  def create
+    @sauna = Sauna.new(sauna_params)
+    if @sauna.name!="" and @sauna.address!=""
+        @sauna.save
+        redirect_to admin_sauna_path(@sauna.id)
+    else
+        @sauna_infos = SaunaInfo.all
+        @water = Water.all
+        flash[:danger]="名前、住所、サウナ・水風呂の温度は必ず入力してください"
+        redirect_to new_admin_sauna_path
+    end
+  end
+
   def update
     @sauna=Sauna.find(params[:id])
     if @sauna.update(sauna_params)
         redirect_to admin_sauna_path(@sauna.id)
     else
+      flash[:danger]="名前、住所、サウナ・水風呂の温度は必ず入力してください"
       redirect_to edit_admin_sauna_path(@sauna.id)
     end
   end
+  #ここから上はadminの機能
 
   def search
     @saunas = Sauna.search(params[:keyword])

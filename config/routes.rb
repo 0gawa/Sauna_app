@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update]
     get "/user/unsubscribe" => "users#unsubscribe", as: 'unsubscribe'
     patch "/user/withdraw" => "users#withdrawal", as: 'withdrawal'
-    resources :saunas, only: [:show, :index, :update] do
+    resources :saunas, only: [:show, :index, :create, :update] do
       resources :sauna_comments, only: [:create, :destroy]
       resource :sauna_favorite, only: [:create, :destroy]
       collection do
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "homes#top"
     resources :tweet, only: [:index, :show]
-    resources :saunas, except: [:update]
+    resources :saunas, except: [:update, :create]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

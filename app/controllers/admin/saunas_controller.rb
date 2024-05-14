@@ -27,19 +27,6 @@ class Admin::SaunasController < ApplicationController
         @water = Water.all
     end
 
-    def create
-        @sauna = Sauna.new(sauna_params)
-        if @sauna.name!="" and @sauna.address!=""
-            @sauna.save
-            redirect_to admin_sauna_path(@sauna.id)
-        else
-            @sauna_infos = SaunaInfo.all
-            @water = Water.all
-            flash.now[:danger]="名前、住所、サウナ・水風呂の温度は必ず入力してください"
-            render "admin/saunas/new"
-        end
-    end
-
     def destroy
         sauna=Sauna.find(params[:id])
         sauna.number_saunas.destroy_all
