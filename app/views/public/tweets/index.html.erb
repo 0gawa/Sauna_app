@@ -18,10 +18,11 @@
                             <div class="col-md-7">
                                 <div class="card-body">
                                     <span class="fs-4 card-title"><%=image_tag tweet.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 37px; height: 37px;"%><%=tweet.user.name%></span>
-                                    <div class="fs-4 mb-2"><%=link_to tweet.sauna.name, sauna_path(tweet.sauna.id)%></div>
-                                    <span class="">
-                                        <%=tweet.impression.truncate(250, omission: '＜＜続きを見る＞＞')%>
-                                    </span>
+                                    <div class="fs-4 mb-2"><%=link_to tweet.sauna.name, sauna_path(tweet.sauna.id), class: "text-dark"%></div>
+                                    <%=link_to tweet_path(tweet.id), class: "text-dark" do%>
+                                        <%=tweet.impression.truncate(250, omission: '...')%>
+                                    <%end%>
+                                    <div class="mt-5" id="tweet_<%= tweet.id %>_favorite"><%=render 'public/favorites/btn_tweet', tweet: tweet%></div>
                                 </div>
                             </div>
                         </div>
