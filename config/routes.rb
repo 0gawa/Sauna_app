@@ -1,5 +1,4 @@
-Rails.application.routes.draw do
-  
+Rails.application.routes.draw do 
   # 顧客用
   # URL /users/sign_in ...
   devise_for :users, controllers: {
@@ -32,6 +31,8 @@ Rails.application.routes.draw do
       resources :tweet_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
+
+    resources :contacts, except: [:update]
 
   end
 
