@@ -29,14 +29,8 @@ class Admin::SaunasController < ApplicationController
 
     def create
         @sauna = Sauna.new(sauna_params)
-        # number_sauna=NumberSauna.new(number_sauna_params)
-        # number_water=NumberWater.new(number_water_params)
         if @sauna.name!="" and @sauna.address!=""
             @sauna.save
-            # number_sauna.sauna_id=@sauna.id
-            # number_sauna.save!
-            # number_water.sauna_id=@sauna.id
-            # number_water.save!
             redirect_to admin_sauna_path(@sauna.id)
         else
             @sauna_infos = SaunaInfo.all
