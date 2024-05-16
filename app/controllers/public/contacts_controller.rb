@@ -15,4 +15,11 @@ class Public::ContactsController < ApplicationController
 
   def destroy
   end
+
+  private
+
+  def contact_params
+    params.requier(:contact).permit(:name, :email, :phone_number, :subject, :content,
+                                    :prefecture, :address, :type,)
+
 end

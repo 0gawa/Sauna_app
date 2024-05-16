@@ -7,6 +7,19 @@
         <div class="col-md-10">
             <div class="mt-5"><h1>問い合わせフォーム</h1></div>
             
+            <div class="mt-5 row">
+                <%=form_with model: @contact, data: { turbo: false } do |f|%>
+                    <div class="row">
+                        <%=f.label :name, "名前を入力してください", class: "mb-2"%>
+                        <%=f.text_field :name, placeholder: "不適切な名前では対応ができないこともあります", class: "form-control mb-4"  %>
+                        <%=f.label :email, "メールアドレスを入力してください", class: "mb-2"%>
+                        <%=f.text_field :email, placeholder: "誤ったメールアドレスでは対応できないこともあります", class: "form-control mb-4"%>
+                        <%=f.label :phone_number, "電話番号を入力してください（任意）", class: "mb-2"%>
+                        <%=f.text_field :phone_number, placeholder: "", class: "mb-4"%>
+                        <%=f.label :subject, ""%>
+                    </div>
+                <%end%>
+            </div>
         </div>
 
     </div>

@@ -1,0 +1,14 @@
+<%=form_with model: @contact, data: { turbo: false } do |f|%>
+    <div class="row">
+        <%=f.label :name, "名前を入力してください", class: "mb-2"%>
+        <%=f.text_field :name, placeholder: "不適切な名前では対応ができないこともあります", class: "form-control mb-4"  %>
+        <%=f.label :email, "メールアドレスを入力してください", class: "mb-2"%>
+        <%=f.text_field :email, placeholder: "誤ったメールアドレスでは対応できないこともあります", class: "form-control mb-4"%>
+        <%=f.label :phone_number, "電話番号を入力してください（任意）", class: "mb-2"%>
+        <%=f.text_field :phone_number, placeholder: "", class: "mb-4"%>
+        <%=f.label :subject, "件名", class: "mb-2"%>
+        <%=f.text_field :subject, placeholder: "何に関する問い合わせかお書きください", class: "mb-4"%>
+        <%=f.label :content, "本文", class: "mb-2"%>
+        <%=f.text_field :content, placeholder: "できるだけ具体的にお書きください", class: "mb-4"%>
+    </div>
+<%end%>
