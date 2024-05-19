@@ -1,8 +1,12 @@
-<%=form_with model: @contact, data: { turbo: false } do |f|%>
+<%=form_with model: contact, data: { turbo: false } do |f|%>
     <div class="row">
         <%=f.label :subject, "サウナ施設の名前を入力してください", class: "mb-2"%>
-        <%=f.text_field :subject, placeholder: "", class: "mb-4"%>
+        <%=f.text_field :subject, placeholder: "", class: "form-control mb-4"%>
         <%=f.label :content, "サウナ施設に関する情報を具体的に入力してください", class: "mb-2"%>
-        <%=f.text_field :content, placeholder: "例）サウナ室や水風呂の数、料金、駐車場の有無、営業時間など", class: "mb-4"%>
+        <%=f.text_field :content, placeholder: "例）サウナ室や水風呂の数、料金、駐車場の有無、営業時間など", class: "form-control mb-4"%>
+        <%=f.label :prefecture, "このサウナ施設がある都道府県名を入力してください", class: "mb-2"%>
+        <%=f.text_field :prefecture, placeholder: "例）東京都", class: "form-control mb-4"%>
+        <%=f.label :address, "このサウナ施設の住所を入力してください"%>
+        <%=f.text_field :address, placeholder: "", class: "form-control mb-4"%>
     </div>
 <%end%>

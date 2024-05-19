@@ -5,21 +5,22 @@
         <div class="col-md-1">
         </div>
         <div class="col-md-10">
-            <div class="mt-5"><h1>問い合わせフォーム</h1></div>
-            
-            <div class="mt-5 row">
-                <%=form_with model: @contact, data: { turbo: false } do |f|%>
-                    <div class="row">
-                        <%=f.label :name, "名前を入力してください", class: "mb-2"%>
-                        <%=f.text_field :name, placeholder: "不適切な名前では対応ができないこともあります", class: "form-control mb-4"  %>
-                        <%=f.label :email, "メールアドレスを入力してください", class: "mb-2"%>
-                        <%=f.text_field :email, placeholder: "誤ったメールアドレスでは対応できないこともあります", class: "form-control mb-4"%>
-                        <%=f.label :phone_number, "電話番号を入力してください（任意）", class: "mb-2"%>
-                        <%=f.text_field :phone_number, placeholder: "", class: "mb-4"%>
-                        <%=f.label :subject, ""%>
-                    </div>
-                <%end%>
+            <div class="row">
+                <h1>問い合わせまたはサウナ施設の情報提供</h1>
             </div>
+            <div class="row mt-5">
+                <div class="col-4 me-3">
+                    <%=link_to "問い合わせ", contact_form_path(@contact), data: {"turbo-method": :post}, class: "fs-5"%>
+                </div>
+                <div class="col-4 me-3">
+                    <%=link_to "サウナ施設の情報提供", sauna_info_path(@contact), data: {"turbo-method": :post}, class: "fs-5"%>
+                </div>
+            </div>
+
+            <div class="row mt-5" id="which-form-<%=@contact.type%>">
+                <%=render 'public/contacts/contact_form', contact: @contact%>
+            </div>
+            
         </div>
 
     </div>

@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     end
 
     resources :contacts, except: [:update]
+    post "/contacts/contact/:id" => "contacts#contact", as: "contact_form"
+    post "/contacts/information/:id" => "contacts#information",as: "sauna_info"
 
   end
 

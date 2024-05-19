@@ -16,6 +16,20 @@ class Public::ContactsController < ApplicationController
   def destroy
   end
 
+  #問い合わせフォームにするアクション
+  def contact
+    form = Contact.find(params[:id])
+    form.type = 1
+
+  end
+
+  #サウナ施設の情報提供フォームにするアクション
+  def information
+    form = Contact.find(params[:id])
+    form.type = 0
+    
+  end
+
   private
 
   def contact_params
