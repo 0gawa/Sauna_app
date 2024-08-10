@@ -1,14 +1,15 @@
 <%= render "layouts/header"%>
 
-<div class="container">
-    <div class="row mt-5">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <h1>さうな探検隊へようこそ！</h1>
+<div class="wrapper g-0">
+<div class="container bg-top-pic">
+    <div class="row z-3">
+        <div class="col-10 mt-5 offset-1">
+            <div class="top-pic" style="width: 25vw;"><%=image_tag 'site_logo.png', class: "top-pic"%></div>
+            <h1 class="text-center pt-5">さうな探検隊へようこそ！</h1>
 
             <div class="row mt-5">
-                <h3>このサイトについて</h3>
-                <ul>
+                <h3 class="text-center">このサイトについて</h3>
+                <ul class="text-center">
                     <li class="mt-2 fs-5">さうな探検隊はサウナに入ったことを記録するアプリです</li>
                     <li class="mt-2 fs-5">シンプルなサイトデザインだから、誰でも簡単に使えます</li>
                     <li class="mt-2 fs-5">サウナ活動を振り返り、最高のサウナライフにしませんか？</li>
@@ -16,15 +17,15 @@
             </div>
 
             <div class="row mt-5">
-                <h3>サウナ大好きな人集合！</h3>
-                <ul>
+                <h3 class="text-center">サウナ大好きな人集合！</h3>
+                <ul class="text-right">
                     <li class="mt-2 fs-5">始めるのは簡単! 新規登録をすれば<strong>すぐに</strong>始められます</li>
                     <li class="mt-2 fs-5">他のサウナー達がどんなサウナに入っているのかを確認できます。自分の知らなかったサウナが知れるかも！？</li>
                 </ul>
             </div>
 
             <div class="row mt-5">
-                <h3>何を記録するの？</h3>
+                <h3 class="text-center">何を記録するの？</h3>
                 <p class="pt-2 fs-5">サウナ活動を通じて感じたこと、気付いたことなど自由に記述してOK！</p>
                 <div class="mt-2">
                     <p class="fs-5">例えば...</p>
@@ -36,7 +37,7 @@
             </div>
 
             <div class="row mt-5">
-                <h3>でも記録するのって面倒<i class="ps-2 fa-regular fa-face-grin-beam-sweat fa-lg" style="color: #0d6ea0;"></i></h3>
+                <h3 class="text-center">でも記録するのって面倒<i class="ps-2 fa-regular fa-face-grin-beam-sweat fa-lg" style="color: #0d6ea0;"></i></h3>
                 <p class="pt-2 fs-5">その心配は要りません。</p>
                 <p class="fs-5">直感的な操作とシンプルなデザインは記録することを面倒に感じさせません。最短約30秒で記録できるため長く続けられます！<p>
                 <p class="fs-5">複雑な機能はないため、パソコンが苦手な方でも大丈夫！</p>
@@ -44,8 +45,8 @@
 
             <div class="row mt-5">
                 <div class="col-md-auto">
-                    <h3 class="">ただいまの登録済みサウナ数</h3>
-                    <p class="fs-3 ps-5">現在　<%=@saunas.count%>種類</p>
+                    <h3 class="text-center">ただいまの登録済みサウナ数</h3>
+                    <p class="fs-3 pt-1 text-center">現在　<%=@saunas.count%>種類</p>
                     <p class="fs-5">
                     サウナデータベースを作り上げたい！そのためにも全国のサウナーの方々、情報提供をお願いします。</p>
                     <p class="text-end">By 製作者Daiki</p>
@@ -53,8 +54,8 @@
             </div>
 
             <div class="row mt-5">
-                <h3>あなたは、さうな探検隊の一員ですか？</h3>
-                <div class="col-md-auto mt-2">
+                <h3 class="text-center">あなたは、さうな探検隊の一員ですか？</h3>
+                <div class="col-8 mt-2 ms-5 text-right">
                     <%if user_signed_in? %>
                         <h5>はい。探検隊のメンバーです。</h5>
                         <p class="fs-5 pt-1">ログイン済みです。サウナに行きましょう！</p>
@@ -68,3 +69,11 @@
         </div>
     </div>
 </div>
+</div>
+
+<script>
+    $(function(){
+        $("footer.mt-5").removeClass("mt-5");
+        $("div.container.bg-top-pic").addClass("pb-5");
+    });
+</script>

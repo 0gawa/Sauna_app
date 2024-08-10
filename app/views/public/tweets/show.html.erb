@@ -2,18 +2,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-1">
-        </div>
-
-        <div class="col-md-10">
+        <div class="offset-1 col-10">
             <div class="row mt-5">
-                <h1>サ活投稿</h1>
+                <h1 class="text-center">サ活投稿</h1>
             </div>
 
             <div class="row mt-5">
                 <%=link_to sauna_path(@tweet.sauna.id) do%><h2 style="color: black"><%=@tweet.sauna.name%></h2><%end%>
-               <span class="col-md-auto fs-4"><%=image_tag @tweet.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 37px; height: 37px;"%> <%=@tweet.user.name%></span>
-               <p class="text-secondary">投稿日時 <%=l @tweet.created_at, format: :short%><p>
+               <span class="col-10 fs-5 ps-3"><%=image_tag @tweet.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 35px; height: 35px;"%> <%=@tweet.user.name%></span>
+               <p class="text-secondary ps-3">投稿日時 <%=l @tweet.created_at, format: :short%><p>
             </div>
 
             <div class="row mt-5">
@@ -75,6 +72,10 @@
                                 <div class="card-body">
                                     <span class="fs-6 card-title"><%=image_tag comment.user.get_image(1000,1000), style: "border-radius: 100%; width: 32px; height: 32px;"%><span class="ps-1"><%=comment.user.name%></span></span>
                                     <span class="ps-3 text-secondary"><%=l comment.created_at, format: :short%></span>
+                                    <%if comment.user.id == current_user.id%>
+                                        <%=link_to tweet_tweet_comment_path(tweet_id: @tweet.id, id: comment.id), 
+                                        data: {turbo_method: :delete, turbo_confirm: "このコメントを削除します。"} ,class:"ps-1" do%><i class="fa-solid fa-trash fa-xs"></i><%end%>
+                                    <%end%>
                                     <div class="mt-2"><%=comment.comment%></div>
                                 </div>
                             </div>
@@ -85,10 +86,10 @@
             
             <%if @tweet.user_id == current_user.id%>       
                 <div class="row mt-5">
-                    <div class="col-md-2">
+                    <div class="col-2">
                         <%= link_to "編集する", edit_tweet_path(@tweet.id), class: "btn btn-primary w-75" %>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-2 mt-3 mt-md-0">
                         <%= button_to "削除する", tweet_path(@tweet.id), method: :delete, data: { turbo_confirm: "この投稿を削除します。この操作は取り消せません。" }, class: "btn btn-secondary w-75" %>
                     </div>
                 </div>
