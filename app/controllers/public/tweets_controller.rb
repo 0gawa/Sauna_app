@@ -1,5 +1,5 @@
 class Public::TweetsController < ApplicationController
-    before_action :authenticate_user!, except: [:index]
+    before_action :authenticate_user!
 
     #サ活投稿一覧はログインしていなくても閲覧可能にすること
 

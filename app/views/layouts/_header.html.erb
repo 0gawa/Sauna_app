@@ -1,53 +1,183 @@
 <header class="px-1">
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
+    <div class="d-flex">
+        <div class="pt-1" id="nav-ham"><div class="openbtn1" id="ham-item"><span></span><span></span><span></span></div></div>
         <% if user_signed_in? %>
             <%=link_to user_path(current_user.id), class: "navbar-brand p-1" do%>
-                <%= image_tag 'header_logo.png', :size =>'300x75' %>
+                <%= image_tag 'header_logo.png', :size =>'220x55' %>
             <% end %>
         <%else%>
             <%=link_to root_path, class: "navbar-brand p-1" do%>
-                <%= image_tag 'header_logo.png', :size =>'300x75' %>
+                <%= image_tag 'header_logo.png', :size =>'220x50' %>
             <% end %>
         <%end%>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
+        <div class="position-absolute end-0" id="nav-bar">
+            <ul class="d-flex mb-0" id="nav-items">
                 <% if user_signed_in? %>
-                    <li class="nav-item header_btn me-4">
-                        <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-white' %>
+                    <li class="me-1">
+                        <%= link_to "マイページ", user_path(current_user.id), class: 'lh-50 btn-h' %>
                     </li>
-                    <li class="nav-item header_btn me-4">
-                        <%= link_to "サウナ一覧", saunas_path, class: 'nav-link text-white' %>
+                    <li class="me-1">
+                        <%= link_to "サウナ一覧", saunas_path, class: 'lh-50 btn-h' %>
                     </li>
-                    <li class="nav-item header_btn me-4">
-                        <%= link_to "サ活一覧", tweets_path, class: 'nav-link text-white' %>
+                    <li class="me-1">
+                        <%= link_to "サ活一覧", tweets_path, class: 'lh-50 btn-h' %>
                     </li>
-                    <li class="nav-item header_btn me-4">
-                        <%= link_to "サ活投稿", new_tweet_path, class: 'nav-link text-white' %>
+                    <li class="me-1">
+                        <%= link_to "サ活投稿", new_tweet_path, class: 'lh-50 btn-h' %>
                     </li>
-                    <li class="nav-item header_btn me-4">
-                        <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-white' %>
+                    <li class="me-1">
+                        <%= link_to "ログアウト", destroy_user_session_path, data: {"turbo-method": :delete}, class: 'lh-50 btn-h' %>
                     </li>
                 <% else %>
-                    <li class="nav-item header_btn me-4">
-                        <%= link_to "サ活一覧", tweets_path, class: 'nav-link text-white' %>
+                    <li class="me-1">
+                        <%= link_to "サ活一覧", tweets_path, class: 'lh-50 btn-h' %>
                     </li>
-                    <li class="nav-item header_btn me-4">
-                        <%= link_to "サウナ一覧", saunas_path, class: 'nav-link text-white' %>
+                    <li class="me-1">
+                        <%= link_to "サウナ一覧", saunas_path, class: 'lh-50 btn-h' %>
                     </li>
-                    <li class="nav-item header_btn me-4">
-                        <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-white' %>
+                    <li class="me-1">
+                        <%= link_to "新規登録", new_user_registration_path, class: 'lh-50 btn-h' %>
                     </li>
-                    <li class="nav-item header_btn me-4">
-                        <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-white' %>
+                    <li class="me-1">
+                        <%= link_to "ログイン", new_user_session_path, class: 'lh-50 btn-h' %>
                     </li>
                 <% end %>
             </ul>
         </div>
     </div>
-  </nav>
 </header>
+
+<style>
+.lh-50{line-height: 50px;}
+ul{padding-left:0;}
+li{list-style:none;}
+
+a.btn-h {
+    display: inline-block;
+	text-align: center;
+    line-height: 30px;
+	margin: 10px 5px;
+	text-decoration: none;
+	padding: 5px 10px;
+	font-weight: bold;
+	border: 2px solid #0072FF;
+	transition: 0.5s;
+	border-radius: 100vh;
+}
+a.btn-h:hover {
+	color: #fff;
+	background: #0072FF;
+}
+
+.openbtn1{
+    position: relative;
+    background:#FFF;
+    cursor: pointer;
+    width: 50px;
+    height:50px;
+    border-radius: 5px;
+}
+
+.openbtn1 span{
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background: #000;
+    width: 45%;
+}
+
+.openbtn1 span:nth-of-type(1) {top:15px;}
+.openbtn1 span:nth-of-type(2) {top:23px;}
+.openbtn1 span:nth-of-type(3) {top:31px;}
+
+.openbtn1.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+}
+.openbtn1.active span:nth-of-type(2) {opacity: 0;}
+.openbtn1.active span:nth-of-type(3){
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+}
+.btn-block{
+  width:200px;  
+  padding: 30px;
+}
+
+.hide{display: none;transition-duration: 0.5s;}
+</style>
+
+<nav class="nav-ph hide">
+    <ul class="mt-3">
+        <% if user_signed_in? %>
+            <li class="">
+                <%= link_to "マイページ", user_path(current_user.id), class: 'text-black ps-5' %>
+            </li>
+            <li class="mt-2">
+                <%= link_to "サウナ一覧", saunas_path, class: 'text-black ps-5' %>
+            </li>
+            <li class="mt-2">
+                <%= link_to "サ活一覧", tweets_path, class: 'text-black ps-5' %>
+            </li>
+            <li class="mt-2">
+                <%= link_to "サ活投稿", new_tweet_path, class: 'text-black ps-5' %>
+            </li>
+            <li class="mt-2">
+                <%= link_to "ログアウト", destroy_user_session_path, data: {"turbo-method": :delete}, class: 'text-black ps-5' %>
+            </li>
+        <% else %>
+            <li class="">
+                <%= link_to "サ活一覧", tweets_path, class: 'text-black ps-5' %>
+            </li>
+            <li class="mt-2">
+                <%= link_to "サウナ一覧", saunas_path, class: 'text-black ps-5' %>
+            </li>
+            <li class="mt-2">
+                <%= link_to "新規登録", new_user_registration_path, class: 'text-black ps-5' %>
+            </li>
+            <li class="mt-2">
+                <%= link_to "ログイン", new_user_session_path, class: 'text-black ps-5' %>
+            </li>
+        <% end %>
+    </ul>
+</nav>
+
+<script>
+    $(function(){
+        let nav_items = $('#nav-items');
+        let ham_item = $('#ham-item');
+        $('#ham-item').remove();
+        if($(window).width() < 900){
+            $('#nav-items').remove();
+            $('#nav-ham').append(ham_item);
+        }
+        $(window).resize(function(){
+            if($(window).width() < 900){
+                $('#nav-items').remove();
+                $('#ham-item').remove();
+                $('#nav-ham').append(ham_item);
+            }else{
+                $('#nav-items').remove();
+                $('#ham-item').remove();
+                $('.nav-ph').hide();
+                $('#nav-bar').append(nav_items);
+            }
+        });
+        $(".openbtn1").click(function () {
+            $(this).toggleClass('active');
+        });
+        let key = 0;
+        var navButton = $(".openbtn1")
+        .click(function(){
+            $(".nav-ph").toggleClass("hide");
+        });
+    });
+</script>

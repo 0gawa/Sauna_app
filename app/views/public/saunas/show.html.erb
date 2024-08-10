@@ -2,44 +2,45 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+        <div class="col-md-10 offset-md-1">
             <div class="row mt-5">
-                <h1><%=@sauna.name%></h1>
-                <h3 class="pt-2"><%=@sauna.address%></h3>
+                <h1 class="text-center"><%=@sauna.name%></h1>
+                <h3 class="pt-5 text-center">住所</h3>
+                <p><%=@sauna.address%></p>
             </div>
             <div class="row mt-5" style="">
-                <div class="col-md-10 row-cols-2">
-                    <h3>サウナ画像</h3>
+                <div class="col-md-10 offset-md-1">
+                    <h3 class="text-center">サウナ画像</h3>
                     <div class="card">
                         <%=image_tag @sauna.get_image(900,600), style: ""%>
                     </div>
                 </div>
 
                 <div class="row mt-5"> 
-                    <div class="col-md-4">
+                    <h3 class="text-center pb-4">サウナ室・水風呂情報</h3>
+                    <div class="d-md-flex justify-content-center">
                         <%@sauna.number_saunas.each do |num_sauna| %>
-                            <div class="col-md-auto mb-4">
-                                <h3><i class="fa-solid fa-fire fa-lg pe-1" style="color: #d32727;"></i>サウナ室の温度
+                            <div class="col-md-5 me-md-3">
+                                <h3 class="text-center"><i class="fa-solid fa-fire fa-lg pe-1" style="color: #d32727;"></i>サウナ室の温度
                                 <p class="fs-3 mt-2 text-center"><%=num_sauna.sauna_info.temperature%>度</p></h3>
                             </div>
                         <%end%>
                     </div>
-                    <div class="col-md-4">
+                    <div class="d-md-flex mt-3 justify-content-center">
                         <%@sauna.number_waters.each do |num_water|%>
-                            <div class="ms-md-4 col-md-auto">
-                                <h3><i class="fa-solid fa-droplet fa-lg pe-1" style="color: #200cb6;"></i>水風呂の温度
-                                <p class="fs-3 mt-3 text-center"><%=num_water.water.temperature%>度</p></h3>
+                            <div class="col-md-5 me-md-3">
+                                <h3 class="text-center"><i class="fa-solid fa-droplet fa-lg pe-1" style="color: #200cb6;"></i>水風呂の温度
+                                <p class="fs-3 mt-2 text-center"><%=num_water.water.temperature%>度</p></h3>
                             </div>
                         <%end%>
                     </div>
                 </div>
 
                 <div class="row mt-5">
-                    <h3>サウナ施設メモ</h3>
+                    <h3 class="text-center">サウナ施設メモ</h3>
                     <div class="col-auto mt-3">
                         <%if @sauna.express == ""%>
-                            <p>まだメモがありません。情報提供にご協力お願いします。</p>
+                            <p>まだメモがありません。情報提供にご協力お願いいたします。</p>
                         <%else%>
                             <P><%=simple_format(h(@sauna.express))%></p>
                         <%end%>
@@ -53,8 +54,8 @@
                 </div>
 
                 <div class="row mt-5">
-                    <div class="row col-md-5">
-                        <h3>みんなからの情報</h3>
+                    <div class="row">
+                        <h3 class="text-center">みんなからの情報</h3>
                     </div>
 
                     <div class="row mt-3">
@@ -137,9 +138,9 @@
                 </div>
 
                 <div class="row mt-5">
-                    <div class="col-md-10">
+                    <div class="col-10 offset-1">
                         <div class="mt-2">
-                            <h5 class="pb-2">情報提供フォーム</h5>
+                            <h5 class="pb-2 text-center">情報提供フォーム</h5>
                             <div class="mb-2"><%=render 'layouts/flash'%></span>
                             <%=form_with model: @sauna_comment, url: sauna_sauna_comments_path(@sauna.id), data: { turbo: false } do |f|%>
                                 <div class="row mb-2">
@@ -189,7 +190,7 @@
                                 
                                 <%= f.label :comment, 'コメント', class: "mb-2"%>
                                 <%=f.text_area :comment, placeholder: "追加の情報があれば入力してください。ただし、300字以内でお願いいたします", class: "form-control mb-3", rows: "4"%>
-                                <%=f.submit "送信する", class: "btn btn-primary"%>
+                                <div class="text-center"><%=f.submit "送信する", class: "btn btn-primary col-10"%></div>
                             <%end%>
                         </div>
                     </div>
