@@ -2,27 +2,26 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-11">
+        <div class="col-10 offset-1">
 
-          <div class="row mt-5"><h1>パスワードを忘れても大丈夫です！</h1></div>
+          <div class="row mt-5"><h1 class="text-center">パスワードを忘れても大丈夫です！</h1></div>
 
           <div class="row mt-5">
               <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-                  <%= render "publics/shared/error_messages", resource: resource %>
+                  <%= render "public/shared/error_messages", resource: resource %>
 
-                  <div class="field col-md-6">
+                  <div class="field offset-3 col-6">
                     <%= f.label :email , "メールアドレスを入力してください", class: "pb-2"%><br />
                     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
                   </div>
 
-                  <div class="actions col-md-3 mt-3">
-                    <%= f.submit "Send me reset password instructions", class: "btn btn-primary"  %>
+                  <div class="actions offset-3 col-6 mt-3 text-center">
+                    <%= f.submit "パスワードのリセット方法をメールで送る", class: "btn btn-primary"  %>
                   </div>
               <% end %>
 
-              <div class="row mt-5">
-                <%= render "publics/shared/links" %>
+              <div class="row mt-5 ">
+                <div class="offset-3 col-6"><%= render "public/shared/links" %></div>
               </div>
           </div>
         </div>

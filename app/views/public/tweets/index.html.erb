@@ -2,10 +2,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <div class="row mt-5"><h1>サ活投稿一覧</h1></div>
-            <div class="row mt-3"><p class="fs-5">全国のサウナーからの投稿です。</p></div>
+        <div class="offset-1 col-10">
+            <div class="row mt-5"><h1 class="text-center">サ活投稿一覧</h1></div>
+            <div class="row mt-3"><p class="text-center fs-5">全国のサウナーからの投稿です。</p></div>
             <div class="row mt-5">
                 <% @tweets.each do |tweet|%>
                     <div class="card w-100 mb-3 ps-0" style="max-hight; 230px">

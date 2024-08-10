@@ -20,7 +20,16 @@
 a {
     text-decoration: none;
 }
-
+.wrapper{
+    background-color: #0073ff48;
+    width: 100%;
+    height: auto;
+}
+.top-pic{
+    width: 25vw;
+    height: 25vw;
+    margin: 0 auto;
+}
 .user-info{
     background-image: image-url('sauna_top.jpg');
     background-size: cover;

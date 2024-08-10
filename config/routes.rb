@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   # URL /users/sign_in ...
   devise_for :users, controllers: {
     registrations: "public/registrations",
-    sessions: 'public/sessions'
+    sessions: 'public/sessions',
+    passwords: 'public/passwords'
   }
 
   # 管理者用
