@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :sauna_favorites, dependent: :destroy
   has_many :tweet_comments, dependent: :destroy
   has_many :sauna_comments, dependent: :destroy
+  has_many :contacts, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 20}
   validates :introduction, length: {maximum: 120}
