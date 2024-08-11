@@ -2,14 +2,14 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-10 offset-md-1">
+        <div class="col-10 offset-1">
             <div class="row mt-5">
                 <h1 class="text-center"><%=@sauna.name%></h1>
                 <h3 class="pt-5 text-center">住所</h3>
-                <p><%=@sauna.address%></p>
+                <p class="ps-md-4"><%=@sauna.address%></p>
             </div>
             <div class="row mt-5" style="">
-                <div class="col-md-10 offset-md-1">
+                <div class="col-10 offset-1">
                     <h3 class="text-center">サウナ画像</h3>
                     <div class="card">
                         <%=image_tag @sauna.get_image(900,600), style: ""%>
@@ -99,13 +99,13 @@
                                             </div>
                                         <%end%>
                                          <%if comment.restaurant != "na"%>
-                                           <div class="col-md-2 pb-2">
+                                            <div class="col-md-2 pb-2">
                                                 <h6>食事処はあるか？</h6>
                                                 <%=comment.restaurant_i18n%>
                                             </div>
                                         <%end%>
                                          <%if comment.parking != "na"%>
-                                           <div class="col-md-2 pb-2">
+                                            <div class="col-md-2 pb-2">
                                                 <h6>駐車場はあるか？</h6>
                                                 <%=comment.parking_i18n%>
                                             </div>

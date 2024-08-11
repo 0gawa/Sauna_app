@@ -46,7 +46,7 @@
 
             <div class="row mt-5">
                 <div class="col-10">
-                    <span id="tweet_<%= @tweet.id %>_favorite"><%=render 'public/favorites/btn_tweet', tweet: @tweet%></span>
+                    <span id="tweet_<%= @tweet.id %>_favorite"><%=render partial: 'public/favorites/btn_tweet', locals: {tweet: @tweet}%></span>
 
                     <span class="ps-5 fs-5"><i class="fa-regular fa-message fa-lg" style="color: #262627;"></i> <%=@comments.count%></span>
                 </div>
