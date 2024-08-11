@@ -15,6 +15,7 @@ class Public::UsersController < ApplicationController
         else
             @random="お疲れ様です！"
         end
+        @about_time = about_time(current_user)
     end
 
     def edit
@@ -48,5 +49,19 @@ class Public::UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:name, :introduction, :profile)
+    end
+
+    def about_time(user)
+        infos = user.tweets.all.limit(30)
+        if infos.empty?
+            return ans = {sauna: 0, water: 0, totonoi: 0}
+        end
+        st = 0; wt = 0; tt = 0
+        infos.each do |info|
+            st += info.sauna_time
+            wt += info.water_time
+            tt += info.totonoi_time
+        end
+        ans = {sauna: st/infos.count*1.0, water: wt/infos.count*1.0, totonoi: tt/infos.count*1.0}
     end
 end

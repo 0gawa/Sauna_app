@@ -42,7 +42,7 @@
                         <%if @sauna.express == ""%>
                             <p>まだメモがありません。情報提供にご協力お願いいたします。</p>
                         <%else%>
-                            <P><%=simple_format(h(@sauna.express))%></p>
+                            <p><%=simple_format(h(@sauna.express))%></p>
                         <%end%>
                     </div>
                 </div>
@@ -64,8 +64,8 @@
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <div class="row mx-0">
-                                        <span class="col-auto fs-6 card-title"><%=image_tag comment.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 30px; height: 30px;"%><%=comment.user.name%></span>
-                                        <span class="text-secondary">投稿日時 <%=l comment.created_at, format: :short%><p>
+                                        <span class="col-auto fs-6"><%=image_tag comment.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 30px; height: 30px;"%><%=comment.user.name%></span>
+                                        <span class="text-secondary pb-1">投稿日時 <%=l comment.created_at, format: :short%></span>
                                     </div>
                                     <div class="row mx-0">
                                         <%if comment.aufguss != "na"%>
