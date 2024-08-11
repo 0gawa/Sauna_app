@@ -18,7 +18,7 @@
                                 <td><%=sauna.id%></td>
                                 <td><%=sauna.name%></td>
                                 <td><%=sauna.address%></td>
-                                <td class="text-center"><%=button_to "削除ボタン！", admin_sauna_path(sauna.id), method: :delete, data: {confirm: "この操作は取り消せません。注意してください。"}, class: "btn btn-danger"%></td>
+                                <td class="text-center"><%=link_to "削除ボタン！", admin_sauna_path(sauna.id), data: {"turbo-method": :delete, "turbo_confirm": "このサウナ施設を削除します。この操作は取り消せません。"}, class: "btn btn-danger"%></td>
                             </tr>
                         <%end%>
                     </table>

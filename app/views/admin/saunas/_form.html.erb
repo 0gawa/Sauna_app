@@ -68,7 +68,7 @@
 
 <script>
 //サウナ室の場合
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("turbo:load", function() {
   document.getElementById("add-sauna-button").addEventListener("click", function() {
     var container = document.getElementById("number_saunas");
     var numberSaunas = container.getElementsByClassName("number_sauna");
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 //水風呂の場合
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("turbo:load", function() {
   document.getElementById("add-water-button").addEventListener("click", function() {
     var container = document.getElementById("number_waters");
     var numberWaters = container.getElementsByClassName("number_water");

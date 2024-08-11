@@ -49,7 +49,7 @@ class Admin::SaunasController < ApplicationController
     def destroy
         sauna=Sauna.find(params[:id])
         sauna.destroy
-        redirect_to admin_saunas_path, method: :get
+        redirect_to admin_saunas_path
     end
 
     private

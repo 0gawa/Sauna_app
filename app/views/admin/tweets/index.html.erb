@@ -11,18 +11,17 @@
                     <div class="card w-100 mb-3 ps-0" style="max-hight; 230px">
                         <div class="row">
                             <div class="col-md-auto pe-0">
-                                <%=link_to tweet_path(tweet.id) do %>
+                                <%=link_to admin_tweet_path(tweet.id) do %>
                                     <%=image_tag tweet.get_image(307,230), class: "rounded-start"%>
                                 <%end%>   
                             </div> 
                             <div class="col-md-7">
                                 <div class="card-body">
                                     <span class="fs-4 card-title"><%=image_tag tweet.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 37px; height: 37px;"%><%=tweet.user.name%></span>
-                                    <div class="fs-4 mb-2"><%=link_to tweet.sauna.name, sauna_path(tweet.sauna.id), class: "text-dark"%></div>
-                                    <%=link_to tweet_path(tweet.id), class: "text-dark" do%>
+                                    <div class="fs-4 mb-2"><%=link_to tweet.sauna.name, admin_sauna_path(tweet.sauna.id), class: "text-dark"%></div>
+                                    <%=link_to admin_tweet_path(tweet.id), class: "text-dark" do%>
                                         <%=tweet.impression.truncate(250, omission: '...')%>
                                     <%end%>
-                                    <div class="mt-5" id="tweet_<%= tweet.id %>_favorite"><%=render 'public/favorites/btn_tweet', tweet: tweet%></div>
                                 </div>
                             </div>
                         </div>

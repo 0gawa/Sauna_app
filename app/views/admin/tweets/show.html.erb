@@ -12,12 +12,12 @@
             <div class="row mt-5">
                 <h3 class="pb-2"><%=@tweet.user.name%></h3>の投稿
 
-                <p class="text-right ps-2"><%=@tweet.comment%></p>
+                <p class="text-right ps-2"><%=@tweet.impression.truncate(250, omission: '...')%></p>
             </div>
 
             <div class="row mt-5">
                 <h3>これは削除ボタンです。気をつけてください。</h3>
-                <%=link_to "削除する", admin_tweet_path(@tweet.id), method: :delete, data: {confirm: "本当に削除しますか？この操作は取り消せません。"}, class: "btn btn-danger"%>
+                <%=link_to "削除する", admin_tweet_path(@tweet.id), data: {"turbo_method": :delete, "turbo_confirm": "本当に削除しますか？この操作は取り消せません。"}, class: "btn btn-danger"%>
             </div>
         </div>
     </div>
