@@ -14,29 +14,6 @@ class Public::SaunasController < ApplicationController
     @saunas = Sauna.all.page(params[:page]).per(30)
   end
 
-  #createとupdateはadminのみ
-  def create
-    @sauna = Sauna.new(sauna_params)
-    if @sauna.name!="" and @sauna.address!=""
-        @sauna.save
-        redirect_to admin_sauna_path(@sauna.id)
-    else
-        flash[:danger]="名前、住所、サウナ・水風呂の温度は必ず入力してください"
-        redirect_to new_admin_sauna_path
-    end
-  end
-
-  def update
-    @sauna=Sauna.find(params[:id])
-    if @sauna.update(sauna_params)
-        redirect_to admin_sauna_path(@sauna.id)
-    else
-      flash[:danger]="名前、住所、サウナ・水風呂の温度は必ず入力してください"
-      redirect_to edit_admin_sauna_path(@sauna.id)
-    end
-  end
-  #ここから上はadminの機能
-
   def search
     @saunas = Sauna.search(params[:keyword])
     if @saunas.nil?
@@ -52,9 +29,4 @@ class Public::SaunasController < ApplicationController
 
   private
 
-  def sauna_params
-    params.require(:sauna).permit(:name, :address ,:image, :express,
-    sauna_infos_attributes: [:id, :temperature, :sauna_id, :_destroy],
-    waters_attributes: [:id, :temperature, :sauna_id, :_destroy])
-  end
 end

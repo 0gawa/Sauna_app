@@ -2,23 +2,23 @@
   <%=render 'layouts/flash'%>
 </div>
 
-<div class="row mt-5 d-flex justify-content-center">
-    <%=form_with model: sauna,url: admin_saunas_path do |f|%>
-        <div class="col-7">
+<div class="row mt-5">
+    <%=form_with model: sauna,url: admin_sauna_path(sauna) do |f|%>
+        <div class="col-md-7">
             <h4>サウナ施設名前</h4>
             <%=f.text_field :name, class: "form-control"%>
         </div>
-        <div class="col-7 mt-4">
+        <div class="col-md-7 mt-4">
             <h4>住所</h4>
             <%=f.text_field :address, class: "form-control"%>
         </div>
 
-        <div class="mt-4 col-7">
+        <div class="mt-4 col-md-7">
             <h4>写真(1枚のみ)</h4>
             <%= f.file_field :image, accept: "image/*", class: "form-control" %>
         </div>
 
-        <div class="mt-4 col-7">
+        <div class="mt-4 col-md-7">
             <h4>サウナ施設の説明</h4>
             <%= f.text_area :express, class: "form-control", :size=>"60x10" %>
         </div>
@@ -26,13 +26,13 @@
         <div id="number_saunas">
             <%= f.fields_for :sauna_infos do |i| %>
               <div class="number_sauna"  style="display: <%= 'none' if sauna.new_record?%>;">
-                  <div class="col-7 mt-4">
+                  <div class="col-md-auto mt-4">
                       <h4>サウナ室の温度</h4>
                       <%=i.number_field :temperature, placeholder: "自然数で入力してください", class: "form-control"%>
                   </div>
               </div> 
             <%end%>    
-              <div class="col-8">
+              <div class="col-md-auto">
                   <div class="mt-3">
                       <button id="add-sauna-button" type="button" class="btn">サウナ室の追加はこちらから</button>
                       サウナ施設は最大10個まで追加可能
@@ -43,13 +43,13 @@
         <div id="number_waters">
             <%= f.fields_for :waters do |w| %>
                 <div class="number_water" style="display: <%= 'none' if sauna.new_record?%>;">
-                    <div class="col-7 mt-4">
+                    <div class="col-md-auto mt-4">
                         <h4>水風呂の温度</h4>
                         <%=w.number_field :temperature, placeholder: "自然数で入力してください", class: "form-control"%>
                     </div>
                 </div>
             <%end%>
-            <div class="col-8">
+            <div class="col-md-auto">
                 <div class="mt-3">
                     <button id="add-water-button" type="button" class="btn">水風呂の追加はこちらから</button>
                     水風呂は最大10個まで追加可能
@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <div class="text-center mt-5"><%=f.submit "投稿する", class: "btn btn-primary col-5" %></div>
+        <%=f.submit "投稿する", class: "btn btn-primary mt-5" %>
     <%end%>
     <% if sauna.errors.any? %>
         <%= javascript_pack_tag 'admin/saunas/render' %>
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var numberWaters = container.getElementsByClassName("number_water");
     
     //表示されているフォームを非表示にするため
-    for (var i = 0; i < numberWaters.length; i++){
+    for (var i = 0; i < numberWaters.length; i++) {
       if (numberWaters[i].style.display !== "none") {
         numberWaters[i].style.display = "none";
         break;

@@ -33,12 +33,12 @@
                     <span class="p-1"><%=@tweet.sauna_time%>分</span>
                 </div>
 
-                <div class="col-md-auto rounded-2 rounded border p-2 ms-3">
+                <div class="col-md-auto mt-2 mt-md-0 rounded-2 rounded border p-2 ms-md-3 ms-0">
                     <i class="fa-solid fa-droplet fa-xl" style="color: #154eb2;"></i>
                     <span class="p-1"><%=@tweet.water_time%>分</span>
                 </div>
                 
-                <div class="col-md-auto rounded-2 rounded border p-2 ms-3">
+                <div class="col-md-auto mt-2 mt-md-0 rounded-2 rounded border p-2 ms-0 ms-md-3">
                     <i class="fa-solid fa-chair fa-xl" style="color: #51a01c;"></i>        
                     <span class="p-1"><%=@tweet.totonoi_time%>分</span>
                 </div>
@@ -86,10 +86,10 @@
             
             <%if @tweet.user_id == current_user.id%>       
                 <div class="row mt-5">
-                    <div class="col-2">
+                    <div class="col-md-2 col-4">
                         <%= link_to "編集する", edit_tweet_path(@tweet.id), class: "btn btn-primary w-75" %>
                     </div>
-                    <div class="col-2 mt-3 mt-md-0">
+                    <div class="col-md-2 col-4">
                         <%= button_to "削除する", tweet_path(@tweet.id), method: :delete, data: { turbo_confirm: "この投稿を削除します。この操作は取り消せません。" }, class: "btn btn-secondary w-75" %>
                     </div>
                 </div>
