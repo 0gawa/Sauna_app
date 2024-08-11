@@ -2,14 +2,13 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-11">
+        <div class="col-10 offset-1">
             <div class="row mt-5">
-                <h1>サウナ施設の編集</h1>
+                <h1 class="text-center">サウナ施設の編集</h1>
             </div>
 
             <div class="row mt-5">
-            <%=render 'admin/saunas/form', sauna: @sauna, sauna_infos: @sauna_infos, water: @water%>
+            <%=render 'admin/saunas/eform', sauna: @sauna, sauna_infos: @sauna_infos, water: @water, admin: current_manager%>
             </div>
 
         </div>

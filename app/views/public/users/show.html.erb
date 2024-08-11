@@ -45,9 +45,9 @@
                                         <span class="pb-1"><%=@user.tweets.inject(0){|sum, tweet| sum + tweet.favorites.count}%> 個</span>
                                     </div>
                                 </div>
-                                <div class="row mt-2 justify-content-center mb-3">
-                                    <div class="col-md-auto ">
-                                        <%= link_to "ユーザー情報を編集する", edit_user_path(current_user.id), class: "btn btn-primary"%>
+                                <div class="row mt-2 mb-3">
+                                    <div class="text-center">
+                                        <%= link_to "ユーザー情報を編集する", edit_user_path(current_user.id), class: "btn btn-primary col-7"%>
                                     </div>
                                 </div>
                             </div>

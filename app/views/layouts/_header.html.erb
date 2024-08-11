@@ -27,7 +27,7 @@
                         <%= link_to "サ活投稿", new_tweet_path, class: 'lh-50 btn-h' %>
                     </li>
                     <li class="me-1">
-                        <%= link_to "ログアウト", destroy_user_session_path, data: {"turbo-method": :delete}, class: 'lh-50 btn-h' %>
+                        <%= link_to "ログアウト", destroy_user_session_path,  data: {"turbo-method": :delete}, class: 'lh-50 btn-h' %>
                     </li>
                 <% else %>
                     <li class="me-1">
@@ -53,6 +53,19 @@
 ul{padding-left:0;}
 li{list-style:none;}
 
+button.btn-h{
+    display: inline-block;
+	text-align: center;
+    line-height: 30px;
+	margin: 10px 5px;
+	text-decoration: none;
+	padding: 5px 10px;
+	font-weight: bold;
+	border: 2px solid #0072FF;
+	transition: 0.5s;
+	border-radius: 100vh;
+    color: #0072FF;
+}
 a.btn-h {
     display: inline-block;
 	text-align: center;
@@ -66,6 +79,10 @@ a.btn-h {
 	border-radius: 100vh;
 }
 a.btn-h:hover {
+	color: #fff;
+	background: #0072FF;
+}
+button.btn-h:hover {
 	color: #fff;
 	background: #0072FF;
 }

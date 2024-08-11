@@ -2,14 +2,14 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-10 offset-md-1">
+        <div class="col-10 offset-1">
             <div class="row mt-5">
                 <h1 class="text-center"><%=@sauna.name%></h1>
                 <h3 class="pt-5 text-center">住所</h3>
-                <p><%=@sauna.address%></p>
+                <p class="ps-md-4"><%=@sauna.address%></p>
             </div>
             <div class="row mt-5" style="">
-                <div class="col-md-10 offset-md-1">
+                <div class="col-10 offset-1">
                     <h3 class="text-center">サウナ画像</h3>
                     <div class="card">
                         <%=image_tag @sauna.get_image(900,600), style: ""%>
@@ -18,17 +18,17 @@
 
                 <div class="row mt-5"> 
                     <h3 class="text-center pb-4">サウナ室・水風呂情報</h3>
-                    <div class="d-md-flex justify-content-center">
+                    <div class="col-md-5">
                         <%@sauna.sauna_infos.each do |sauna| %>
-                            <div class="col-md-5 me-md-3">
+                            <div class="mb-1">
                                 <h3 class="text-center"><i class="fa-solid fa-fire fa-lg pe-1" style="color: #d32727;"></i>サウナ室の温度
                                 <p class="fs-3 mt-2 text-center"><%=sauna.temperature%>度</p></h3>
                             </div>
                         <%end%>
                     </div>
-                    <div class="d-md-flex mt-3 justify-content-center">
+                    <div class="col-md-5 offset-md-1 mt-3 mt-md-0">
                         <%@sauna.waters.each do |water|%>
-                            <div class="col-md-5 me-md-3">
+                            <div class="mb-1">
                                 <h3 class="text-center"><i class="fa-solid fa-droplet fa-lg pe-1" style="color: #200cb6;"></i>水風呂の温度
                                 <p class="fs-3 mt-2 text-center"><%=water.temperature%>度</p></h3>
                             </div>
@@ -99,13 +99,13 @@
                                             </div>
                                         <%end%>
                                          <%if comment.restaurant != "na"%>
-                                           <div class="col-md-2 pb-2">
+                                            <div class="col-md-2 pb-2">
                                                 <h6>食事処はあるか？</h6>
                                                 <%=comment.restaurant_i18n%>
                                             </div>
                                         <%end%>
                                          <%if comment.parking != "na"%>
-                                           <div class="col-md-2 pb-2">
+                                            <div class="col-md-2 pb-2">
                                                 <h6>駐車場はあるか？</h6>
                                                 <%=comment.parking_i18n%>
                                             </div>
