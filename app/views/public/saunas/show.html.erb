@@ -19,18 +19,18 @@
                 <div class="row mt-5"> 
                     <h3 class="text-center pb-4">サウナ室・水風呂情報</h3>
                     <div class="d-md-flex justify-content-center">
-                        <%@sauna.number_saunas.each do |num_sauna| %>
+                        <%@sauna.sauna_infos.each do |sauna| %>
                             <div class="col-md-5 me-md-3">
                                 <h3 class="text-center"><i class="fa-solid fa-fire fa-lg pe-1" style="color: #d32727;"></i>サウナ室の温度
-                                <p class="fs-3 mt-2 text-center"><%=num_sauna.sauna_info.temperature%>度</p></h3>
+                                <p class="fs-3 mt-2 text-center"><%=sauna.temperature%>度</p></h3>
                             </div>
                         <%end%>
                     </div>
                     <div class="d-md-flex mt-3 justify-content-center">
-                        <%@sauna.number_waters.each do |num_water|%>
+                        <%@sauna.waters.each do |water|%>
                             <div class="col-md-5 me-md-3">
                                 <h3 class="text-center"><i class="fa-solid fa-droplet fa-lg pe-1" style="color: #200cb6;"></i>水風呂の温度
-                                <p class="fs-3 mt-2 text-center"><%=num_water.water.temperature%>度</p></h3>
+                                <p class="fs-3 mt-2 text-center"><%=water.temperature%>度</p></h3>
                             </div>
                         <%end%>
                     </div>

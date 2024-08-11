@@ -21,8 +21,6 @@ class Public::SaunasController < ApplicationController
         @sauna.save
         redirect_to admin_sauna_path(@sauna.id)
     else
-        @sauna_infos = SaunaInfo.all
-        @water = Water.all
         flash[:danger]="名前、住所、サウナ・水風呂の温度は必ず入力してください"
         redirect_to new_admin_sauna_path
     end
@@ -56,7 +54,7 @@ class Public::SaunasController < ApplicationController
 
   def sauna_params
     params.require(:sauna).permit(:name, :address ,:image, :express,
-    number_saunas_attributes: [:id, :sauna_id, :sauna_info_id , :_destroy],
-    number_waters_attributes: [:id, :sauna_id, :water_id , :_destroy])
+    sauna_infos_attributes: [:id, :temperature, :sauna_id, :_destroy],
+    waters_attributes: [:id, :temperature, :sauna_id, :_destroy])
   end
 end

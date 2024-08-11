@@ -1,4 +1,4 @@
 class Water < ApplicationRecord
-    has_many :saunas, dependent: :destroy
-    has_many :number_waters, dependent: :destroy
+    belongs_to :sauna
+    validates :temperature, numericality: { greater_than_or_equal_to: -10, less_than_or_equal_to: 40}
 end

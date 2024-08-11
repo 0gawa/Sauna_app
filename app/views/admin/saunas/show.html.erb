@@ -40,18 +40,18 @@
 
             <div class="row mt-3">
                 <div class="col-md-4">
-                    <%@sauna.number_saunas.each do |num_sauna| %>
+                    <%@sauna.sauna_infos.each do |sauna| %>
                         <div class="col-md-auto mb-4">
                             <h4><i class="fa-solid fa-fire fa-lg pe-1" style="color: #d32727;"></i>サウナ室の温度
-                            <p class="fs-4 mt-2 text-center"><%=num_sauna.sauna_info.temperature%>度</p></h4>
+                            <p class="fs-4 mt-2 text-center"><%=sauna.temperature%>度</p></h4>
                         </div>
                     <%end%>
                 </div>
                 <div class="col-md-4">
-                    <%@sauna.number_waters.each do |num_water|%>
+                    <%@sauna.waters.each do |water|%>
                         <div class="ms-md-4 col-md-auto">
                             <h4><i class="fa-solid fa-droplet fa-lg pe-1" style="color: #200cb6;"></i>水風呂の温度
-                            <p class="fs-4 mt-3 text-center"><%=num_water.water.temperature%>度</p></h4>
+                            <p class="fs-4 mt-3 text-center"><%=water.temperature%>度</p></h4>
                         </div>
                     <%end%>
                 </div>
