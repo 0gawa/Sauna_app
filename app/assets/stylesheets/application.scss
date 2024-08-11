@@ -16,6 +16,8 @@
  @import "bootstrap";
  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 
+ $light-secondary: #f5f6f6;
+
 * { font-family: "Noto Sans JP", sans-serif; }
 a {
     text-decoration: none;
@@ -30,6 +32,7 @@ a {
     height: 25vw;
     margin: 0 auto;
 }
+.bg-light-secondary{background-color: $light-secondary;}
 .user-info{
     background-image: image-url('sauna_top.jpg');
     background-size: cover;

@@ -4,10 +4,10 @@ class Sauna < ApplicationRecord
     has_many :tweets, dependent: :destroy
     has_many :sauna_favorites, dependent: :destroy
     has_many :sauna_comments, dependent: :destroy
-    has_many :number_saunas, dependent: :destroy
-    accepts_nested_attributes_for :number_saunas, allow_destroy: true, reject_if: :all_blank, limit: 10
-    has_many :number_waters, dependent: :destroy
-    accepts_nested_attributes_for :number_waters, allow_destroy: true, reject_if: :all_blank, limit: 10
+    has_many :sauna_infos, dependent: :destroy
+    accepts_nested_attributes_for :sauna_infos, allow_destroy: true, reject_if: :all_blank, limit: 10
+    has_many :waters, dependent: :destroy
+    accepts_nested_attributes_for :waters, allow_destroy: true, reject_if: :all_blank, limit: 10
 
     validates :name, presence: true
     validates :address, presence: true
