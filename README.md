@@ -13,10 +13,6 @@
 # 使用技術
 * Ruby 3.2.2
 * Ruby on Rails 7.0.8.1
-
-# 使用技術
-* Ruby 3.2.2
-* Ruby on Rails 7.0.8.1
 * Turbo
 
 ## ユーザー側の機能一覧
