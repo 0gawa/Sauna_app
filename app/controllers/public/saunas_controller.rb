@@ -8,6 +8,7 @@ class Public::SaunasController < ApplicationController
     @sauna_comment = SaunaComment.new
     saunas = Sauna.includes(:sauna_favorites).sort_by { |sauna| -sauna.sauna_favorites.count }
     @saunas = saunas[0..15]
+    @lat_lon = Geocoder.coordinates(@sauna.address)
   end
 
   def index

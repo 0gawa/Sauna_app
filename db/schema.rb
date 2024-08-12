@@ -124,6 +124,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_132557) do
   create_table "saunas", force: :cascade do |t|
     t.string "name", null: false
     t.string "address", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "time"
+    t.string "charge"
+    t.string "hp"
     t.text "express", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
