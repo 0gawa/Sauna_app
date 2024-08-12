@@ -3,11 +3,48 @@
 <div class="container">
     <div class="row">
         <div class="col-10 offset-1">
-            <div class="row mt-5">
+            <div class="row mt-5 d-flex justify-content-center">
                 <h1 class="text-center"><%=@sauna.name%></h1>
-                <h3 class="pt-5 text-center">住所</h3>
-                <p class="ps-md-4"><%=@sauna.address%></p>
+                <div class="col-md-5 col-10 offset-md-0 offset-1 mt-5">
+                    <table class="w-100">
+                        <tr><th class="text-center w-40 fs-6" style="height: 40px;">住所</th><td class="w-60 ps-2"><%=@sauna.address%></td></tr>
+                        <tr><th class="text-center fs-6" style="height: 40px;">HP</th><td class="ps-2"><a href="<%=@sauna.hp%>"><%=@sauna.hp%></a></td></tr>
+                        <tr><th class="text-center fs-6" style="height: 40px;">営業時間</th><td class="ps-2"><%=@sauna.time%></td></tr>
+                        <tr><th class="text-center fs-6" style="height: 40px;">料金</th><td class="ps-2"><%=@sauna.charge%></td></tr>
+                    </table>
+                </div>
+                <div class="col-md-5 col-10 offset-md-0 offset-1 mt-5 d-flex justify-content-center">
+                    <div class="" style="width: 55vw; height: 40vh;" id="map">
+                    </div>
+                </div>
+
+            <script>
+                $(document).on('turbo:load', function(){
+                    let map;
+
+                    async function initMap() {
+                        const { Map } = await google.maps.importLibrary("maps");
+
+                        map = new Map(document.getElementById("map"), {
+                            center: { lat: <%=@lat_lon[0]%>, lng: <%=@lat_lon[1]%> },
+                            zoom: 15,
+                        });
+                        const marker = new google.maps.Marker({
+                            position: { lat: <%=@lat_lon[0]%>, lng: <%=@lat_lon[1]%> }
+                        });
+                        marker.setMap(map);
+                    }
+                    
+                    initMap();
+                });
+            </script>
+
+             <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+                key: "<%=ENV['API_KEY']%>",
+                });
+            </script>
             </div>
+
             <div class="row mt-5" style="">
                 <div class="col-10 offset-1">
                     <h3 class="text-center">サウナ画像</h3>
