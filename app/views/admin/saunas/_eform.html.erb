@@ -17,6 +17,21 @@
             <h4>写真(1枚のみ)</h4>
             <%= f.file_field :image, accept: "image/*", class: "form-control" %>
         </div>
+        
+        <div class="col-7 mt-4">
+            <h4>営業時間について</h4>
+            <%=f.text_field :time, class: "form-control"%>
+        </div>
+
+        <div class="col-7 mt-4">
+            <h4>料金について</h4>
+            <%=f.text_field :charge, class: "form-control"%>
+        </div>
+
+        <div class="mt-4 col-7">
+            <h4>サウナ施設の説明</h4>
+            <%= f.text_area :express, class: "form-control", :size=>"60x10" %>
+        </div>
 
         <div class="mt-4 col-md-7">
             <h4>サウナ施設の説明</h4>

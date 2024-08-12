@@ -9,8 +9,8 @@
                     <table class="w-100">
                         <tr><th class="text-center w-40 fs-6" style="height: 40px;">住所</th><td class="w-60 ps-2"><%=@sauna.address%></td></tr>
                         <tr><th class="text-center fs-6" style="height: 40px;">HP</th><td class="ps-2"><a href="<%=@sauna.hp%>"><%=@sauna.hp%></a></td></tr>
-                        <tr><th class="text-center fs-6" style="height: 40px;">営業時間</th><td class="ps-2"><%=@sauna.time%></td></tr>
-                        <tr><th class="text-center fs-6" style="height: 40px;">料金</th><td class="ps-2"><%=@sauna.charge%></td></tr>
+                        <tr><th class="text-center fs-6" style="height: 40px;">営業時間</th><td class="ps-2"><%=simple_format(h(@sauna.time))%></td></tr>
+                        <tr><th class="text-center fs-6" style="height: 40px;">料金</th><td class="ps-2"><%=simple_format(h(@sauna.charge))%></td></tr>
                     </table>
                 </div>
                 <div class="col-md-5 col-10 offset-md-0 offset-1 mt-5 d-flex justify-content-center">
@@ -75,17 +75,17 @@
 
                 <div class="row mt-5">
                     <h3 class="text-center">サウナ施設メモ</h3>
-                    <div class="col-auto mt-3">
+                    <div class="col-auto col-md-10 offset-md-1 mt-3">
                         <%if @sauna.express == ""%>
                             <p>まだメモがありません。情報提供にご協力お願いいたします。</p>
                         <%else%>
-                            <p><%=simple_format(h(@sauna.express))%></p>
+                            <p class="ps-3"><%=simple_format(h(@sauna.express))%></p>
                         <%end%>
                     </div>
                 </div>
 
                 <div class="row mt-5">
-                    <div class="col-10" id="sauna_<%= @sauna.id %>_favorite">
+                    <div class="col-10 offset-md-1" id="sauna_<%= @sauna.id %>_favorite">
                         <%=render 'public/favorites/btn_sauna', sauna: @sauna%>
                     </div>
                 </div>

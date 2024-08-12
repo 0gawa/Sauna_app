@@ -9,6 +9,9 @@ class Public::SaunasController < ApplicationController
     saunas = Sauna.includes(:sauna_favorites).sort_by { |sauna| -sauna.sauna_favorites.count }
     @saunas = saunas[0..15]
     @lat_lon = Geocoder.coordinates(@sauna.address)
+    if @lat_lon.nil?
+      @lat_lon = [35.6759323, 139.7450316]
+    end
   end
 
   def index
