@@ -106,6 +106,9 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
     dotenv (3.1.2)
+    dotenv-rails (3.1.2)
+      dotenv (= 3.1.2)
+      railties (>= 6.1)
     enum_help (0.0.19)
       activesupport (>= 3.0.0)
     erubi (1.12.0)
@@ -170,6 +173,7 @@ GEM
     minitest (5.22.3)
     msgpack (1.7.2)
     multi_json (1.15.0)
+    mysql2 (0.5.6)
     net-imap (0.4.10)
       date
       net-protocol
@@ -317,7 +321,7 @@ DEPENDENCIES
   capybara
   debug
   devise
-  dotenv
+  dotenv-rails
   enum_help
   geocoder
   gmaps4rails
@@ -328,6 +332,10 @@ DEPENDENCIES
   jquery-rails
   kaminari
   mini_magick
+  mysql2
+  net-imap
+  net-pop
+  net-smtp
   puma (~> 5.0)
   rails (~> 7.0.6)
   rails-i18n
