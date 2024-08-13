@@ -42,6 +42,7 @@ class Public::TweetsController < ApplicationController
         if @tweet.update(tweet_params)
             redirect_to tweet_path(@tweet.id)
         else
+            @saunas = Sauna.all
             render :edit, status: :unprocessable_entity
         end
     end

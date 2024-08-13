@@ -4,11 +4,18 @@ ja:
       sauna: "サウナ施設"
       tweet: "投稿"
       user: "ユーザー"
+      sauna_comment: "コメント"
     attributes:
       tweet:
         count: "セット数"
+        sauna_time: "サウナの時間"
+        water_time: "水風呂の時間"
+        totonoi_time: "ととのいの時間"
       sauna:
         name: "名前"
+      sauna_comment:
+        comment: "コメント"
+        aufguss: "アウフグース"
       user:
         email: "メールアドレス"
         name: "名前"
