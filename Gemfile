@@ -14,6 +14,7 @@ gem "sqlite3", "~> 1.4"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
+gem 'puma-daemon', require: false
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -31,9 +32,6 @@ gem "turbo-rails"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
-
-#環境変数
-gem 'dotenv'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -72,7 +70,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+end
 
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
 end
 
 gem "devise"
@@ -88,3 +90,7 @@ gem 'bootstrap5-kaminari-views'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'gon'
+
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"

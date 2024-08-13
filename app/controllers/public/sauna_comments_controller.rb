@@ -28,8 +28,12 @@ class Public::SaunaCommentsController < ApplicationController
           @sauna_comment = comment
           saunas = Sauna.includes(:sauna_favorites).sort_by { |sauna| -sauna.sauna_favorites.count }
           @saunas = saunas[0..15]
+          @lat_lon = Geocoder.coordinates(@sauna.address)
+          if @lat_lon.nil?
+            @lat_lon = [35.6759323, 139.7450316]
+          end
           flash.now[:danger] = "以下の項目に1つ以上回答してください。"
-          render "public/saunas/show"
+          render "public/saunas/show", status: :unprocessable_entity
         end
     end
     
