@@ -4,8 +4,6 @@ class ApplicationController < ActionController::Base
         rescue_from ActiveRecord::RecordNotFound,   with: :_render_404
         rescue_from ActionController::RoutingError, with: :_render_404
     end
-
-    protect_from_forgery
     
     def routing_error
         raise ActionController::RoutingError, params[:path]
