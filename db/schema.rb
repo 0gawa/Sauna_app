@@ -132,13 +132,21 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_132557) do
 
   create_table "sauna_infos", force: :cascade do |t|
     t.integer "temperature", null: false
+    t.integer "sauna_id"
+    t.string "express"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["sauna_id"], name: "index_sauna_infos_on_sauna_id"
   end
 
   create_table "saunas", force: :cascade do |t|
     t.string "name", null: false
     t.string "address", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "time"
+    t.string "charge"
+    t.string "hp"
     t.text "express", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -184,8 +192,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_132557) do
 
   create_table "waters", force: :cascade do |t|
     t.integer "temperature", null: false
+    t.integer "sauna_id"
+    t.string "express"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["sauna_id"], name: "index_waters_on_sauna_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -196,6 +207,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_132557) do
   add_foreign_key "number_saunas", "saunas"
   add_foreign_key "number_waters", "saunas"
   add_foreign_key "number_waters", "waters"
+  add_foreign_key "sauna_infos", "saunas"
   add_foreign_key "tweets", "saunas"
   add_foreign_key "tweets", "users"
+  add_foreign_key "waters", "saunas"
 end
