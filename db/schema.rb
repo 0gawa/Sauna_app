@@ -185,6 +185,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_132557) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "tweets"
   add_foreign_key "favorites", "users"
+
   add_foreign_key "sauna_infos", "saunas"
   add_foreign_key "tweets", "saunas"
   add_foreign_key "tweets", "users"
