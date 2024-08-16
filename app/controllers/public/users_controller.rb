@@ -7,13 +7,15 @@ class Public::UsersController < ApplicationController
         @tweets_all = Tweet.all.limit(8).order(created_at: :desc)
         saunas = Sauna.includes(:sauna_favorites).sort_by { |sauna| -sauna.sauna_favorites.count }
         @saunas = saunas[0..15]
-        @random = rand(4)
+        @random = rand(5)
         if @random<=1
             @random="サウナに行きましょう！"
         elsif @random<=2
-            @random="お帰りなさい！"
+            @random = "お帰りなさい！"
+        elsif @random<=3
+            @random = "お疲れ様です！"
         else
-            @random="お疲れ様です！"
+            @random = "ととのいませんか？"
         end
         @about_time = about_time(current_user)
     end

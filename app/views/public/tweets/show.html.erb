@@ -8,26 +8,30 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-md-10 offset-1">
+                <div class="col-md-10 offset-md-1">
                     <%=link_to sauna_path(@tweet.sauna.id) do%><h2 style="color: black"><%=@tweet.sauna.name%></h2><%end%>
-                    <span class="col-10 fs-5"><%=image_tag @tweet.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 35px; height: 35px;"%> <%=@tweet.user.name%></span>
-                    <p class="text-secondary">投稿日時 <%=l @tweet.created_at, format: :short%><p>
+                    <p class="text-secondary"><%=@tweet.sauna.address%></p>
                 </div>
             </div>
 
+
+
             <div class="row mt-5">
-                <div class="col-md-10 offset-1 row-cols-2">
+                <div class="col-md-10 offset-md-1">
+                    <div class="text-center">
+                        <span class="col-10 fs-5"><%=image_tag @tweet.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 35px; height: 35px;"%> <%=@tweet.user.name%></span>
+                        <p class="text-secondary">投稿日時 <%=l @tweet.created_at, format: :short%><p>
+                    </div>
+                    <p class="fs-6"><%=simple_format(h(@tweet.impression))%></p>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-10 offset-md-1">
                     <h3>画像</h3>
                     <div class="card mt-1">
                         <%=image_tag @tweet.get_image(1000, 750), alt: "読み込みエラー"%>
                     </div>
-                </div>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col-md-10 offset-1 row-cols-2">
-                    <h3>感想</h3>
-                    <p class="fs-6"><%=simple_format(h(@tweet.impression))%></p>
                 </div>
             </div>
 
@@ -48,7 +52,7 @@
                 </div>
             </div>
 
-            <div class="row mt-5">
+            <div class="row mt-4">
                 <div class="col-md-10 offset-md-1">
                     <span id="tweet_<%= @tweet.id %>_favorite"><%=render partial: 'public/favorites/btn_tweet', locals: {tweet: @tweet}%></span>
 
@@ -57,7 +61,7 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-md-7 offset-md-1">
+                <div class="col-md-10 offset-md-1">
                     <%= form_with model: [@tweet, @comment] do |f| %>
                         <%= f.text_area :comment, placeholder: "コメントは140字以内です", class: "form-control mb-3", rows: "3"%>
                         <div class="text-center"><%= f.submit "コメント投稿", class: "btn btn-primary col-md-5 col-8" %></div>
@@ -71,7 +75,7 @@
                 <%if @comments.count == 0%>
                     <p>まだコメントはありません。<p>
                 <%else%>
-                    <div class="col-md-7 cols-md-1">
+                    <div class="col-md-10 cols-md-1">
                         <%@comments.each do |comment|%>
                             <div class="card mb-3">
                                 <div class="card-body">
@@ -92,10 +96,10 @@
             
             <%if @tweet.user_id == current_user.id%>       
                 <div class="row mt-5">
-                    <div class="col-md-2 col-4">
+                    <div class="col-md-3 col-4">
                         <%= link_to "編集する", edit_tweet_path(@tweet.id), class: "btn btn-primary w-75" %>
                     </div>
-                    <div class="col-md-2 col-4">
+                    <div class="col-md-3 col-4">
                         <%= button_to "削除する", tweet_path(@tweet.id), method: :delete, data: { turbo_confirm: "この投稿を削除します。この操作は取り消せません。" }, class: "btn btn-secondary w-75" %>
                     </div>
                 </div>

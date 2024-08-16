@@ -1,0 +1,14 @@
+.card-parent{
+    position: relative;
+    width: 100%;
+    padding-left: 0;
+}
+
+.tweet-favorite{
+    position: absolute;
+    bottom: 10px;
+}
+
+@media screen and (max-width: 959px) {
+    
+}
