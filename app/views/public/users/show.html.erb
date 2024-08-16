@@ -45,15 +45,30 @@
                                         <span class="pb-1"><%=@user.tweets.inject(0){|sum, tweet| sum + tweet.favorites.count}%> 個</span>
                                     </div>
                                 </div>
-                                <div class="row mt-2 justify-content-center mb-3">
-                                    <div class="col-md-auto ">
-                                        <%= link_to "ユーザー情報を編集する", edit_user_path(current_user.id), class: "btn btn-primary"%>
+                                <div class="row mt-2 mb-3">
+                                    <div class="text-center">
+                                        <%= link_to "ユーザー情報を編集する", edit_user_path(current_user.id), class: "btn btn-primary col-7"%>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>             
+            </div>
+
+            <div class="row mt-5">
+                <h3 class="text-center mb-0"><%=current_user.name%>さんの最近</h3>
+                <div class="row mt-5">
+                    <div class="col-10 offset-1 bg-light-secondary p-2 rounded-2">
+                        <p class="text-center pt-2 fs-5">今月<%=current_user.name%>さんはサウナに<%=current_user.tweets.for_month.count%>回行きました</p>
+                        <p class="text-center">これは平均の時間です。自分にあった入り方を見つけましょう。</p>
+                        <table class="w-100">
+                            <tr><th width="50%" height="70px" class="text-center"><i class="fa-solid fa-xl fa-fire pe-1" style="color: #eb1414;"></i>サウナ</th><td width="50%" class="text-center fs-3"><%=@about_time[:sauna]%>分</td><tr>
+                            <tr><th height="70px" class="text-center"><i class="fa-solid fa-droplet fa-xl pe-1" style="color: #154eb2;"></i>水風呂</th><td class="text-center fs-3"><%=@about_time[:water]%>分</td><tr>
+                            <tr><th height="70px" class="text-center"><i class="fa-solid fa-chair fa-xl pe-1" style="color: #51a01c;"></i> ととのい</th><td class="text-center fs-3"><%=@about_time[:totonoi]%>分</td><tr>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <div class="row mt-5">

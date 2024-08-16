@@ -1,1 +1,0 @@
-history.replaceState('', '', '/admin/saunas/new')

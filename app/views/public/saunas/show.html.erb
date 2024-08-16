@@ -2,14 +2,51 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-10 offset-md-1">
-            <div class="row mt-5">
+        <div class="col-10 offset-1">
+            <div class="row mt-5 d-flex justify-content-center">
                 <h1 class="text-center"><%=@sauna.name%></h1>
-                <h3 class="pt-5 text-center">住所</h3>
-                <p><%=@sauna.address%></p>
+                <div class="col-md-5 col-10 offset-md-0 offset-1 mt-5">
+                    <table class="w-100">
+                        <tr><th class="text-center w-40 fs-6" style="height: 40px;">住所</th><td class="w-60 ps-2"><%=@sauna.address%></td></tr>
+                        <tr><th class="text-center fs-6" style="height: 40px;">HP</th><td class="ps-2"><a href="<%=@sauna.hp%>"><%=@sauna.hp%></a></td></tr>
+                        <tr><th class="text-center fs-6" style="height: 40px;">営業時間</th><td class="ps-2"><%=simple_format(h(@sauna.time))%></td></tr>
+                        <tr><th class="text-center fs-6" style="height: 40px;">料金</th><td class="ps-2"><%=simple_format(h(@sauna.charge))%></td></tr>
+                    </table>
+                </div>
+                <div class="col-md-5 col-10 offset-md-0 offset-1 mt-5 d-flex justify-content-center">
+                    <div class="" style="width: 60vw; height: 40vh;" id="map">
+                    </div>
+                </div>
+
+            <script>
+                $(document).on('turbo:load', function(){
+                    let map;
+
+                    async function initMap() {
+                        const { Map } = await google.maps.importLibrary("maps");
+
+                        map = new Map(document.getElementById("map"), {
+                            center: { lat: <%=@lat_lon[0]%>, lng: <%=@lat_lon[1]%> },
+                            zoom: 15,
+                        });
+                        const marker = new google.maps.Marker({
+                            position: { lat: <%=@lat_lon[0]%>, lng: <%=@lat_lon[1]%> }
+                        });
+                        marker.setMap(map);
+                    }
+                    
+                    initMap();
+                });
+            </script>
+
+             <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+                key: "<%=ENV['API_KEY']%>",
+                });
+            </script>
             </div>
+
             <div class="row mt-5" style="">
-                <div class="col-md-10 offset-md-1">
+                <div class="col-10 offset-1">
                     <h3 class="text-center">サウナ画像</h3>
                     <div class="card">
                         <%=image_tag @sauna.get_image(900,600), style: ""%>
@@ -18,19 +55,19 @@
 
                 <div class="row mt-5"> 
                     <h3 class="text-center pb-4">サウナ室・水風呂情報</h3>
-                    <div class="d-md-flex justify-content-center">
-                        <%@sauna.number_saunas.each do |num_sauna| %>
-                            <div class="col-md-5 me-md-3">
+                    <div class="col-md-5">
+                        <%@sauna.sauna_infos.each do |sauna| %>
+                            <div class="mb-1">
                                 <h3 class="text-center"><i class="fa-solid fa-fire fa-lg pe-1" style="color: #d32727;"></i>サウナ室の温度
-                                <p class="fs-3 mt-2 text-center"><%=num_sauna.sauna_info.temperature%>度</p></h3>
+                                <p class="fs-3 mt-2 text-center"><%=sauna.temperature%>度</p></h3>
                             </div>
                         <%end%>
                     </div>
-                    <div class="d-md-flex mt-3 justify-content-center">
-                        <%@sauna.number_waters.each do |num_water|%>
-                            <div class="col-md-5 me-md-3">
+                    <div class="col-md-5 offset-md-1 mt-3 mt-md-0">
+                        <%@sauna.waters.each do |water|%>
+                            <div class="mb-1">
                                 <h3 class="text-center"><i class="fa-solid fa-droplet fa-lg pe-1" style="color: #200cb6;"></i>水風呂の温度
-                                <p class="fs-3 mt-2 text-center"><%=num_water.water.temperature%>度</p></h3>
+                                <p class="fs-3 mt-2 text-center"><%=water.temperature%>度</p></h3>
                             </div>
                         <%end%>
                     </div>
@@ -38,17 +75,17 @@
 
                 <div class="row mt-5">
                     <h3 class="text-center">サウナ施設メモ</h3>
-                    <div class="col-auto mt-3">
+                    <div class="col-auto col-md-10 offset-md-1 mt-3">
                         <%if @sauna.express == ""%>
                             <p>まだメモがありません。情報提供にご協力お願いいたします。</p>
                         <%else%>
-                            <P><%=simple_format(h(@sauna.express))%></p>
+                            <p class="ps-3"><%=simple_format(h(@sauna.express))%></p>
                         <%end%>
                     </div>
                 </div>
 
                 <div class="row mt-5">
-                    <div class="col-10" id="sauna_<%= @sauna.id %>_favorite">
+                    <div class="col-10 offset-md-1" id="sauna_<%= @sauna.id %>_favorite">
                         <%=render 'public/favorites/btn_sauna', sauna: @sauna%>
                     </div>
                 </div>
@@ -64,8 +101,8 @@
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <div class="row mx-0">
-                                        <span class="col-auto fs-6 card-title"><%=image_tag comment.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 30px; height: 30px;"%><%=comment.user.name%></span>
-                                        <span class="text-secondary">投稿日時 <%=l comment.created_at, format: :short%><p>
+                                        <span class="col-auto fs-6"><%=image_tag comment.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 30px; height: 30px;"%><%=comment.user.name%></span>
+                                        <span class="text-secondary pb-1">投稿日時 <%=l comment.created_at, format: :short%></span>
                                     </div>
                                     <div class="row mx-0">
                                         <%if comment.aufguss != "na"%>
@@ -99,13 +136,13 @@
                                             </div>
                                         <%end%>
                                          <%if comment.restaurant != "na"%>
-                                           <div class="col-md-2 pb-2">
+                                            <div class="col-md-2 pb-2">
                                                 <h6>食事処はあるか？</h6>
                                                 <%=comment.restaurant_i18n%>
                                             </div>
                                         <%end%>
                                          <%if comment.parking != "na"%>
-                                           <div class="col-md-2 pb-2">
+                                            <div class="col-md-2 pb-2">
                                                 <h6>駐車場はあるか？</h6>
                                                 <%=comment.parking_i18n%>
                                             </div>

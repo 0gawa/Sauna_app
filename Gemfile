@@ -18,14 +18,13 @@ gem "puma", "~> 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
-
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+
+gem "turbo-rails"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -51,6 +50,7 @@ gem "sassc-rails"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rspec-rails', '~> 5.0.0'
 end
 
 group :development do
@@ -69,7 +69,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+end
 
+gem 'dotenv-rails'
+group :production do
+  #gem 'mysql2'
 end
 
 gem "devise"
@@ -81,3 +85,11 @@ gem 'enum_help'
 gem 'mini_magick'
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
+
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'gon'
+
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"

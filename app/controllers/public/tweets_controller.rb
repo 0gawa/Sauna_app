@@ -1,8 +1,6 @@
 class Public::TweetsController < ApplicationController
     before_action :authenticate_user!
 
-    #サ活投稿一覧はログインしていなくても閲覧可能にすること
-
     def new
         @tweet = Tweet.new
         @saunas = Sauna.all
@@ -42,6 +40,7 @@ class Public::TweetsController < ApplicationController
         if @tweet.update(tweet_params)
             redirect_to tweet_path(@tweet.id)
         else
+            @saunas = Sauna.all
             render :edit, status: :unprocessable_entity
         end
     end

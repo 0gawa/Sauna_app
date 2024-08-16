@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     unless Rails.env.production?
-        #rescue_from Exception,                      with: :_render_500
+        rescue_from Exception,                      with: :_render_500
         rescue_from ActiveRecord::RecordNotFound,   with: :_render_404
         rescue_from ActionController::RoutingError, with: :_render_404
     end

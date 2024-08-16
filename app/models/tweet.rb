@@ -14,6 +14,8 @@ class Tweet < ApplicationRecord
     validates :water_time, presence: true
     validates :totonoi_time, presence: true
 
+    scope :for_month, -> {where(created_at: Time.current.all_month)}
+
     def get_image(width, height)
         unless image.attached?
           file_path = Rails.root.join('app/assets/images/tweet_no_image.png')

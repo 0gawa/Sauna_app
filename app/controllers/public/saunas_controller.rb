@@ -8,36 +8,15 @@ class Public::SaunasController < ApplicationController
     @sauna_comment = SaunaComment.new
     saunas = Sauna.includes(:sauna_favorites).sort_by { |sauna| -sauna.sauna_favorites.count }
     @saunas = saunas[0..15]
+    @lat_lon = Geocoder.coordinates(@sauna.address)
+    if @lat_lon.nil?
+      @lat_lon = [35.6759323, 139.7450316]
+    end
   end
 
   def index
     @saunas = Sauna.all.page(params[:page]).per(30)
   end
-
-  #createとupdateはadminのみ
-  def create
-    @sauna = Sauna.new(sauna_params)
-    if @sauna.name!="" and @sauna.address!=""
-        @sauna.save
-        redirect_to admin_sauna_path(@sauna.id)
-    else
-        @sauna_infos = SaunaInfo.all
-        @water = Water.all
-        flash[:danger]="名前、住所、サウナ・水風呂の温度は必ず入力してください"
-        redirect_to new_admin_sauna_path
-    end
-  end
-
-  def update
-    @sauna=Sauna.find(params[:id])
-    if @sauna.update(sauna_params)
-        redirect_to admin_sauna_path(@sauna.id)
-    else
-      flash[:danger]="名前、住所、サウナ・水風呂の温度は必ず入力してください"
-      redirect_to edit_admin_sauna_path(@sauna.id)
-    end
-  end
-  #ここから上はadminの機能
 
   def search
     @saunas = Sauna.search(params[:keyword])
@@ -54,9 +33,4 @@ class Public::SaunasController < ApplicationController
 
   private
 
-  def sauna_params
-    params.require(:sauna).permit(:name, :address ,:image, :express,
-    number_saunas_attributes: [:id, :sauna_id, :sauna_info_id , :_destroy],
-    number_waters_attributes: [:id, :sauna_id, :water_id , :_destroy])
-  end
 end

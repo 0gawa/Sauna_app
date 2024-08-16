@@ -89,24 +89,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_132557) do
     t.index ["reset_password_token"], name: "index_managers_on_reset_password_token", unique: true
   end
 
-  create_table "number_saunas", force: :cascade do |t|
-    t.integer "sauna_id", null: false
-    t.integer "sauna_info_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sauna_id"], name: "index_number_saunas_on_sauna_id"
-    t.index ["sauna_info_id"], name: "index_number_saunas_on_sauna_info_id"
-  end
-
-  create_table "number_waters", force: :cascade do |t|
-    t.integer "sauna_id", null: false
-    t.integer "water_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sauna_id"], name: "index_number_waters_on_sauna_id"
-    t.index ["water_id"], name: "index_number_waters_on_water_id"
-  end
-
   create_table "sauna_comments", force: :cascade do |t|
     t.text "comment", default: ""
     t.integer "user_id"
@@ -203,10 +185,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_132557) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "tweets"
   add_foreign_key "favorites", "users"
-  add_foreign_key "number_saunas", "sauna_infos"
-  add_foreign_key "number_saunas", "saunas"
-  add_foreign_key "number_waters", "saunas"
-  add_foreign_key "number_waters", "waters"
+
   add_foreign_key "sauna_infos", "saunas"
   add_foreign_key "tweets", "saunas"
   add_foreign_key "tweets", "users"
