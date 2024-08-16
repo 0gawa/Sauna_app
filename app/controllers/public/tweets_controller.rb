@@ -1,8 +1,6 @@
 class Public::TweetsController < ApplicationController
     before_action :authenticate_user!
 
-    #サ活投稿一覧はログインしていなくても閲覧可能にすること
-
     def new
         @tweet = Tweet.new
         @saunas = Sauna.all
