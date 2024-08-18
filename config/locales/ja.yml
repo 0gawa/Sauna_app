@@ -70,3 +70,7 @@ ja:
         ut30: "30代~40代"
         ut50: "50代〜60代"
         ut70: "70代〜"
+  public:
+    mailer:
+      reset_password_instructions:
+        subject:                    "【サウナ探検隊】パスワードの再設定について"
