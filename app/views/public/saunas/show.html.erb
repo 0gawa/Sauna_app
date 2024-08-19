@@ -1,11 +1,17 @@
 <%=render "layouts/header"%>
 
 <div class="container">
-    <div class="row">
-        <div class="col-10 offset-1">
+    <div class="row d-flex justify-content-center">
+        <div class="col-11" id="show_sauna">
             <div class="row mt-5 d-flex justify-content-center">
                 <h1 class="text-center"><%=@sauna.name%></h1>
-                <div class="col-md-5 col-10 offset-md-0 offset-1 mt-5">
+                
+                <div class="col-11 mt-5 tab-container">
+                    <span class="px-2 sauna_tab_active"><%=link_to "施設情報", sauna_path(@sauna.id), class:""%></span>
+                    <span class="px-2"><%=link_to "みんなの投稿", tab_tweets_path(@sauna.id), data: {turbo_method: :patch}, class:"text-dark"%></span>
+                </div>
+
+                <div class="col-md-6 col-12 ps-md-0 mt-5">
                     <table class="w-100">
                         <tr class="border-top"><th class="text-center w-40 fs-6" style="height: 40px;">住所</th><td class="w-60 ps-2"><%=@sauna.address%></td></tr>
                         <tr class="border-top"><th class="text-center fs-6" style="height: 40px;">HP</th><td class="ps-2"><a href="<%=@sauna.hp%>"><%=@sauna.hp%></a></td></tr>
@@ -13,10 +19,11 @@
                         <tr class="border-top border-bottom"><th class="text-center fs-6" style="height: 40px;">料金</th><td class="ps-2"><%=simple_format(h(@sauna.charge))%></td></tr>
                     </table>
                 </div>
-                <div class="col-md-5 col-10 offset-md-0 offset-1 mt-5 d-flex justify-content-center">
+                <div class="col-md-5 col-12 mt-5 d-flex justify-content-center pe-md-0">
                     <div class="" style="width: 60vw; height: 40vh;" id="map">
                     </div>
                 </div>
+            </div>
 
             <script>
                 $(document).on('turbo:load', function(){
@@ -39,11 +46,10 @@
                 });
             </script>
 
-             <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+            <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
                 key: "<%=ENV['API_KEY']%>",
                 });
             </script>
-            </div>
 
             <div class="row mt-5" style="">
                 <div class="col-10 offset-1">
@@ -52,187 +58,186 @@
                         <%=image_tag @sauna.get_image(900,600), style: ""%>
                     </div>
                 </div>
+            </div>
 
-                <div class="row mt-5"> 
-                    <h3 class="text-center pb-4">サウナ室・水風呂情報</h3>
-                    <div class="col-md-5">
-                        <%@sauna.sauna_infos.each do |sauna| %>
-                            <div class="mb-1">
-                                <h3 class="text-center"><i class="fa-solid fa-fire fa-lg pe-1" style="color: #d32727;"></i>サウナ室の温度
-                                <p class="fs-3 mt-2 text-center"><%=sauna.temperature%>度</p></h3>
-                            </div>
-                        <%end%>
-                    </div>
-                    <div class="col-md-5 offset-md-1 mt-3 mt-md-0">
-                        <%@sauna.waters.each do |water|%>
-                            <div class="mb-1">
-                                <h3 class="text-center"><i class="fa-solid fa-droplet fa-lg pe-1" style="color: #200cb6;"></i>水風呂の温度
-                                <p class="fs-3 mt-2 text-center"><%=water.temperature%>度</p></h3>
-                            </div>
-                        <%end%>
-                    </div>
+            <div class="row mt-5"> 
+                <h3 class="text-center pb-4">サウナ室・水風呂情報</h3>
+                <div class="col-md-5">
+                    <%@sauna.sauna_infos.each do |sauna| %>
+                        <div class="mb-1">
+                            <h3 class="text-center"><i class="fa-solid fa-fire fa-lg pe-1" style="color: #d32727;"></i>サウナ室の温度
+                            <p class="fs-3 mt-2 text-center"><%=sauna.temperature%>度</p></h3>
+                        </div>
+                    <%end%>
+                </div>
+                <div class="col-md-5 offset-md-1 mt-3 mt-md-0">
+                    <%@sauna.waters.each do |water|%>
+                        <div class="mb-1">
+                            <h3 class="text-center"><i class="fa-solid fa-droplet fa-lg pe-1" style="color: #200cb6;"></i>水風呂の温度
+                            <p class="fs-3 mt-2 text-center"><%=water.temperature%>度</p></h3>
+                        </div>
+                    <%end%>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <h3 class="text-center">サウナ施設メモ</h3>
+                <div class="col-auto col-md-10 offset-md-1 mt-3">
+                    <%if @sauna.express == ""%>
+                        <p>まだメモがありません。情報提供にご協力お願いいたします。</p>
+                    <%else%>
+                        <p class="ps-3"><%=simple_format(h(@sauna.express))%></p>
+                    <%end%>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-10 offset-md-1" id="sauna_<%= @sauna.id %>_favorite">
+                    <%=render 'public/favorites/btn_sauna', sauna: @sauna%>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="row">
+                    <h3 class="text-center">みんなからの情報</h3>
                 </div>
 
-                <div class="row mt-5">
-                    <h3 class="text-center">サウナ施設メモ</h3>
-                    <div class="col-auto col-md-10 offset-md-1 mt-3">
-                        <%if @sauna.express == ""%>
-                            <p>まだメモがありません。情報提供にご協力お願いいたします。</p>
-                        <%else%>
-                            <p class="ps-3"><%=simple_format(h(@sauna.express))%></p>
-                        <%end%>
-                    </div>
-                </div>
-
-                <div class="row mt-5">
-                    <div class="col-10 offset-md-1" id="sauna_<%= @sauna.id %>_favorite">
-                        <%=render 'public/favorites/btn_sauna', sauna: @sauna%>
-                    </div>
-                </div>
-
-                <div class="row mt-5">
-                    <div class="row">
-                        <h3 class="text-center">みんなからの情報</h3>
-                    </div>
-
-                    <div class="row mt-3">
-                        <%if @sauna_comments.count > 0 %>
-                        <%@sauna_comments.each do |comment|%>
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="row mx-0">
-                                        <span class="col-auto fs-6"><%=image_tag comment.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 30px; height: 30px;"%><%=comment.user.name%></span>
-                                        <span class="text-secondary pb-1">投稿日時 <%=l comment.created_at, format: :short%></span>
-                                    </div>
-                                    <div class="row mx-0">
-                                        <%if comment.aufguss != "na"%>
-                                            <div class="col-md-3 pb-2">
-                                                <h6>アウフグースはあるか？</h6>
-                                                <%=comment.aufguss_i18n%>
-                                            </div>
-                                        <%end%>
-                                        <%if comment.autorolly != "na"%>
-                                            <div class="col-md-4 pb-2">
-                                                <h6>オートロウリュはあるか？</h6>
-                                                <%=comment.autorolly_i18n%>
-                                            </div>
-                                        <%end%>
-                                        <%if comment.air_bath != "na"%>
-                                            <div class="col-md-2 pb-2">
-                                                <h6>外気浴はあるか？</h6>
-                                                <%=comment.air_bath_i18n%>
-                                            </div>
-                                        <%end%>
-                                        <%if comment.whisking != "na"%>
-                                            <div class="col-md-3 pb-2">
-                                                <h6>ウィスキングはあるか？</h6>
-                                                <%=comment.whisking_i18n%>
-                                            </div>
-                                        <%end%>
-                                        <%if comment.water != "na"%>
-                                            <div class="col-md-3 pb-2">
-                                                <h6>ウォーターサーバーはあるか？</h6>
-                                                <%=comment.water_i18n%>
-                                            </div>
-                                        <%end%>
-                                         <%if comment.restaurant != "na"%>
-                                            <div class="col-md-2 pb-2">
-                                                <h6>食事処はあるか？</h6>
-                                                <%=comment.restaurant_i18n%>
-                                            </div>
-                                        <%end%>
-                                         <%if comment.parking != "na"%>
-                                            <div class="col-md-2 pb-2">
-                                                <h6>駐車場はあるか？</h6>
-                                                <%=comment.parking_i18n%>
-                                            </div>
-                                        <%end%>
-                                        <%if comment.age != "na"%>
-                                            <div class="col-md-4 pb-2">
-                                                <h6>年齢層はどれくらいだったか？</h6>
-                                                <%=comment.age_i18n%>
-                                            </div>
-                                        <%end%>
-                                    </div>
-                                    <div class="row mx-0">
-                                        <%if comment.comment != ""%>
-                                            <h6>追加情報</h6>
-                                            <span><%=simple_format(h(comment.comment))%></span>
-                                        <%end%>
-                                    </div>
+                <div class="row mt-3">
+                    <%if @sauna_comments.count > 0 %>
+                    <%@sauna_comments.each do |comment|%>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row mx-0">
+                                    <span class="col-auto fs-6"><%=image_tag comment.user.get_image(1000,1000), class: "me-1 mb-1", style: "border-radius: 100%; width: 30px; height: 30px;"%><%=comment.user.name%></span>
+                                    <span class="text-secondary pb-1">投稿日時 <%=l comment.created_at, format: :short%></span>
                                 </div>
-                            </div>
-                        <%end%>
-                        <div class="row mt-5">
-                            <div class="col">
-                                <%= paginate @sauna_comments, theme: 'bootstrap-5'%>
+                                <div class="row mx-0">
+                                    <%if comment.aufguss != "na"%>
+                                        <div class="col-md-3 pb-2">
+                                            <h6>アウフグースはあるか？</h6>
+                                            <%=comment.aufguss_i18n%>
+                                        </div>
+                                    <%end%>
+                                    <%if comment.autorolly != "na"%>
+                                        <div class="col-md-4 pb-2">
+                                            <h6>オートロウリュはあるか？</h6>
+                                            <%=comment.autorolly_i18n%>
+                                        </div>
+                                    <%end%>
+                                    <%if comment.air_bath != "na"%>
+                                        <div class="col-md-2 pb-2">
+                                            <h6>外気浴はあるか？</h6>
+                                            <%=comment.air_bath_i18n%>
+                                        </div>
+                                    <%end%>
+                                    <%if comment.whisking != "na"%>
+                                        <div class="col-md-3 pb-2">
+                                            <h6>ウィスキングはあるか？</h6>
+                                            <%=comment.whisking_i18n%>
+                                        </div>
+                                    <%end%>
+                                    <%if comment.water != "na"%>
+                                        <div class="col-md-3 pb-2">
+                                            <h6>ウォーターサーバーはあるか？</h6>
+                                            <%=comment.water_i18n%>
+                                        </div>
+                                    <%end%>
+                                        <%if comment.restaurant != "na"%>
+                                        <div class="col-md-2 pb-2">
+                                            <h6>食事処はあるか？</h6>
+                                            <%=comment.restaurant_i18n%>
+                                        </div>
+                                    <%end%>
+                                        <%if comment.parking != "na"%>
+                                        <div class="col-md-2 pb-2">
+                                            <h6>駐車場はあるか？</h6>
+                                            <%=comment.parking_i18n%>
+                                        </div>
+                                    <%end%>
+                                    <%if comment.age != "na"%>
+                                        <div class="col-md-4 pb-2">
+                                            <h6>年齢層はどれくらいだったか？</h6>
+                                            <%=comment.age_i18n%>
+                                        </div>
+                                    <%end%>
+                                </div>
+                                <div class="row mx-0">
+                                    <%if comment.comment != ""%>
+                                        <h6>追加情報</h6>
+                                        <span><%=simple_format(h(comment.comment))%></span>
+                                    <%end%>
+                                </div>
                             </div>
                         </div>
-                        <%else%>
-                            <p class="pt-1 pb-2">まだ情報がありません。情報提供にご協力お願いいたします。</p>
+                    <%end%>
+                    <div class="row mt-5">
+                        <div class="col">
+                            <%= paginate @sauna_comments, theme: 'bootstrap-5'%>
+                        </div>
+                    </div>
+                    <%else%>
+                        <p class="pt-1 pb-2">まだ情報がありません。情報提供にご協力お願いいたします。</p>
+                    <%end%>
+                </div>
+            </div>
+
+            <div class="row mt-5 d-flex justify-content-center">
+                <div class="col-11">
+                    <div class="mt-2">
+                        <h5 class="pb-2 text-center">情報提供フォーム</h5>
+                        <div class="mb-2"><%=render 'layouts/flash'%></span>
+                        <%=form_with model: @sauna_comment, url: sauna_sauna_comments_path(@sauna.id), data: { turbo: false } do |f|%>
+                            <div class="row mb-2">
+                                <div class="col-md-5 form-group mb-2"> 
+                                    <%= f.label :aufguss, 'アウフグースはありますか？', class: "mb-2"%>
+                                    <div class="text-center"><%=f.select :aufguss, options_for_select(SaunaComment.aufgusses_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.aufguss.#{k}"), k]}), {}, class: "form-select"%></div>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5 form-group mb-2">
+                                    <%= f.label :autorolly, 'オートロウリュはありますか？', class: "mb-2"%>
+                                    <div class="text-center"><%=f.select :autorolly, options_for_select(SaunaComment.autorollies_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.autorolly.#{k}"), k]}), {}, class: "form-select"%></div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-5 form-group mb-2"> 
+                                    <%= f.label :air_bath, '外気浴ですか？', class: "mb-2"%>
+                                    <div class="text-center"><%=f.select :air_bath, options_for_select(SaunaComment.air_baths_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.air_bath.#{k}"), k]}), {}, class: "form-select"%></div>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5 form-group mb-2">
+                                    <%= f.label :whisking, 'ウィスキングのサービスはありますか？', class: "mb-2"%>
+                                    <div class="text-center"><%=f.select :whisking, options_for_select(SaunaComment.whiskings_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.whisking.#{k}"), k]}), {}, class: "form-select"%></div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-5 form-group mb-2"> 
+                                    <%= f.label :restaurant, '食事処はありますか？', class: "mb-2"%>
+                                    <div class="text-center"><%=f.select :restaurant, options_for_select(SaunaComment.restaurants_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.restaurant.#{k}"), k]}), {}, class: "form-select"%></div>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5 form-group mb-2">
+                                    <%= f.label :water, 'ウォーターサーバーはありますか？', class: "mb-2"%>
+                                    <div class="text-center"><%=f.select :water, options_for_select(SaunaComment.waters_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.water.#{k}"), k]}), {}, class: "form-select"%></div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-5 form-group mb-2"> 
+                                    <%= f.label :parking, '駐車場はありますか？', class: "mb-2"%>
+                                    <div class="text-center"><%=f.select :parking, options_for_select(SaunaComment.parkings_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.parking.#{k}"), k]}), {}, class: "form-select"%></div>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5 form-group mb-2">
+                                    <%= f.label :age, 'どれくらいの年代の方が多くいましたか？', class: "mb-2"%>
+                                    <div class="text-center"><%=f.select :age, options_for_select(SaunaComment.ages_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.age.#{k}"), k]}), {}, class: "form-select"%></div>
+                                </div>
+                            </div>
+                            
+                            <%= f.label :comment, 'コメント', class: "mb-2"%>
+                            <%=f.text_area :comment, placeholder: "追加の情報があれば入力してください。ただし、300字以内でお願いいたします", class: "form-control mb-3", rows: "4"%>
+                            <div class="text-center"><%=f.submit "送信する", class: "btn btn-primary col-10"%></div>
                         <%end%>
                     </div>
                 </div>
-
-                <div class="row mt-5">
-                    <div class="col-10 offset-1">
-                        <div class="mt-2">
-                            <h5 class="pb-2 text-center">情報提供フォーム</h5>
-                            <div class="mb-2"><%=render 'layouts/flash'%></span>
-                            <%=form_with model: @sauna_comment, url: sauna_sauna_comments_path(@sauna.id), data: { turbo: false } do |f|%>
-                                <div class="row mb-2">
-                                    <div class="col-md-5 form-group mb-2"> 
-                                        <%= f.label :aufguss, 'アウフグースはありますか？', class: "mb-2"%>
-                                        <div class="text-center"><%=f.select :aufguss, options_for_select(SaunaComment.aufgusses_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.aufguss.#{k}"), k]}), {}, class: "form-select"%></div>
-                                    </div>
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-5 form-group mb-2">
-                                        <%= f.label :autorolly, 'オートロウリュはありますか？', class: "mb-2"%>
-                                       <div class="text-center"><%=f.select :autorolly, options_for_select(SaunaComment.autorollies_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.autorolly.#{k}"), k]}), {}, class: "form-select"%></div>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-md-5 form-group mb-2"> 
-                                        <%= f.label :air_bath, '外気浴ですか？', class: "mb-2"%>
-                                        <div class="text-center"><%=f.select :air_bath, options_for_select(SaunaComment.air_baths_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.air_bath.#{k}"), k]}), {}, class: "form-select"%></div>
-                                    </div>
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-5 form-group mb-2">
-                                        <%= f.label :whisking, 'ウィスキングのサービスはありますか？', class: "mb-2"%>
-                                       <div class="text-center"><%=f.select :whisking, options_for_select(SaunaComment.whiskings_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.whisking.#{k}"), k]}), {}, class: "form-select"%></div>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-md-5 form-group mb-2"> 
-                                        <%= f.label :restaurant, '食事処はありますか？', class: "mb-2"%>
-                                        <div class="text-center"><%=f.select :restaurant, options_for_select(SaunaComment.restaurants_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.restaurant.#{k}"), k]}), {}, class: "form-select"%></div>
-                                    </div>
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-5 form-group mb-2">
-                                        <%= f.label :water, 'ウォーターサーバーはありますか？', class: "mb-2"%>
-                                       <div class="text-center"><%=f.select :water, options_for_select(SaunaComment.waters_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.water.#{k}"), k]}), {}, class: "form-select"%></div>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-md-5 form-group mb-2"> 
-                                        <%= f.label :parking, '駐車場はありますか？', class: "mb-2"%>
-                                        <div class="text-center"><%=f.select :parking, options_for_select(SaunaComment.parkings_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.parking.#{k}"), k]}), {}, class: "form-select"%></div>
-                                    </div>
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-5 form-group mb-2">
-                                        <%= f.label :age, 'どれくらいの年代の方が多くいましたか？', class: "mb-2"%>
-                                       <div class="text-center"><%=f.select :age, options_for_select(SaunaComment.ages_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.age.#{k}"), k]}), {}, class: "form-select"%></div>
-                                    </div>
-                                </div>
-                                
-                                <%= f.label :comment, 'コメント', class: "mb-2"%>
-                                <%=f.text_area :comment, placeholder: "追加の情報があれば入力してください。ただし、300字以内でお願いいたします", class: "form-control mb-3", rows: "4"%>
-                                <div class="text-center"><%=f.submit "送信する", class: "btn btn-primary col-10"%></div>
-                            <%end%>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <%=render 'public/saunas/favorite_sauna', saunas: @saunas%>

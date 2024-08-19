@@ -9,6 +9,16 @@
     bottom: 10px;
 }
 
+.tab-container{
+    padding: 15px 8px;
+    border-bottom: solid #dee2e6 1px;
+}
+
+.sauna_tab_active{
+    border-bottom: solid #0051e0 5px;
+    padding-bottom: 8px;
+}
+
 @media screen and (max-width: 959px) {
     
 }
