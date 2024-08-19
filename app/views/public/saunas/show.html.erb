@@ -13,14 +13,14 @@
 
                 <div class="col-md-6 col-12 ps-md-0 mt-5">
                     <table class="w-100">
-                        <tr class="border-top"><th class="text-center w-40 fs-6" style="height: 40px;">住所</th><td class="w-60 ps-2"><%=@sauna.address%></td></tr>
-                        <tr class="border-top"><th class="text-center fs-6" style="height: 40px;">HP</th><td class="ps-2"><a href="<%=@sauna.hp%>"><%=@sauna.hp%></a></td></tr>
-                        <tr class="border-top"><th class="text-center fs-6" style="height: 40px;">営業時間</th><td class="ps-2"><%=simple_format(h(@sauna.time))%></td></tr>
-                        <tr class="border-top border-bottom"><th class="text-center fs-6" style="height: 40px;">料金</th><td class="ps-2"><%=simple_format(h(@sauna.charge))%></td></tr>
+                        <tr class="border-top"><th class="text-center w-40 fs-6" style="height: 50px;">住所</th><td class="w-60 ps-2"><%=@sauna.address%></td></tr>
+                        <tr class="border-top"><th class="text-center fs-6" style="height: 50px;">HP</th><td class="ps-2"><a href="<%=@sauna.hp%>"><%=@sauna.hp%></a></td></tr>
+                        <tr class="border-top"><th class="text-center fs-6" style="height: 50px;">営業時間</th><td class="ps-2"><%=simple_format(h(@sauna.time))%></td></tr>
+                        <tr class="border-top border-bottom"><th class="text-center fs-6" style="height: 50px;">料金</th><td class="ps-2"><%=simple_format(h(@sauna.charge))%></td></tr>
                     </table>
                 </div>
                 <div class="col-md-5 col-12 mt-5 d-flex justify-content-center pe-md-0">
-                    <div class="" style="width: 60vw; height: 40vh;" id="map">
+                    <div class="" style="width: 100%; height: 40vh;" id="map">
                     </div>
                 </div>
             </div>
@@ -187,7 +187,7 @@
                         <h5 class="pb-2 text-center">情報提供フォーム</h5>
                         <div class="mb-2"><%=render 'layouts/flash'%></span>
                         <%=form_with model: @sauna_comment, url: sauna_sauna_comments_path(@sauna.id), data: { turbo: false } do |f|%>
-                            <div class="row mb-2">
+                            <div class="row d-flex justify-content-center mb-2">
                                 <div class="col-md-5 form-group mb-2"> 
                                     <%= f.label :aufguss, 'アウフグースはありますか？', class: "mb-2"%>
                                     <div class="text-center"><%=f.select :aufguss, options_for_select(SaunaComment.aufgusses_i18n.keys.map{|k| [I18n.t("enums.sauna_comment.aufguss.#{k}"), k]}), {}, class: "form-select"%></div>

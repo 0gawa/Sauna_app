@@ -1,8 +1,8 @@
 <%= render "layouts/header"%>
 
 <div class="container">
-    <div class="row">
-        <div class="offset-1 col-10">
+    <div class="row d-flex justify-content-center">
+        <div class="col-11">
             <div class="row mt-5">
                 <h1 class="text-center">サ活投稿</h1>
             </div>
@@ -28,7 +28,7 @@
 
             <div class="row mt-4">
                 <div class="col-md-10 offset-md-1">
-                    <h3>画像</h3>
+                    <h5>画像</h5>
                     <div class="card mt-1">
                         <%=image_tag @tweet.get_image(1000, 750), alt: "読み込みエラー"%>
                     </div>
@@ -95,11 +95,11 @@
             </div>
             
             <%if @tweet.user_id == current_user.id%>       
-                <div class="row mt-5">
-                    <div class="col-md-3 col-4">
+                <div class="row mt-5 d-flex justify-content-center">
+                    <div class="col-4">
                         <%= link_to "編集する", edit_tweet_path(@tweet.id), class: "btn btn-primary w-75" %>
                     </div>
-                    <div class="col-md-3 col-4">
+                    <div class="col-4">
                         <%= button_to "削除する", tweet_path(@tweet.id), method: :delete, data: { turbo_confirm: "この投稿を削除します。この操作は取り消せません。" }, class: "btn btn-secondary w-75" %>
                     </div>
                 </div>

@@ -1,8 +1,8 @@
 <%= render "layouts/header"%>
 
 <div class="container">
-    <div class="row">
-        <div class="col-10 offset-1">
+    <div class="row d-flex justify-content-center">
+        <div class="col-11">
             <% if @tweet.errors.any? %>
                 <div class="row mt-5">
                     <h1 class="text-center"><%= @tweet.errors.count %>件のエラーが発生しました</h1>
