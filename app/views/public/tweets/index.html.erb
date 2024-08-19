@@ -1,10 +1,10 @@
 <%= render "layouts/header"%>
 
 <div class="container">
-    <div class="row">
-        <div class="offset-1 col-10">
+    <div class="row d-flex justify-content-center">
+        <div class="col-11">
             <div class="row mt-5"><h1 class="text-center">サ活投稿一覧</h1></div>
-            <div class="row mt-3"><p class="text-center fs-5">全国のサウナーからの投稿です。</p></div>
+            <div class="row mt-3"><p class="text-center fs-5">全国のサウナーからの投稿です</p></div>
             <div class="row mt-5">
                 <% @tweets.each do |tweet|%>
                     <div class="card mb-3 card-parent">

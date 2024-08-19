@@ -28,6 +28,10 @@ Rails.application.routes.draw do
       end
     end
 
+    # サウナ施設詳細ページにおけるタブ機能のルーティング
+    ## サウナ施設ごとのみんなの投稿
+    patch "/saunas/:id/tweets" => "saunas#tab_tweets", as: "tab_tweets"
+
     resources :tweets do 
       resources :tweet_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
@@ -44,7 +48,6 @@ Rails.application.routes.draw do
     resources :tweets, only: [:index, :show, :destroy]
     resources :saunas
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   
   get '*not_found' => 'application#routing_error', constraints: lambda { |request| !request.path.include?("active_storage") }

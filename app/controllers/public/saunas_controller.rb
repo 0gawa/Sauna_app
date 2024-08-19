@@ -31,6 +31,12 @@ class Public::SaunasController < ApplicationController
     end
   end
 
+  def tab_tweets
+    @sauna = Sauna.find(params[:id])
+    @tweets = @sauna.tweets.all.page(params[:page]).per(10)
+    render turbo_stream: turbo_stream.update("show_sauna", partial: 'public/saunas/tab_tweets', locals: {sauna: @sauna, tweets: @tweets})
+  end
+
   private
 
 end
