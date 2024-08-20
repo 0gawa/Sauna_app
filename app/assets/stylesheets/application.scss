@@ -12,6 +12,7 @@
 
  $light-secondary: #f5f6f6;
 
+/*----------共通CSS-----------------*/
 * { font-family: "Noto Sans JP", sans-serif; }
 a {
     text-decoration: none;
@@ -24,16 +25,52 @@ button{
     padding: 0;
     appearance: none;
 }
+
+/*-------------------------------------------*/
+
+/*--------------toppage----------------------*/
 .wrapper{
-    background-color: #0073ff48;
+    background-color: $light-secondary;
     width: 100%;
     height: auto;
 }
-.top-pic{
-    width: 25vw;
-    height: 25vw;
-    margin: 0 auto;
+.under{
+    position: sticky;
+    top: 0;
+    height: 100vh;
 }
+.base{height: 200vh;}
+.over{
+    margin-top: -100vh;
+    padding-top: 80px;
+    position: relative;
+    height: 100vh;
+    background-color: white;
+}
+.top-white-container{
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    padding: 30px;
+}
+.top-pic{
+    width: 40vw;
+    height: 40vw;
+}
+.top-pic-box{
+    width: 40vw;
+    height: 40vw;
+    margin: 5vh auto;
+    margin-bottom: 0;
+}
+.one-of-threeIcon{
+    padding-top: 50px;
+    font-size: 80px;
+}
+/*----------------------------------------*/
+
+
 .bg-light-secondary{background-color: $light-secondary;}
 .user-info{
     background-image: image-url('sauna_top.jpg');
