@@ -28,8 +28,9 @@ button{
 
 /*-------------------------------------------*/
 
+/*--------------toppage----------------------*/
 .wrapper{
-    background-color: #0073ff48;
+    background-color: $light-secondary;
     width: 100%;
     height: auto;
 }
@@ -41,10 +42,17 @@ button{
 .base{height: 200vh;}
 .over{
     margin-top: -100vh;
-    padding-top: 15vh;
+    padding-top: 80px;
     position: relative;
     height: 100vh;
-    background-color: cornflowerblue;
+    background-color: white;
+}
+.top-white-container{
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    padding: 30px;
 }
 .top-pic{
     width: 40vw;
@@ -54,7 +62,14 @@ button{
     width: 40vw;
     height: 40vw;
     margin: 5vh auto;
+    margin-bottom: 0;
 }
+.one-of-threeIcon{
+    padding-top: 50px;
+    font-size: 80px;
+}
+/*----------------------------------------*/
+
 
 .bg-light-secondary{background-color: $light-secondary;}
 .user-info{
