@@ -43,87 +43,87 @@
 </header>
 
 <style>
-.lh-50{line-height: 50px;}
-ul{padding-left:0;}
-li{list-style:none;}
+    .lh-50{line-height: 50px;}
+    ul{padding-left:0;}
+    li{list-style:none;}
 
-button.btn-h{
-    display: inline-block;
-	text-align: center;
-    line-height: 30px;
-	margin: 10px 5px;
-	text-decoration: none;
-	padding: 5px 10px;
-	font-weight: bold;
-	border: 2px solid #0072FF;
-	transition: 0.5s;
-	border-radius: 100vh;
-    color: #0072FF;
-}
-a.btn-h {
-    display: inline-block;
-	text-align: center;
-    line-height: 30px;
-	margin: 10px 5px;
-	text-decoration: none;
-	padding: 5px 10px;
-	font-weight: bold;
-	border: 2px solid #0072FF;
-	transition: 0.5s;
-	border-radius: 100vh;
-}
-a.btn-h:hover {
-	color: #fff;
-	background: #0072FF;
-}
-button.btn-h:hover {
-	color: #fff;
-	background: #0072FF;
-}
+    button.btn-h{
+        display: inline-block;
+        text-align: center;
+        line-height: 30px;
+        margin: 10px 5px;
+        text-decoration: none;
+        padding: 5px 10px;
+        font-weight: bold;
+        border: 2px solid #0072FF;
+        transition: 0.5s;
+        border-radius: 100vh;
+        color: #0072FF;
+    }
+    a.btn-h {
+        display: inline-block;
+        text-align: center;
+        line-height: 30px;
+        margin: 10px 5px;
+        text-decoration: none;
+        padding: 5px 10px;
+        font-weight: bold;
+        border: 2px solid #0072FF;
+        transition: 0.5s;
+        border-radius: 100vh;
+    }
+    a.btn-h:hover {
+        color: #fff;
+        background: #0072FF;
+    }
+    button.btn-h:hover {
+        color: #fff;
+        background: #0072FF;
+    }
 
-.openbtn1{
-    position: relative;
-    background:#FFF;
-    cursor: pointer;
-    width: 50px;
-    height:50px;
-    border-radius: 5px;
-}
+    .openbtn1{
+        position: relative;
+        background:#FFF;
+        cursor: pointer;
+        width: 50px;
+        height:50px;
+        border-radius: 5px;
+    }
 
-.openbtn1 span{
-    display: inline-block;
-    transition: all .4s;
-    position: absolute;
-    left: 14px;
-    height: 3px;
-    border-radius: 2px;
-    background: #000;
-    width: 45%;
-}
+    .openbtn1 span{
+        display: inline-block;
+        transition: all .4s;
+        position: absolute;
+        left: 14px;
+        height: 3px;
+        border-radius: 2px;
+        background: #000;
+        width: 45%;
+    }
 
-.openbtn1 span:nth-of-type(1) {top:15px;}
-.openbtn1 span:nth-of-type(2) {top:23px;}
-.openbtn1 span:nth-of-type(3) {top:31px;}
+    .openbtn1 span:nth-of-type(1) {top:15px;}
+    .openbtn1 span:nth-of-type(2) {top:23px;}
+    .openbtn1 span:nth-of-type(3) {top:31px;}
 
-.openbtn1.active span:nth-of-type(1) {
-    top: 18px;
-    left: 18px;
-    transform: translateY(6px) rotate(-45deg);
-    width: 30%;
-}
-.openbtn1.active span:nth-of-type(2) {opacity: 0;}
-.openbtn1.active span:nth-of-type(3){
-    top: 30px;
-    left: 18px;
-    transform: translateY(-6px) rotate(45deg);
-    width: 30%;
-}
-.btn-block{
-  width:200px;  
-  padding: 30px;
-}
+    .openbtn1.active span:nth-of-type(1) {
+        top: 18px;
+        left: 18px;
+        transform: translateY(6px) rotate(-45deg);
+        width: 30%;
+    }
+    .openbtn1.active span:nth-of-type(2) {opacity: 0;}
+    .openbtn1.active span:nth-of-type(3){
+        top: 30px;
+        left: 18px;
+        transform: translateY(-6px) rotate(45deg);
+        width: 30%;
+    }
+    .btn-block{
+    width:200px;  
+    padding: 30px;
+    }
 
-.hide{display: none;transition-duration: 0.5s;}
+    .hide{display: none;}
 </style>
 
 <nav class="nav-ph hide">
@@ -165,27 +165,33 @@ button.btn-h:hover {
     $(function(){
         let nav_items = $('#nav-items');
         let ham_item = $('#ham-item');
-        $('#ham-item').remove();
         if($(window).width() < 900){
-            $('#nav-items').remove();
-            $('#nav-ham').append(ham_item);
+            if(!$("#nav-bar").hasClass("hide")){
+                $("#nav-bar").addClass("hide");
+            }
+        }else{
+            if(!$("#nav-ham").hasClass("hide")){
+                $("#nav-ham").addClass("hide");
+            }
         }
         $(window).resize(function(){
             if($(window).width() < 900){
-                $('#nav-items').remove();
-                $('#ham-item').remove();
-                $('#nav-ham').append(ham_item);
+                //ナビゲーションバーを消す記述
+                if(!$("#nav-bar").hasClass("hide")){$("#nav-bar").hasClass("hide");}
+               //ハンバーガーメニューアイコンを表示させる記述
+                if($("#nav-ham").hasClass("hide")){$("#nav-ham").removeClass("hide");}
             }else{
-                $('#nav-items').remove();
-                $('#ham-item').remove();
-                $('.nav-ph').hide();
-                $('#nav-bar').append(nav_items);
+                //ハンバーガーメニューアイコンを消す記述
+                if(!$("#nav-ham").hasClass("hide")){$("#nav-ham").hasClass("hide");}
+                //ナビゲーションバーを表示させる処理
+                if($("#nav-bar").hasClass("hide")){$("#nav-bar").removeClass("hide");}
+                //ハンバーガーメニューを押したら出てくるやつを消す処理
+                if(!$(".nav-ph").hasClass("hide")){$(".nav-ph").hasClass("hide");}
             }
         });
         $(".openbtn1").click(function () {
             $(this).toggleClass('active');
         });
-        let key = 0;
         var navButton = $(".openbtn1")
         .click(function(){
             $(".nav-ph").toggleClass("hide");

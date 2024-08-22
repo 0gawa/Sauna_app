@@ -24,10 +24,10 @@ end
     )
 end
 
-
+#これは仮の管理者
 Manager.create!(
-    email: "2024kanrisya@hitori-times.com",
-    name: "管理者hitori",
-    encrypted_password: "aD3~yA+kwpVe",
-    password: "aD3~yA+kwpVe"
+    email: "kanrisya@sample.com",
+    name: "kanri",
+    encrypted_password: "kanri",
+    password: "kanri"
 )
