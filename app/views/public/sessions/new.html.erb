@@ -2,46 +2,46 @@
 
 <div class="container">
   <div class="row d-flex justify-content-center">
-    <div class="col-11">
-      <div class="row mt-5">
+<!--ログインフォームは中心位置に長方形を配置するレイアウトにすること-->
+
+    <div class="col-11 col-md-7 col-lg-5 log-in-box">
         <h1 class="text-center">ログイン</h1>
-      </div>
 
-      <% if flash[:notice]%>
-        <div class="row mt-5 d-flex justify-content-center"> 
-          <div class="col-auto">
-            <p class = "alert alert-warning"><%= flash[:notice] %></p>
+        <% if flash[:notice]%>
+          <div class="row mt-5 d-flex justify-content-center"> 
+            <div class="col-auto">
+              <p class = "alert alert-warning mb-0"><%= flash[:notice] %></p>
+            </div>
           </div>
-        </div>
-      <%end%>
+        <%end%>
 
-      <div class="row mt-4">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field mt-4 col-10 offset-1">
-            <%= f.label :email, "メールアドレス", class: "pb-2" %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-          </div>
+        <div class="row mt-4">
+          <%= form_with model: @user, url: session_path(@user), method: :post do |f| %>
+            <div class="field mt-4 col-10 offset-1">
+              <%= f.label :email, "メールアドレス", class: "pb-1" %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            </div>
 
-          <div class="field mt-4 col-10 offset-1">
-            <%= f.label :password, "パスワード" %><br />
-            <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-          </div>
+            <div class="field mt-4 col-10 offset-1">
+              <%= f.label :password, "パスワード", class: "pb-1" %><br />
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+            </div>
 
-          <% if devise_mapping.rememberable? %>
-            <div class="field mt-4 offset-1">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me, "次回から自動でログイン" %>
+            <% if devise_mapping.rememberable? %>
+              <div class="field mt-4 offset-1">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me, "次回から自動でログイン" %>
+              </div>
+            <% end %>
+
+            <div class="actions mt-4 text-center">
+              <%= f.submit "ログイン", class: "btn btn-primary col-4" %>
             </div>
           <% end %>
+        </div>
 
-          <div class="actions mt-4 text-center">
-            <%= f.submit "ログイン", class: "btn btn-primary col-4" %>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="mt-4 text-center"><%= render "public/shared/links" %></div>
-
+          <div class="mt-4 text-center"><%= render "public/shared/links" %></div>
     </div>
+
   </div>
 </div>
