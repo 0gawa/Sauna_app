@@ -19,17 +19,27 @@
     <%= yield %>
   </body>
 
-  <footer class="bg-light pt-5 pb-4 mt-5">
+  <footer class="mt-5">
       <div class="container">
-        <div class="row no-gutters ps-2 ps-md-0">
+        <div class="row">
           <div class="col-md-4">
-            <p>サウナ探検家のためのサイトです</p>
+            <p class="mb-0">サウナ探検家のためのサイトです</p>
             <%= image_tag 'header_logo.png', :size =>'300x75' %>
+            <p class="mb-0">© サウナ探検隊</p>
           </div>
-          <div class="col-md-5"></div>
-          <div class="col-md-3">
-            <h6 class="mt-2 mb-3 text-dark">Information</h6>
-            <ul class="p-0 list-unstyled">
+          <div class="col-md-2 mt-md-0 mt-2">
+          </div>
+          <div class="col-md-3 mt-md-0 mt-2"> 
+            <h6 class="mb-3">Support</h6>
+            <ul class="p-0">
+              <li>
+                <a href="https://hitori-times.com/contact-form/" title="contact" class="text-dark">問い合わせ(ブログへ遷移します)</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 mt-md-0 mt-2">
+            <h6 class="mb-3">Information</h6>
+            <ul class="p-0">
               <li>
                 <a href="https://hitori-times.com/" title="About" class="text-dark">製作者情報(ブログへ遷移します)</a>
               </li>

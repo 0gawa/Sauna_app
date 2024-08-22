@@ -1,14 +1,8 @@
-/*
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- */
- @import "bootstrap";
- @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
- @import "sauna_tweet";
+@import "bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+@import "sauna_tweet";
 
- $light-secondary: #f5f6f6;
+$light-secondary: #f5f6f6;
 
 /*----------共通CSS-----------------*/
 * { font-family: "Noto Sans JP", sans-serif; }
@@ -23,7 +17,10 @@ button{
     padding: 0;
     appearance: none;
 }
-
+footer{
+    background-color: rgb(248, 249, 250);
+    padding: 40px;
+}
 /*-------------------------------------------*/
 
 /*--------------toppage----------------------*/
@@ -68,6 +65,20 @@ button{
 }
 /*----------------------------------------*/
 
+/*---------sign in and sign up---------------------*/
+.log-in-box{
+    border: solid #dee2e6 1px;
+    border-radius: 15px;
+    padding: 50px 0;
+    margin: 60px 0;
+}
+.registration-box{
+    border: solid #dee2e6 1px;
+    border-radius: 15px;
+    padding: 50px 30px;
+    margin: 60px 0;
+}
+/*-----------------------------------------*/
 
 .bg-light-secondary{background-color: $light-secondary;}
 .user-info{
