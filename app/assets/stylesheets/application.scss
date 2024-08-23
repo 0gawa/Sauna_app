@@ -1,14 +1,13 @@
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 @import "sauna_tweet";
+@import "header";
 
 $light-secondary: #f5f6f6;
 
 /*----------共通CSS-----------------*/
 * { font-family: "Noto Sans JP", sans-serif; }
-a {
-    text-decoration: none;
-}
+a {text-decoration: none;}
 button{
     background-color: transparent;
     border: none;
@@ -17,9 +16,13 @@ button{
     padding: 0;
     appearance: none;
 }
+header{
+    height: 70px;
+    padding: 5px;
+}
 footer{
     background-color: rgb(248, 249, 250);
-    padding: 40px;
+    padding: 30px;
 }
 /*-------------------------------------------*/
 
@@ -33,6 +36,7 @@ footer{
     position: sticky;
     top: 0;
     height: 100vh;
+    z-index: 0;
 }
 .base{height: 200vh;}
 .over{
@@ -40,7 +44,6 @@ footer{
     position: relative;
     width: 100%;
     height: 100vh;
-    background-color: white;
     background-image: image-url('plant_room.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -98,7 +101,6 @@ footer{
     background-size: cover;
     background-position: center;
     border-radius: 10px;
-    width: 100%;
     height: auto;
     position: relative;
 }
@@ -112,9 +114,6 @@ footer{
     top: 0;
     bottom: 0;
     border-radius: 10px;
-}
-.position-relative{
-    position: relative;
 }
 //userへの挨拶用css
 .user-info-text0{
@@ -201,4 +200,28 @@ footer{
     top: 0;
     bottom: 0;
     border-radius: 10px;
+}
+.bg-sauna{
+    width: 100%;
+    height: auto;
+    background-image: image-url('sauna1_ai.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.white-above-sauna{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.bg-water{
+    width: 100%;
+    height: auto;
+    background-image: image-url('water1_ai.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.white-above-water{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
 }
