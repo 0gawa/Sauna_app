@@ -9,10 +9,13 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+  #POST /resource
+  def create
+    super
+    if current_user.present?
+      UserMailer.with(user: @current_user).welcome_email.deliver_later
+    end
+  end
 
   # GET /resource/edit
   # def edit

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @user.name %>様、サウナ探検隊にご登録いただきありがとうございます。</h1>
+    <p>
+      サウナ探検隊のサービスをご利用いただけます。
+      ニックネームは「<%= @user.login %>」として登録いたしました。<br>
+    </p>
+    <p>
+      このサイトにログインするには、<%= @url %>をクリックしてください。
+    </p>
+    <p>ご不明な点がありましたら、<a href="https://hitori-times.com/contact-form/"></a>から
+        お問い合わせください。
+    </p>
+  </body>
+</html>
