@@ -1,7 +1,6 @@
-# frozen_string_literal: true
-
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
+  # prepend_before_action :authenticate_scope!, only: [:update] 
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -11,9 +10,8 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   #POST /resource
   def create
-    super
-    if current_user.present?
-      UserMailer.with(user: @current_user).welcome_email.deliver_later
+    super do
+      resource.update(confirmed_at: Time.now.utc)     
     end
   end
 
@@ -24,7 +22,9 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   # def update
-  #   super
+  #   if resource.save
+  #     respond_with resource, location: after_update_path_for(resource)
+  #   end
   # end
 
   # DELETE /resource
@@ -45,7 +45,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
@@ -54,7 +54,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:email])
   # end
 
   # The path used after sign up.

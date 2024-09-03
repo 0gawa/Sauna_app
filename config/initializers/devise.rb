@@ -24,10 +24,10 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  # config.mailer_sender = ENV["GMAIL_USERNAME"]
+  config.mailer_sender = ENV["GMAIL_USERNAME"]
 
   # Configure the class responsible to send e-mails.
-  config.mailer = 'Devise::Mailer'
+  config.mailer = 'Public::Mailer'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
@@ -129,7 +129,7 @@ Devise.setup do |config|
   # config.pepper = 'ad1324481bd403bc31681b2c8ef1efe333c94d2acfe9c57ab6d5d2adf937089de0bac7780d371afeb1cdc41c18dc2c04ad2505b12baaded26d3c1ac142e9c5df'
 
   # Send a notification to the original email when the user's email is changed.
-  # config.send_email_changed_notification = true
+  config.send_email_changed_notification = true
 
   # Send a notification email when the user's password is changed.
   config.send_password_change_notification = true
@@ -151,7 +151,7 @@ Devise.setup do |config|
   # their account can't be confirmed with the token any more.
   # Default is nil, meaning there is no restriction on how long a user can take
   # before confirming their account.
-  # config.confirm_within = 3.days
+  config.confirm_within = 1.days
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
@@ -244,7 +244,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).

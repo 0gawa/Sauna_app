@@ -1,5 +1,11 @@
-<p>ようこそ！ <%= @email %>さん</p>
+<p> <%= @resource.name %>様、サウナ探検隊をご利用いただきありがとうございます。</p>
 
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'アカウントを確認する', confirmation_url(@resource, confirmation_token: @token) %></p>
+<%if @resource.try(:unconfirmed_email?)%>
+    <p>以下のURLをクリックして、メールアドレス変更手続きを完了してください。</p>
+    <p>You can confirm your account email through the link below:</p>
+    <p><%= link_to 'メールアドレスを変更する', confirmation_url(@resource, confirmation_token: @token) %></p>
+<%else%>
+    <p>新規登録が完了しました。サウナ活動を記録して自分にあった入り方を見つけてください!</p>
+    <p>このメールに返信しても回答はできません。お問い合わせの際は、<br/>
+    <%= link_to "こちら", root_url%>フッター問い合わせからお願いいたします。</p>
+<%end%>
