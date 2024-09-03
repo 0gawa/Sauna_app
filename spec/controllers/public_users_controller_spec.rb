@@ -15,5 +15,11 @@ RSpec.describe Public::UsersController, type: :controller do
                 expect(@user.name).to eq "test(edited)"
             end
         end
+
+        context "ページが正しく表示されるか" do
+            it "mypage：マイページ" do
+                
+            end
+        end
     end
 end
