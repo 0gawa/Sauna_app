@@ -1,11 +1,9 @@
-<%= render "layouts/header"%>
-
 <div class="container">
   <div class="row d-flex justify-content-center">
-  <!--ログインフォームは中心位置に長方形を配置するレイアウトにすること-->
+  <!--パスワードフォームは中心位置に長方形を配置するレイアウトにすること-->
 
-    <h1 class="text-center mt-5">アカウントの登録</h1>
-    <p class="pt-1 pb-0">アカウントに登録すると<%=link_to "プライバシーポリシー", privacy_path, class:""%>と利用規約に同意したとみなします。</p>
+    <h1 class="text-center mt-5">パスワードの設定</h1>
+    <p class="pt-1 pb-0">オリジナルのパスワードを設定してください</p>
     
     <div class="col-11 col-md-5 registration-box">
       <%= form_with model: @user, url: registration_path(@user), method: :post, class:"row justify-content-center" do |f| %>
@@ -37,14 +35,6 @@
             <p class="text-center mb-1 text-danger"><%= flash[:notice] %></p>
           <%end%>
           <%= f.submit "登録", class: "btn btn-primary col-10" %>
-        </div>
-
-        <div class="mt-4 col-10">
-          <%= render "public/shared/links"%>
-        </div>
-
-        <div class="mt-4 col-10">
-          <%=render "public/shared/google_btn"%>
         </div>
       <% end %>
    

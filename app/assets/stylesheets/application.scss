@@ -84,14 +84,14 @@ footer{
 .log-in-box{
     border: solid #dee2e6 1px;
     border-radius: 15px;
-    padding: 50px 0;
-    margin: 60px 0;
+    padding: $spacer*3 0;
+    margin: $spacer*3 0;
 }
 .registration-box{
     border: solid #dee2e6 1px;
     border-radius: 15px;
-    padding: 50px 30px;
-    margin: 60px 0;
+    padding: $spacer*3 0;
+    margin: $spacer*3 0;
 }
 /*-----------------------------------------*/
 

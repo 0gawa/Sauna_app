@@ -45,9 +45,6 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -78,7 +75,9 @@ group :production do
   #gem 'mysql2'
 end
 
+#認証機能
 gem "devise"
+
 gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
 gem 'image_processing', '~> 1.2'
@@ -88,6 +87,7 @@ gem 'mini_magick'
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
 
+#google maps用
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'gon'
@@ -96,4 +96,8 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 
+#バッチ処理
 gem 'whenever', require: false
+
+#googleログイン用
+gem 'googleauth'

@@ -1,7 +1,7 @@
 class Public::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
-  # prepend_before_action :authenticate_scope!, only: [:update] 
+  before_action :configure_sign_up_params, :is_correct_user, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  # prepend_before_action :authenticate_scope!, only: [:update] 
 
   # GET /resource/sign_up
   # def new
@@ -50,6 +50,28 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  end
+
+  # フラッシュメッセージを決めるため
+  def is_correct_user
+    if self.is_filled_form
+      if params[:user][:password].length>=6 && params[:user][:password].length <= 128
+        if params[:user][:password] === params[:user][:password_confirmation]
+          return #問題なし
+        else
+          flash[:notice] = "確認用と一致しません"
+        end
+      else
+        flash[:notice] = "パスワードは6文字以上128文字以下である必要があります。"
+      end
+    else
+      flash[:notice] = "すべてに入力する必要があります"
+    end
+  end
+
+  # すべてが入力されているか確認する
+  def is_filled_form
+    return params[:user][:email].present? && params[:user][:name].present? && params[:user][:password].present? && params[:user][:password_confirmation].present?
   end
 
   # If you have extra params to permit, append them to the sanitizer.

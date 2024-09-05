@@ -1,4 +1,5 @@
 Rails.application.routes.draw do 
+  get 'google_login_api/callback'
   # 顧客用
   # URL /users/sign_in ...
   devise_for :users, controllers: {
@@ -43,6 +44,8 @@ Rails.application.routes.draw do
     post "/contacts/information/:id" => "contacts#information",as: "sauna_info"
 
   end
+  #googleでのログイン機能用
+  post '/google_login_api/callback' => 'google_login_api#callback'
 
   namespace :admin do
     root to: "homes#top"

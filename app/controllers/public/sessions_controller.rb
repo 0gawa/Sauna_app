@@ -29,16 +29,21 @@ class Public::SessionsController < Devise::SessionsController
   protected
 
   def reject_user
+    if !params[:user][:email].present? || !params[:user][:password].present?
+      flash[:notice] = "すべてに入力する必要があります"
+      return
+    end
+
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
-      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false))
-        flash[:notice] = "退会済みのアカウントです。新規登録して下さい。"
+      if @user.active_for_authentication? == false
+        flash[:notice] = "使用できないアカウントです"
         redirect_to new_user_session_path
-      else
-        flash[:notice] = "誤った入力があります。以下の項目全てに正しく入力してください。"
+      elsif !@user.valid_password?(params[:user][:password])
+        flash[:notice] = "パスワードが間違えています"
       end
     else
-      flash[:notice] = "ログインできません。"
+      flash[:notice] = "メールアドレスが間違えています"
     end
   end
 

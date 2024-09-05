@@ -2,29 +2,26 @@ require 'rails_helper'
 
 RSpec.describe Public::UsersController, type: :controller do
     describe "ユーザーコントローラーに関して" do
-        #ユーザーが保存されていたらすべて削除する
-        if User.all.count >= 0
-            User.all.each do |user|
-                user.destroy
-            end
-        end
-        #ユーザー１、２を作成する
         let(:user) { create(:user) }
-        let!(:other_user) { create(:user) }
-
+        let(:other_user) { create(:user) }
         before do
-            sign_in user
+            log_in(user)
         end
-        
-        it "ログインできる" do
-            visit user_path(user.id)
-            expect(page).to have_content 'マイページ'
-        end
-        
+
         context "ページが正しく表示されるか" do
-            it "mypage：マイページ" do
+            it "マイページ" do
                 visit user_path(user.id)
                 expect(page).to have_content 'マイページ'
+            end
+
+            it "退会確認" do
+                visit unsubscribe_path
+                expect(page).to have_content '退会の確認'
+            end
+
+            it "ユーザー編集画面" do
+                visit edit_user_path(user)
+                expect(page).to have_content "ユーザー情報の編集"
             end
         end
 
