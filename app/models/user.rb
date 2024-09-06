@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable, :trackable and :omniauthable
+  # :lockable, :timeoutable, :trackable and
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable,
+         omniauth_providers: %i[google_oauth2]
 
   has_one_attached :profile
 
@@ -25,5 +26,13 @@ class User < ApplicationRecord
       profile.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
     end
     profile.variant(resize_to_fill: [width, height]).processed
+  end
+
+  #クラスメソッド
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
   end
 end
