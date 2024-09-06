@@ -1,16 +1,32 @@
-<h2>Resend confirmation instructions</h2>
+<%= render "layouts/header"%>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "publics/shared/error_messages", resource: resource %>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+  <!--再送フォームは中心位置に長方形を配置するレイアウトにすること-->
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+    <h1 class="text-center mt-5">メールアドレスを変更する</h1>
+    <p class="text-center pt-1 pb-0">メールアドレスを変更するために、以下のフォームに現在のメールアドレスを入力してください。
+    入力されたメールアドレスに変更メールを送信します。</p>
+
+    <%= render "public/shared/error_messages", resource: resource %>
+
+    <div class="col-11 col-md-5 registration-box">
+      <%= form_with model: @user, url: confirmation_path(@user), method: :post, class:"row justify-content-center"  do |f| %>
+        <div class="field col-10">
+          <%= f.label :email, "メールアドレス", class: "pb-1" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control" %>
+        </div>
+
+        <div class="actions mt-4 text-center">
+          <%= f.submit "メールを再送する", class: "btn btn-primary col-10" %>
+        </div>
+
+        <div class="mt-4 col-10">
+          <%= render "public/shared/links" %>
+        </div>
+
+      <% end %>
+    </div>
+
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "publics/shared/links" %>
+</div>

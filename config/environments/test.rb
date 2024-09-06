@@ -57,4 +57,16 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { protocol: 'https', host: host }
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+   :port => 587,
+   :domain => 'gmail.com',
+   :address => "smtp.gmail.com",
+   :user_name => ENV["GMAIL_USERNAME"],
+   :password => ENV["GMAIL_PASSWORD"],
+   :authentication => :plain,
+   :enable_starttls_auto => true 
+  }
 end

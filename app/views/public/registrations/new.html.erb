@@ -3,24 +3,23 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
   <!--ログインフォームは中心位置に長方形を配置するレイアウトにすること-->
-    <div class="col-11 col-md-7 registration-box">
-      <h1 class="text-center">アカウントの登録</h1>
-      <p class="pt-2 pb-0">アカウントに登録すると<%=link_to "プライバシーポリシー", privacy_path, class:""%>と利用規約に同意したとみなします。</p>
 
-      <%= render "public/shared/error_messages", resource: resource %>
-
-      <%= form_with model: @user, url: registration_path(@user), method: :post, class:"row mt-4 justify-content-center" do |f| %>
-        <div class="field mt-4 col-10">
+    <h1 class="text-center mt-5">アカウントの登録</h1>
+    <p class="pt-1 pb-0 text-center">アカウントに登録すると<%=link_to "プライバシーポリシー", privacy_path, class:""%>と利用規約に同意したとみなします。</p>
+    
+    <div class="col-11 col-md-5 registration-box">
+      <%= form_with model: @user, url: registration_path(@user), method: :post, class:"row justify-content-center" do |f| %>
+        <div class="col-10">
           <%= f.label :email, "メールアドレス", class: "pb-1" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
 
-        <div class="field mt-4 col-10">
+        <div class="mt-4 col-10">
           <%= f.label :name, "ニックネーム（他のユーザーにも公開されます）", class: "pb-1" %><br>
           <%= f.text_field :name, class: "form-control" %>
         </div>
 
-        <div class="field mt-4 col-10">
+        <div class="mt-4 col-10">
           <%= f.label :password, "パスワード", class: "pb-1" %>
           <% if @minimum_password_length %>
           <span>（<%= @minimum_password_length %>文字以上にしてください）</span>
@@ -28,17 +27,27 @@
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
 
-        <div class="field mt-4 col-10">
+        <div class="mt-4 col-10">
           <%= f.label :password_confirmation, "確認用", class: "pb-1" %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
 
         <div class="actions mt-4 text-center">
-          <%= f.submit "登録", class: "btn btn-primary col-4" %>
+          <% if flash[:notice]%>
+            <p class="text-center mb-1 text-danger"><%= flash[:notice] %></p>
+          <%end%>
+          <%= f.submit "登録", class: "btn btn-primary col-10" %>
         </div>
-      <% end %>
 
-      <div class="mt-4 text-center"><%= render "public/shared/links"%></div>
+        <div class="mt-4 col-10">
+          <%= render "public/shared/links"%>
+        </div>
+
+        <!--
+        <div class="mt-4 col-10">
+          <%=render "public/shared/google_btn"%>
+        </div> -->
+      <% end %>
    
     </div>
   </div>

@@ -1,8 +1,7 @@
-# frozen_string_literal: true
-
 class Public::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, :is_correct_user, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  # prepend_before_action :authenticate_scope!, only: [:update] 
 
   # GET /resource/sign_up
   # def new
@@ -11,9 +10,8 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   #POST /resource
   def create
-    super
-    if current_user.present?
-      UserMailer.with(user: @current_user).welcome_email.deliver_later
+    super do
+      resource.update(confirmed_at: Time.now.utc)     
     end
   end
 
@@ -24,7 +22,9 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   # def update
-  #   super
+  #   if resource.save
+  #     respond_with resource, location: after_update_path_for(resource)
+  #   end
   # end
 
   # DELETE /resource
@@ -45,16 +45,38 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
+  # フラッシュメッセージを決めるため
+  def is_correct_user
+    if self.is_filled_form
+      if params[:user][:password].length>=6 && params[:user][:password].length <= 128
+        if params[:user][:password] === params[:user][:password_confirmation]
+          return #問題なし
+        else
+          flash[:notice] = "確認用と一致しません"
+        end
+      else
+        flash[:notice] = "パスワードは6文字以上128文字以下である必要があります。"
+      end
+    else
+      flash[:notice] = "すべてに入力する必要があります"
+    end
+  end
+
+  # すべてが入力されているか確認する
+  def is_filled_form
+    return params[:user][:email].present? && params[:user][:name].present? && params[:user][:password].present? && params[:user][:password_confirmation].present?
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:email])
   # end
 
   # The path used after sign up.
