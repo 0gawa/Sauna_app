@@ -1,6 +1,5 @@
 class Public::SaunasController < ApplicationController
-  before_action :authenticate_user!, except: [:create, :update]
-  before_action :authenticate_manager!, only: [:create, :update]
+  before_action :authenticate_user!
 
   def show
     @sauna = Sauna.find(params[:id])
