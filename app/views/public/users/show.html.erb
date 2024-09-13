@@ -49,7 +49,7 @@
 
             <div class="row mt-5 d-flex justify-content-center">
                 <h3 class="text-center mb-0"><%=current_user.name%>さんの最近</h3>
-                <div class="mt-5 col-11 bg-light-secondary p-2 rounded-2">
+                <div class="mt-4 w-100 bg-light-secondary p-2 rounded-2">
                     <h5 class="text-center pt-3">今月<%=current_user.name%>さんはサウナに<%=current_user.tweets.for_month.count%>回行きました</h5>
                     <p class="text-center">これは平均の時間です。自分にあった入り方を見つけましょう。</p>
                     <table class="w-100">
@@ -60,10 +60,7 @@
                 </div>
             </div>
 
-            <div class="row mt-5">
-                <h3 class="text-center">サ活履歴</h3>
-            </div>
-
+            <h3 class="mt-5 text-center">サ活履歴</h3>
             <div class="row mt-4 row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
                 <% @tweets.each do |tweet|%>
                     <%= link_to tweet_path(tweet.id) do%>
@@ -93,10 +90,7 @@
                 <%=render "layouts/three_btn"%>
             </div>
 
-            <div class="row mt-5 text-center">
-                <h3>みんなの投稿</h3>
-            </div>
-
+            <h3 class="mt-5 text-center">みんなの投稿</h3>
             <div class="row row-cols-1  row-cols-sm-2 row-cols-md-4 mt-4 g-4">
                 <% @tweets_all.each do |tweet|%>
                     <%= link_to tweet_path(tweet.id) do%>

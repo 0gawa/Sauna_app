@@ -42,13 +42,13 @@
         <div class="mt-4 col-10">
           <%= render "public/shared/links"%>
         </div>
-
      
-        <!-- <div class="mt-4 col-10">
-          <%=render "public/shared/google_btn"%>
-        </div> -->
       <% end %>
    
+      <div class="mt-4 text-center">
+        <%= button_to "Googleで新規登録", user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "btn btn-success col-10" %>
+      </div>
+
     </div>
   </div>
 </div>

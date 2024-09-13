@@ -1,18 +1,22 @@
 <header>
-    <div class="d-flex">
-        <div id="nav-ham"><div class="openbtn1" id="ham-item"><span></span><span></span><span></span></div></div>
-        <% if user_signed_in? %>
+    <nav class="navbar navbar-expand-lg py-0">
+        <div class="container-fluid">
+            <!--ブランドロゴ長方形-->
+            <% if user_signed_in? %>
             <%=link_to user_path(current_user.id), class: "navbar-brand" do%>
-                <%= image_tag 'header_logo.png', :size =>'240x60' %>
+                <%= image_tag 'header_logo.png', :size =>'200x50' %>
             <% end %>
-        <%else%>
+            <%else%>
             <%=link_to root_path, class: "navbar-brand" do%>
-                <%= image_tag 'header_logo.png', :size =>'240x60' %>
+                <%= image_tag 'header_logo.png', :size =>'200x50' %>
             <% end %>
-        <%end%>
+            <%end%>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="position-absolute end-0" id="nav-bar">
-            <ul class="d-flex mb-0" id="nav-items">
+            <div class="justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
                 <% if user_signed_in? %>
                     <li class="me-1">
                         <%= link_to "マイページ", user_path(current_user.id), class: 'header-navItem' %>
@@ -37,80 +41,8 @@
                         <%= link_to "ログイン", new_user_session_path, class: 'header-navItem' %>
                     </li>
                 <% end %>
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
 </header>
-
-<style>
-    ul{padding-left:0;}
-    li{list-style:none;}
-    .hide{display: none;}
-</style>
-
-<nav class="nav-ph hide">
-    <ul style="margin-top: 2px;">
-        <% if user_signed_in? %>
-            <li>
-                <%= link_to "マイページ", user_path(current_user.id), class: 'header-navItem-hide' %>
-            </li>
-            <li>
-                <%= link_to "サウナ一覧", saunas_path, class: 'header-navItem-hide' %>
-            </li>
-            <li>
-                <%= link_to "サ活一覧", tweets_path, class: 'header-navItem-hide' %>
-            </li>
-            <li>
-                <%= link_to "サ活投稿", new_tweet_path, class: 'header-navItem-hide' %>
-            </li>
-            <li>
-                <%= link_to "ログアウト", destroy_user_session_path, data: {"turbo-method": :delete}, class: 'header-navItem-hide' %>
-            </li>
-        <% else %>
-            <li>
-                <%= link_to "今すぐ始める", new_user_registration_path, class: 'header-navItem-hide' %>
-            </li>
-            <li>
-                <%= link_to "ログイン", new_user_session_path, class: 'header-navItem-hide' %>
-            </li>
-        <% end %>
-    </ul>
-</nav>
-
-<script>
-    $(function(){
-        let nav_items = $('#nav-items');
-        let ham_item = $('#ham-item');
-        if($(window).width() < 900){
-            if(!$("#nav-bar").hasClass("hide")){
-                $("#nav-bar").addClass("hide");
-            }
-        }else{
-            if(!$("#nav-ham").hasClass("hide")){
-                $("#nav-ham").addClass("hide");
-            }
-        }
-        $(window).resize(function(){
-            if($(window).width() < 900){
-                //ナビゲーションバーを消す記述
-                if(!$("#nav-bar").hasClass("hide")){$("#nav-bar").hasClass("hide");}
-               //ハンバーガーメニューアイコンを表示させる記述
-                if($("#nav-ham").hasClass("hide")){$("#nav-ham").removeClass("hide");}
-            }else{
-                //ハンバーガーメニューアイコンを消す記述
-                if(!$("#nav-ham").hasClass("hide")){$("#nav-ham").hasClass("hide");}
-                //ナビゲーションバーを表示させる処理
-                if($("#nav-bar").hasClass("hide")){$("#nav-bar").removeClass("hide");}
-                //ハンバーガーメニューを押したら出てくるやつを消す処理
-                if(!$(".nav-ph").hasClass("hide")){$(".nav-ph").hasClass("hide");}
-            }
-        });
-        $(".openbtn1").click(function () {
-            $(this).toggleClass('active');
-        });
-        var navButton = $(".openbtn1")
-        .click(function(){
-            $(".nav-ph").toggleClass("hide");
-        });
-    });
-</script>

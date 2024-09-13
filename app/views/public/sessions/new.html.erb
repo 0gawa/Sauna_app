@@ -5,7 +5,7 @@
 <!--ログインフォームは中心位置に長方形を配置するレイアウトにすること-->
 
     <h1 class="text-center mt-5">ログイン</h1>
-    <div class="col-11 col-md-5  log-in-box">
+    <div class="col-11 col-md-5 log-in-box">
       <%= form_with model: @user, url: session_path(@user), method: :post, class:"row justify-content-center" do |f| %>
         <div class="field col-10">
           <%= f.label :email, "メールアドレス", class: "pb-1" %><br />
@@ -36,6 +36,10 @@
           <%= render "public/shared/links" %>
         </div>
       <% end %>
+
+      <div class="mt-4 text-center">
+        <%= button_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "btn btn-success col-10" %>
+      </div>
     </div>
 
   </div>
