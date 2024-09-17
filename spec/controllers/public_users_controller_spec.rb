@@ -1,19 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Public::UsersController, type: :controller do
-    describe "ユーザーコントローラーに関して" do
-        let(:user) { create(:user) }
-        let(:other_user) { create(:user) }
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
 
+    before do
+        log_in(user)
+    end
+
+    describe "ユーザーコントローラーに関して" do
         it "有効なユーザーかどうか：その1" do
             expect(user.active_for_authentication?).to eq true
         end
         it "有効なユーザーかどうか：その2" do
             expect(other_user.active_for_authentication?).to eq true
-        end
-
-        before do
-            log_in(user)
         end
 
         context "ページが正しく表示されるか" do

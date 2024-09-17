@@ -6,5 +6,6 @@ FactoryBot.define do
     password { 'password' }
     password_confirmation { 'password' }
     confirmed_at { Time.now }
+    uid {Faker::Lorem.characters(number: 15)}
   end
 end

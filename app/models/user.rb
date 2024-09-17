@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :introduction, length: {maximum: 120}
 
   # for google login
-  validates :uid, uniqueness: { scope: :provider }
+  # validates :uid, uniqueness: { scope: :provider }
 
   def active_for_authentication?
     super && (is_unsubscribed == false)
