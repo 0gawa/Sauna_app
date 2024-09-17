@@ -11,7 +11,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #POST /resource
   def create
     super do
-      resource.update(confirmed_at: Time.now.utc)     
+      resource.update(confirmed_at: Time.now.utc, provider: "normal", uid: resource.id.to_s+('a'..'z').to_a.shuffle[0..9].join)  
     end
   end
 
@@ -54,6 +54,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # フラッシュメッセージを決めるため
   def is_correct_user
+    user = User.find_by(email: params[:user][:email])
+    if user.present?
+      flash[:notice] = "そのメールアドレスはすでに使われています"
+      return
+    end
+    
     if self.is_filled_form
       if params[:user][:password].length>=6 && params[:user][:password].length <= 128
         if params[:user][:password] === params[:user][:password_confirmation]
