@@ -1,5 +1,8 @@
 class SaunaComment < ApplicationRecord
-    # validates :comment, presence: true
+    after_initialize :set_default_values, if: :new_record?
+    def set_default_values
+        self.comment ||= ""
+    end
 
     belongs_to :user
     belongs_to :sauna

@@ -1,4 +1,9 @@
 class Tweet < ApplicationRecord
+    after_initialize :set_default_values, if: :new_record?
+    def set_default_values
+      self.impression ||= ""
+    end
+
     has_one_attached :image
 
     has_many :favorites, dependent: :destroy

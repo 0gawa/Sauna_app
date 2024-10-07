@@ -1,0 +1,21 @@
+current directory: /Users/ogawadaiki/Desktop/Sauna_app/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+/Users/ogawadaiki/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/ogawadaiki/Desktop/Sauna_app/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241006-16857-ppf94d sitelibdir\=./.gem.20241006-16857-ppf94d clean
+
+current directory: /Users/ogawadaiki/Desktop/Sauna_app/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241006-16857-ppf94d sitelibdir\=./.gem.20241006-16857-ppf94d
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.bundle
+ld: warning: -multiply_defined is obsolete
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/ogawadaiki/Desktop/Sauna_app/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241006-16857-ppf94d sitelibdir\=./.gem.20241006-16857-ppf94d install
+/usr/bin/install -c -m 0755 debug.bundle ./.gem.20241006-16857-ppf94d/debug
+
+current directory: /Users/ogawadaiki/Desktop/Sauna_app/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241006-16857-ppf94d sitelibdir\=./.gem.20241006-16857-ppf94d clean

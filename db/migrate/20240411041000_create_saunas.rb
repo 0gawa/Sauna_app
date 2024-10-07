@@ -8,7 +8,7 @@ class CreateSaunas < ActiveRecord::Migration[7.0]
       t.string :time
       t.string :charge
       t.string :hp
-      t.text :express, default: ""
+      t.text :express
 
       t.timestamps
     end

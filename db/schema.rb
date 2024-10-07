@@ -11,17 +11,17 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2024_09_06_095249) do
-  create_table "active_storage_attachments", force: :cascade do |t|
+  create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8mb3", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,22 +33,22 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_06_095249) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+  create_table "active_storage_variant_records", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "favorites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "tweet_id", null: false
+  create_table "favorites", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tweet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tweet_id"], name: "index_favorites_on_tweet_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "managers", force: :cascade do |t|
+  create_table "managers", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -61,8 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_06_095249) do
     t.index ["reset_password_token"], name: "index_managers_on_reset_password_token", unique: true
   end
 
-  create_table "sauna_comments", force: :cascade do |t|
-    t.text "comment", default: ""
+  create_table "sauna_comments", charset: "utf8mb3", force: :cascade do |t|
+    t.text "comment"
     t.integer "user_id"
     t.integer "sauna_id"
     t.integer "aufguss", default: 0
@@ -77,23 +77,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_06_095249) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sauna_favorites", force: :cascade do |t|
+  create_table "sauna_favorites", charset: "utf8mb3", force: :cascade do |t|
     t.integer "user_id"
     t.integer "sauna_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "sauna_infos", force: :cascade do |t|
+  create_table "sauna_infos", charset: "utf8mb3", force: :cascade do |t|
     t.integer "temperature", null: false
-    t.integer "sauna_id"
+    t.bigint "sauna_id"
     t.string "express"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sauna_id"], name: "index_sauna_infos_on_sauna_id"
   end
 
-  create_table "saunas", force: :cascade do |t|
+  create_table "saunas", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "address", null: false
     t.float "latitude"
@@ -101,12 +101,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_06_095249) do
     t.string "time"
     t.string "charge"
     t.string "hp"
-    t.text "express", default: ""
+    t.text "express"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "tweet_comments", force: :cascade do |t|
+  create_table "tweet_comments", charset: "utf8mb3", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id"
     t.integer "tweet_id"
@@ -114,11 +114,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_06_095249) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tweets", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "sauna_id", null: false
+  create_table "tweets", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "sauna_id", null: false
     t.integer "count", default: 0, null: false
-    t.text "impression", default: "", null: false
+    t.text "impression"
     t.integer "sauna_time", default: 3, null: false
     t.float "water_time", default: 0.167, null: false
     t.integer "totonoi_time", default: 5, null: false
@@ -128,7 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_06_095249) do
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -150,9 +150,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_06_095249) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "waters", force: :cascade do |t|
+  create_table "waters", charset: "utf8mb3", force: :cascade do |t|
     t.integer "temperature", null: false
-    t.integer "sauna_id"
+    t.bigint "sauna_id"
     t.string "express"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
